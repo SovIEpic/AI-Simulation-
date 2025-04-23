@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\project\\My project (1)\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Q Learning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\Q Learning.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,11 +30,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "QLearning.cs",
+              "DocumentMoniker": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearning.cs",
+              "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\QLearning.cs",
+              "ToolTip": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearning.cs",
+              "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\QLearning.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T00:56:03.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Movement.cs",
               "DocumentMoniker": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\Movement.cs",
@@ -38,25 +55,22 @@
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\Movement.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T00:53:24.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T00:53:24.889Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Q Learning.cs",
               "DocumentMoniker": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Q Learning.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\Q Learning.cs",
               "ToolTip": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Q Learning.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\Q Learning.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T00:50:31.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T00:50:31.291Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "NewMonoBehaviourScript.cs",
               "DocumentMoniker": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\NewMonoBehaviourScript.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\NewMonoBehaviourScript.cs",
@@ -67,7 +81,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "NewEmptyCSharpScript.cs",
               "DocumentMoniker": "D:\\project\\My project (1)\\Assets\\TutorialInfo\\Scripts\\NewEmptyCSharpScript.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\NewEmptyCSharpScript.cs",

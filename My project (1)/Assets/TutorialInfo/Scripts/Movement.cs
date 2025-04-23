@@ -2,9 +2,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float rotationSpeed = 120f;
-    public bool enableKeyboardTesting = true;
+    public bool enableKeyboardTesting = false;
+
+    private float originalMoveSpeed;
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        originalMoveSpeed = moveSpeed;
+    }
 
     void Update()
     {
@@ -29,11 +39,36 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        if (direction != Vector3.zero)
+        {
+            // Movement
+            rb.linearVelocity = direction * moveSpeed;
+
+            // Auto-rotation when not testing
+            if (!enableKeyboardTesting)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRotation,
+                    rotationSpeed * Time.deltaTime
+                );
+            }
+        }
     }
 
     public void Rotate(float rotationInput)
     {
         transform.Rotate(0, rotationInput * rotationSpeed * Time.deltaTime, 0);
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        moveSpeed = originalMoveSpeed * multiplier;
+    }
+
+    public void ResetSpeed()
+    {
+        moveSpeed = originalMoveSpeed;
     }
 }

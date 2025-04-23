@@ -147,4 +147,8 @@ public class BossAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
+    public void SetCurrentTarget(Transform newTarget)
+    {
+        currentTarget = newTarget;
+    }
 }
