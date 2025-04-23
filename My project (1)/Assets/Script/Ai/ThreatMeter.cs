@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ThreatMeter
@@ -18,8 +17,25 @@ public class ThreatMeter
             threatLevels[target] += amount;
     }
 
+    public float GetThreatValue(Transform target)
+    {
+        return threatLevels.ContainsKey(target) ? threatLevels[target] : 0f;
+    }
+
     public Transform GetTopThreatTarget()
     {
-        return threatLevels.OrderByDescending(t => t.Value).First().Key;
+        float maxThreat = float.MinValue;
+        Transform topTarget = null;
+
+        foreach (var kvp in threatLevels)
+        {
+            if (kvp.Value > maxThreat)
+            {
+                maxThreat = kvp.Value;
+                topTarget = kvp.Key;
+            }
+        }
+
+        return topTarget;
     }
 }

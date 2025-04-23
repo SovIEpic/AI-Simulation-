@@ -1,14 +1,13 @@
 using UnityEngine;
-using System;
 
 namespace BehaviorTree.Actions
 {
     public class AttackNode : ActionNode
     {
         private BossAI boss;
-        private Func<Transform> getTarget;
+        private System.Func<Transform> getTarget;
 
-        public AttackNode(BossAI boss, Func<Transform> getTarget)
+        public AttackNode(BossAI boss, System.Func<Transform> getTarget)
         {
             this.boss = boss;
             this.getTarget = getTarget;
@@ -24,7 +23,7 @@ namespace BehaviorTree.Actions
 
             if (boss.stats.stamina < 10f) return NodeState.Failure;
 
-            target.GetComponent<PlayerAI>().TakeDamage(boss.stats.damagePerSecond);
+            target.GetComponent<PlayerAI>()?.TakeDamage(boss.stats.damagePerSecond);
             boss.stats.stamina -= 10f;
             return NodeState.Success;
         }

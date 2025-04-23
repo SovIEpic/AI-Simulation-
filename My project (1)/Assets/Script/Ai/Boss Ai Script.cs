@@ -1,7 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
+using BehaviorTree.Actions;
+using ReinforcementLearning;
+using Utilities;
+using BehaviorTree;
 
 public enum BossPhase { Phase1, Phase2, Phase3 }
 
@@ -10,12 +13,17 @@ public class BossAI : MonoBehaviour
 {
     public BossStats stats;
     public List<Transform> playerAgents;
+    public GameObject hpBarPrefab;
 
     private NavMeshAgent agent;
     private Transform currentTarget;
     private float attackTimer;
     private ThreatMeter threatMeter;
-    private BehaviorTree.Node behaviorTree;
+    private Node behaviorTree;
+
+    private QTableManager qTable;
+    private RLRewardEstimator rewardEstimator;
+    private TacticalDecisionFusion fusion;
 
     public BossPhase currentPhase = BossPhase.Phase1;
     public float phase2Threshold = 0.66f;
@@ -37,13 +45,16 @@ public class BossAI : MonoBehaviour
     {
         stats.ResetHP();
         lastHP = stats.currentHP;
-
         agent = GetComponent<NavMeshAgent>();
         agent.speed = stats.movementSpeed;
 
-        attackTimer = stats.attackCooldown;
         threatMeter = new ThreatMeter(playerAgents);
+        qTable = new QTableManager();
+        rewardEstimator = new RLRewardEstimator(qTable);
+        fusion = new TacticalDecisionFusion(threatMeter, rewardEstimator);
+
         behaviorTree = BuildBehaviorTree();
+        attackTimer = stats.attackCooldown;
     }
 
     void Update()
@@ -54,7 +65,7 @@ public class BossAI : MonoBehaviour
         TrackDamageRate();
         TryDodge();
 
-        currentTarget = threatMeter.GetTopThreatTarget();
+        currentTarget = ChooseBalancedTarget();
         behaviorTree.Evaluate();
 
         dodgeTimer -= Time.deltaTime;
@@ -64,13 +75,11 @@ public class BossAI : MonoBehaviour
     void HandlePhaseTransition()
     {
         float hpPercent = stats.currentHP / stats.maxHP;
-
         if (!phase2Triggered && hpPercent <= phase2Threshold)
         {
             phase2Triggered = true;
             EnterPhase(BossPhase.Phase2);
         }
-
         if (!phase3Triggered && hpPercent <= phase3Threshold)
         {
             phase3Triggered = true;
@@ -92,7 +101,6 @@ public class BossAI : MonoBehaviour
                 stats.staminaRegenRate += 20f;
                 break;
         }
-
         Debug.Log($"Boss transitioned to {phase}!");
     }
 
@@ -114,26 +122,19 @@ public class BossAI : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private BehaviorTree.Node BuildBehaviorTree()
+    private Node BuildBehaviorTree()
     {
-        return new BehaviorTree.Selector(new List<BehaviorTree.Node> {
-            new BehaviorTree.Actions.AoeAttackNode(this, aoeRadius, aoeDamage),
-            new BehaviorTree.Actions.AttackNode(this, () => currentTarget),
-            new BehaviorTree.Actions.MoveToTargetNode(this, () => currentTarget),
-            new BehaviorTree.Actions.RetreatNode(this)
+        return new Selector(new List<Node> {
+            new AoeAttackNode(this, aoeRadius, aoeDamage),
+            new AttackNode(this, () => currentTarget),
+            new MoveToTargetNode(this, () => currentTarget),
+            new RetreatNode(this)
         });
     }
-
-    public float GetDodgeCooldownNormalized()
-    {
-        return dodgeCooldown == 0f ? 0f : dodgeTimer / dodgeCooldown;
-    }
-
 
     public Transform GetCurrentTarget() => currentTarget;
     public List<Transform> GetAllPlayers() => playerAgents;
     public NavMeshAgent GetAgent() => agent;
-
 
     void TrackDamageRate()
     {
@@ -155,20 +156,26 @@ public class BossAI : MonoBehaviour
     void TryDodge()
     {
         if (!CanDodge() || dodgeTimer > 0f) return;
-
         Transform target = GetCurrentTarget();
         if (target == null) return;
 
         Vector3 dodgeDir = (target.position - transform.position).normalized;
         Vector3 dodgeTarget = transform.position + dodgeDir * 5f;
-
         if (NavMesh.SamplePosition(dodgeTarget, out NavMeshHit hit, 2f, NavMesh.AllAreas))
         {
             agent.ResetPath();
             agent.SetDestination(hit.position);
-            Debug.Log($"Boss Dodged toward threat during {currentPhase}!");
             dodgesUsed++;
             dodgeTimer = dodgeCooldown;
+            Debug.Log("Boss dodged!");
         }
+    }
+
+    Transform ChooseBalancedTarget()
+    {
+        float alpha = 0.6f, beta = 0.4f;
+        if (currentPhase == BossPhase.Phase3) { alpha = 0.3f; beta = 0.7f; }
+
+        return fusion.GetBestTarget(playerAgents, alpha, beta);
     }
 }
