@@ -19,6 +19,7 @@ namespace ReinforcementLearning
         public void LearnFromOutcome(Transform player, float reward)
         {
             qTable.UpdateQValue(player, reward);
+            qTable.SaveToDisk();
         }
     }
 }

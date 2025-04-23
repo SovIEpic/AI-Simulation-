@@ -18,9 +18,7 @@ namespace BehaviorTree.Actions
             if (boss.stats.currentHP / boss.stats.maxHP > 0.2f &&
                 boss.stats.stamina > 20f &&
                 boss.GetAllPlayers().Count <= 2)
-            {
                 return NodeState.Failure;
-            }
 
             Transform target = boss.GetCurrentTarget();
             if (target == null) return NodeState.Failure;

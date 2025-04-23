@@ -17,6 +17,18 @@ public class ThreatMeter
             threatLevels[target] += amount;
     }
 
+    public void CleanupInactiveTargets()
+    {
+        foreach (var key in new List<Transform>(threatLevels.Keys))
+        {
+            if (key == null || !key.gameObject.activeInHierarchy)
+            {
+                threatLevels.Remove(key);
+            }
+        }
+    }
+
+
     public float GetThreatValue(Transform target)
     {
         return threatLevels.ContainsKey(target) ? threatLevels[target] : 0f;

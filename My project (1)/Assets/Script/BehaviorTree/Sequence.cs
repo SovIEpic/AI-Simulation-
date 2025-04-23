@@ -6,7 +6,10 @@ namespace BehaviorTree
     {
         private List<Node> nodes;
 
-        public Sequence(List<Node> nodes) => this.nodes = nodes;
+        public Sequence(List<Node> nodes)
+        {
+            this.nodes = nodes;
+        }
 
         public override NodeState Evaluate()
         {

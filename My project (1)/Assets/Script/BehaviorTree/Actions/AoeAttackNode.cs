@@ -19,7 +19,8 @@ namespace BehaviorTree.Actions
         public override NodeState Evaluate()
         {
             var targetsInRange = boss.GetAllPlayers()
-                .Where(p => Vector3.Distance(boss.transform.position, p.position) <= radius)
+                .Where(p => p != null && p.gameObject.activeInHierarchy &&
+                            Vector3.Distance(boss.transform.position, p.position) <= radius)
                 .ToList();
 
             if (targetsInRange.Count < 2 || boss.stats.stamina < 20f)
@@ -29,8 +30,12 @@ namespace BehaviorTree.Actions
 
             foreach (var p in targetsInRange)
             {
-                p.GetComponent<PlayerAI>().TakeDamage(damage);
-                boss.stats.stamina -= 10f;
+                var playerAI = p.GetComponent<PlayerAI>();
+                if (playerAI != null)
+                {
+                    playerAI.TakeDamage(damage);
+                    boss.stats.stamina -= 10f;
+                }
             }
 
             return NodeState.Success;
