@@ -1,130 +1,112 @@
 using UnityEngine;
 
-public class AITankController : MonoBehaviour
+public class AITankController : AIController
 {
-    [Header("Tank Settings")]
-    public float healthMultiplier = 1.5f;
-    public float blockDuration = 3f;
-    public float blockCooldown = 10f;
-    public float shieldBashRange = 3f;
-    public float shieldBashDamage = 25f;
-    public float shieldBashCooldown = 8f;
-    public float tauntRange = 8f;
-    public float tauntCooldown = 15f;
-    public float tauntDuration = 5f;
+    [Header("Tank Abilities")]
+    [SerializeField] protected float tankSpeed = 2.5f;
+    [SerializeField] protected float shieldBashRange = 3f;
+    [SerializeField] protected float tauntRange = 8f;
+    [SerializeField] protected float blockDuration = 3f;
+    [SerializeField] protected float shieldBashCooldown = 8f;
+    [SerializeField] protected float tauntCooldown = 15f;
+    [SerializeField] protected float blockCooldown = 10f;
+    [SerializeField] protected float tauntDuration = 5f;
+    [SerializeField] protected float shieldBashDamage = 25f;
 
-    [Header("References")]
-    [SerializeField] private CharacterStats stats;
-    [SerializeField] private Movement movement;
-    [SerializeField] private ParticleSystem tauntVFX;
-
-    [Header("Cube Visuals")]
-    [SerializeField] private GameObject shieldIndicator; // Renamed from shieldVisual
-    [SerializeField] private Color tauntColor = Color.yellow;
-    [SerializeField] private Color bashColor = Color.red;
+    [Header("Visual Feedback")]
+    [SerializeField] private GameObject shieldIndicator;
     [SerializeField] private Color blockColor = Color.blue;
-
+    [SerializeField] private Color bashColor = Color.red;
+    [SerializeField] private Color tauntColor = Color.yellow;
     private Material originalMaterial;
-    private Renderer cubeRenderer;
-    private Transform bossTarget;
-    private float lastBlockTime;
-    private float lastShieldBashTime;
-    private float lastTauntTime;
-    private bool isBlocking;
 
-    void Start()
+    // Cooldowns (initialized to allow immediate use)
+    protected float lastTauntTime = Mathf.NegativeInfinity;
+    protected float lastShieldBashTime = Mathf.NegativeInfinity;
+    protected float lastBlockTime = Mathf.NegativeInfinity;
+    protected bool isBlocking;
+
+    [Header("Debug")]
+    [SerializeField] private bool showAbilityLogs = true;
+
+    protected override void Start()
     {
-
-        stats = GetComponent<CharacterStats>();
-        movement = GetComponent<Movement>();
-        cubeRenderer = GetComponent<Renderer>();
-
-        if (stats == null) Debug.LogError("Missing CharacterStats!", gameObject);
-        if (movement == null) Debug.LogError("Missing Movement!", gameObject);
-        if (cubeRenderer == null) Debug.LogError("Missing Renderer!", gameObject);
-
-        originalMaterial = cubeRenderer.material;
-        bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
-
-        if (bossTarget == null) Debug.LogWarning("No boss found in scene!", gameObject);
-
-        stats.maxHealth *= healthMultiplier;
-        stats.currentHealth = stats.maxHealth;
-
-        if (shieldIndicator != null)
-            shieldIndicator.SetActive(false);
-        else
-            Debug.LogWarning("Shield indicator not assigned", gameObject);
-
-        stats = GetComponent<CharacterStats>();
-        movement = GetComponent<Movement>();
-        bossTarget = GameObject.FindGameObjectWithTag("Boss").transform;
-
-        cubeRenderer = GetComponent<Renderer>();
-        originalMaterial = cubeRenderer.material;
-
-        stats.maxHealth *= healthMultiplier;
-        stats.currentHealth = stats.maxHealth;
+        base.Start();
+        originalMaterial = GetComponent<Renderer>().material;
 
         if (shieldIndicator != null)
             shieldIndicator.SetActive(false);
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (bossTarget == null) return;
+        if (bossTarget == null)
+        {
+            bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
+            if (bossTarget == null) return;
+        }
 
-        float distanceToBoss = Vector3.Distance(transform.position, bossTarget.position);
+        Vector3 bossPosition = new Vector3(
+            bossTarget.position.x,
+            transform.position.y,
+            bossTarget.position.z
+        );
 
-        if (distanceToBoss <= tauntRange && Time.time > lastTauntTime + tauntCooldown)
+        float distance = Vector3.Distance(transform.position, bossPosition);
+
+        // Debug cooldown states
+        if (showAbilityLogs)
+        {
+            Debug.Log($"Cooldowns - " +
+                     $"Taunt: {Mathf.Max(0, lastTauntTime + tauntCooldown - Time.time):F1}s | " +
+                     $"Bash: {Mathf.Max(0, lastShieldBashTime + shieldBashCooldown - Time.time):F1}s | " +
+                     $"Block: {Mathf.Max(0, lastBlockTime + blockCooldown - Time.time):F1}s");
+        }
+
+        // Ability priority system
+        if (distance <= tauntRange && Time.time >= lastTauntTime + tauntCooldown)
         {
             TryTaunt();
         }
-
-        if (distanceToBoss <= shieldBashRange && Time.time > lastShieldBashTime + shieldBashCooldown)
+        else if (distance <= shieldBashRange && Time.time >= lastShieldBashTime + shieldBashCooldown)
         {
             TryShieldBash();
         }
-
-        if (distanceToBoss <= stats.attackRange && !isBlocking && Time.time > lastBlockTime + blockCooldown)
+        else if (distance <= attackRange)
         {
-            StartBlocking();
+            if (Time.time >= lastBlockTime + blockCooldown)
+                StartBlocking();
+            else if (Time.time >= lastAttackTime + attackCooldown)
+                TryAttack();
         }
-        else if (isBlocking && Time.time > lastBlockTime + blockDuration)
+        else if (distance <= detectionRange)
         {
-            StopBlocking();
+            Vector3 direction = (bossPosition - transform.position).normalized;
+            movement.Move(direction * tankSpeed);
+        }
+        else
+        {
+            movement.Move(Vector3.zero);
         }
     }
 
-    void TryTaunt()
+    protected void TryTaunt()
     {
         lastTauntTime = Time.time;
-        bossTarget.GetComponent<BossAI>().SetCurrentTarget(transform);
-        cubeRenderer.material.color = tauntColor;
-        if (tauntVFX != null) tauntVFX.Play();
+        ApplyColor(tauntColor);
+        if (showAbilityLogs) Debug.Log($"Taunt ACTIVATED at {Time.time}");
+
+        if (bossTarget.TryGetComponent<BossAI>(out var bossAI))
+            bossAI.SetCurrentTarget(transform);
+
         Invoke(nameof(ResetColor), tauntDuration);
     }
 
-    void StartBlocking()
-    {
-        isBlocking = true;
-        lastBlockTime = Time.time;
-        cubeRenderer.material.color = blockColor;
-        if (shieldIndicator != null) shieldIndicator.SetActive(true);
-        movement.SetSpeedMultiplier(0.5f);
-    }
-
-    void StopBlocking()
-    {
-        isBlocking = false;
-        if (shieldIndicator != null) shieldIndicator.SetActive(false);
-        movement.ResetSpeed();
-        ResetColor();
-    }
-
-    void TryShieldBash()
+    protected void TryShieldBash()
     {
         lastShieldBashTime = Time.time;
+        ApplyColor(bashColor);
+        if (showAbilityLogs) Debug.Log($"Shield Bash ACTIVATED at {Time.time}");
 
         Collider[] hits = Physics.OverlapSphere(transform.position, shieldBashRange);
         foreach (var hit in hits)
@@ -132,42 +114,62 @@ public class AITankController : MonoBehaviour
             if (hit.CompareTag("Boss"))
             {
                 hit.GetComponent<CharacterStats>()?.TakeDamage(shieldBashDamage);
-
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    Vector3 direction = (hit.transform.position - transform.position).normalized;
-                    rb.AddForce(direction * 5f, ForceMode.Impulse);
-                }
+                hit.GetComponent<Rigidbody>()?.AddForce(
+                    (hit.transform.position - transform.position).normalized * 5f,
+                    ForceMode.Impulse);
             }
         }
-        cubeRenderer.material.color = bashColor;
         Invoke(nameof(ResetColor), 0.5f);
     }
 
-    void ResetColor()
+    protected void StartBlocking()
     {
-        if (!isBlocking) // Don't reset color if still blocking
-        {
-            cubeRenderer.material.color = originalMaterial.color;
-        }
+        isBlocking = true;
+        lastBlockTime = Time.time;
+        ApplyColor(blockColor);
+        if (showAbilityLogs) Debug.Log($"Block ACTIVATED at {Time.time}");
+
+        if (shieldIndicator != null)
+            shieldIndicator.SetActive(true);
+
+        Invoke(nameof(StopBlocking), blockDuration);
     }
 
-    void OnDrawGizmosSelected()
+    private void StopBlocking()
     {
+        isBlocking = false;
+        if (shieldIndicator != null)
+            shieldIndicator.SetActive(false);
+        ResetColor();
+    }
+
+    private void ApplyColor(Color newColor)
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+            renderer.material.color = newColor;
+        else if (showAbilityLogs)
+            Debug.LogError("Missing Renderer component!");
+    }
+
+    private void ResetColor()
+    {
+        if (!isBlocking && GetComponent<Renderer>() != null)
+            GetComponent<Renderer>().material.color = originalMaterial.color;
+    }
+
+    protected void OnDrawGizmosSelected()
+    {
+        // Attack Range (Red)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // Shield Bash Range (Orange)
+        Gizmos.color = new Color(1, 0.5f, 0);
+        Gizmos.DrawWireSphere(transform.position, shieldBashRange);
+
+        // Taunt Range (Yellow)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, tauntRange);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, shieldBashRange);
-    }
-
-    public void TakeDamage(float damage)
-    {
-        if (isBlocking)
-        {
-            damage *= 0.3f; // 70% damage reduction
-        }
-        stats.TakeDamage(damage);
     }
 }

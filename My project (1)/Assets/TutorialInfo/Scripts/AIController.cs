@@ -2,72 +2,80 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float chaseSpeed = 3.5f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float detectionRange = 10f;
+    [Header("Combat Settings")]
+    [SerializeField] protected float chaseSpeed = 3.5f; // Renamed to chaseSpeed for clarity
+    [SerializeField] protected float attackRange = 2f;
+    [SerializeField] protected float detectionRange = 10f;
+    [SerializeField] protected float attackCooldown = 2f;
 
     [Header("References")]
-    [SerializeField] private Transform bossTarget;
-    [SerializeField] private CharacterStats stats;
-    private Movement movement;
+    [SerializeField] protected Transform bossTarget;
+    [SerializeField] protected CharacterStats stats;
+    [SerializeField] protected Movement movement;
+    [SerializeField] protected Rigidbody rb;
 
-    [Header("Debug")]
-    [SerializeField] private bool drawGizmos = true;
+    protected float lastAttackTime;
+    protected float groundCheckDistance = 0.5f; // Made protected
 
-    void Start()
+    protected virtual void Start()
     {
-        movement = GetComponent<Movement>();
-        stats = GetComponent<CharacterStats>();
-
-        if (bossTarget == null)
-        {
-            GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-            if (boss != null) bossTarget = boss.transform;
-        }
-
-        // Validate components
-        if (movement == null) Debug.LogError("Missing Movement script!", this);
-        if (stats == null) Debug.LogError("Missing CharacterStats script!", this);
-        if (bossTarget == null) Debug.LogError("No boss found in scene!", this);
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
-    void Update()
+    protected virtual void Update()
     {
-        if (bossTarget == null || movement == null || stats == null) return;
+        if (bossTarget == null || movement == null) return;
 
-        float distanceToBoss = Vector3.Distance(transform.position, bossTarget.position);
+        Vector3 bossPosition = new Vector3(
+            bossTarget.position.x,
+            transform.position.y,
+            bossTarget.position.z
+        );
 
-        // Behavior states
-        if (distanceToBoss <= attackRange)
+        float distance = Vector3.Distance(transform.position, bossPosition);
+
+        if (distance <= attackRange)
         {
-            // Attack if in range
-            stats.Attack(bossTarget.GetComponent<CharacterStats>());
+            if (stats != null)
+                TryAttack(); // Changed to TryAttack for consistency
             movement.Move(Vector3.zero);
         }
-        else if (distanceToBoss <= detectionRange)
+        else if (distance <= detectionRange)
         {
-            // Chase boss if detected
-            Vector3 direction = (bossTarget.position - transform.position).normalized;
+            Vector3 direction = (bossPosition - transform.position).normalized;
             movement.Move(direction * chaseSpeed);
         }
         else
         {
-            // Idle
             movement.Move(Vector3.zero);
         }
     }
 
-    void OnDrawGizmosSelected()
+    protected void TryAttack()
     {
-        if (!drawGizmos) return;
+        if (Time.time > lastAttackTime + attackCooldown)
+        {
+            lastAttackTime = Time.time;
+            stats.Attack(bossTarget.GetComponent<CharacterStats>());
+        }
+    }
 
-        // Draw detection range
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+    protected bool IsGrounded()
+    {
+        float rayLength = groundCheckDistance + 0.2f; // Extra margin
+        bool hit = Physics.Raycast(
+            transform.position + Vector3.up * 0.1f, // Start slightly above feet
+            Vector3.down,
+            rayLength,
+            LayerMask.GetMask("Ground") // REQUIRED: Must assign "Ground" layer
+        );
 
-        // Draw attack range
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        // DEBUG: Visualize the ray in Scene view
+        Debug.DrawRay(transform.position + Vector3.up * 0.1f,
+                     Vector3.down * rayLength,
+                     hit ? Color.green : Color.red);
+
+        return hit;
     }
 }
