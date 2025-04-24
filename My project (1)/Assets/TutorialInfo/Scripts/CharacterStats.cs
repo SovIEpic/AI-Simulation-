@@ -17,6 +17,13 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(float damageAmount)
     {
+        var tankController = GetComponent<AITankController>();
+        if (tankController != null && tankController.IsBlocking())
+        {
+            damageAmount *= 0.5f;
+            Debug.Log("Block reduced damage to: " + damageAmount);
+        }
+
         currentHealth -= damageAmount;
         Debug.Log(gameObject.name + " took " + damageAmount + " damage!");
 
@@ -25,6 +32,7 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
+
 
     public void Attack(CharacterStats target)
     {

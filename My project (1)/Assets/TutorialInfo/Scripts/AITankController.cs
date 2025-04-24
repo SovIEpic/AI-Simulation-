@@ -143,6 +143,11 @@ public class AITankController : AIController
         ResetColor();
     }
 
+    public bool IsBlocking()
+    {
+        return isBlocking;
+    }
+
     private void ApplyColor(Color newColor)
     {
         Renderer renderer = GetComponent<Renderer>();
