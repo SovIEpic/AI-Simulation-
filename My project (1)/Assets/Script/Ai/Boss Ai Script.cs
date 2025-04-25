@@ -18,7 +18,7 @@ public class BossAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform currentTarget;
     private float attackTimer;
-    private ThreatMeter threatMeter;
+    public ThreatMeter threatMeter;
     private Node behaviorTree;
 
     private QTableManager qTable;
@@ -50,15 +50,25 @@ public class BossAI : MonoBehaviour
 
         threatMeter = new ThreatMeter(playerAgents);
         qTable = new QTableManager();
+        qTable.LoadFromDisk();
+
         rewardEstimator = new RLRewardEstimator(qTable);
         fusion = new TacticalDecisionFusion(threatMeter, rewardEstimator);
 
         behaviorTree = BuildBehaviorTree();
         attackTimer = stats.attackCooldown;
     }
-
+    public RLRewardEstimator GetRewardEstimator() => rewardEstimator;
+    public void SaveQTable() => qTable.SaveToDisk();
     void Update()
     {
+        playerAgents.RemoveAll(p => p == null || !p.gameObject.activeInHierarchy);
+
+        threatMeter.CleanupInactiveTargets();
+
+        if(currentTarget != null && !currentTarget.gameObject.activeInHierarchy)
+            currentTarget = null;
+
         if (playerAgents.Count == 0) return;
 
         HandlePhaseTransition();
@@ -108,7 +118,7 @@ public class BossAI : MonoBehaviour
     {
         stats.stamina = Mathf.Min(100f, stats.stamina + stats.staminaRegenRate * Time.deltaTime);
     }
-
+    
     public void TakeDamage(float damage, Transform attacker)
     {
         stats.currentHP -= damage;
@@ -118,6 +128,7 @@ public class BossAI : MonoBehaviour
 
     void Die()
     {
+        qTable.SaveToDisk();
         Debug.Log("Boss has been defeated.");
         Destroy(gameObject);
     }
@@ -152,6 +163,18 @@ public class BossAI : MonoBehaviour
             default: return false;
         }
     }
+
+    public void ReloadQTable()
+    {
+        qTable.LoadFromDisk();
+        Debug.Log("Q-table reloaded manually.");
+    }
+
+    public void ResetThreatMeter()
+    {
+        threatMeter = new ThreatMeter(playerAgents);
+    }
+
 
     void TryDodge()
     {

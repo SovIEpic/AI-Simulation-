@@ -16,7 +16,8 @@ namespace BehaviorTree.Actions
         public override NodeState Evaluate()
         {
             var target = getTarget();
-            if (target == null) return NodeState.Failure;
+            if (target == null || !target.gameObject.activeInHierarchy)
+                return NodeState.Failure;
 
             float distance = Vector3.Distance(boss.transform.position, target.position);
             if (distance > boss.stats.attackRange) return NodeState.Failure;

@@ -1,14 +1,13 @@
 using UnityEngine;
-using System;
 
 namespace BehaviorTree.Actions
 {
     public class MoveToTargetNode : ActionNode
     {
         private BossAI boss;
-        private Func<Transform> getTarget;
+        private System.Func<Transform> getTarget;
 
-        public MoveToTargetNode(BossAI boss, Func<Transform> getTarget)
+        public MoveToTargetNode(BossAI boss, System.Func<Transform> getTarget)
         {
             this.boss = boss;
             this.getTarget = getTarget;
@@ -17,7 +16,9 @@ namespace BehaviorTree.Actions
         public override NodeState Evaluate()
         {
             var target = getTarget();
-            if (target == null) return NodeState.Failure;
+            if (target == null || !target.gameObject.activeInHierarchy)
+                return NodeState.Failure;
+
 
             float distance = Vector3.Distance(boss.transform.position, target.position);
             if (distance <= boss.stats.attackRange)

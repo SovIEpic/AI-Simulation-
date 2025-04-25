@@ -1,9 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerAI : MonoBehaviour
 {
     public float maxHP = 200f;
     public float currentHP;
+    public PlayerAI player;
 
     void Start() => currentHP = maxHP;
 
@@ -11,12 +13,8 @@ public class PlayerAI : MonoBehaviour
     {
         currentHP -= amount;
         Debug.Log($"{gameObject.name} took {amount} damage.");
-        if (currentHP <= 0f) Die();
-    }
-
-    void Die()
-    {
-        Debug.Log($"{gameObject.name} died.");
-        Destroy(gameObject);
+        if (currentHP <= 0f) {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -6,7 +6,10 @@ namespace BehaviorTree
     {
         private List<Node> nodes;
 
-        public Selector(List<Node> nodes) => this.nodes = nodes;
+        public Selector(List<Node> nodes)
+        {
+            this.nodes = nodes;
+        }
 
         public override NodeState Evaluate()
         {
@@ -22,7 +25,6 @@ namespace BehaviorTree
                         return state;
                 }
             }
-
             state = NodeState.Failure;
             return state;
         }
