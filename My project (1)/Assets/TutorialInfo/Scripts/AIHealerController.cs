@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class AIHealerController : AIController
 {
@@ -16,8 +17,10 @@ public class AIHealerController : AIController
     [SerializeField] private Color lastStandColor = new Color(1f, 0.5f, 0f); //orange
 
     protected float lastResusTime = Mathf.NegativeInfinity;
-    private float lastSiphonTime = Mathf.NegativeInfinity;
+    protected float lastSiphonTime = Mathf.NegativeInfinity;
     private Material originalMaterial;
+    protected bool siphonActive = false;
+    protected virtual void OnDrawGizmosSelected() {}
 
     [Header("Debug")]
     [SerializeField] private bool showAbilityLogs = true;
@@ -85,17 +88,17 @@ public class AIHealerController : AIController
 
     protected void TryResus()
     {
-        var teammates = GameObject.FindGameObjectsWithTag("Ally");
-        foreach(var teammate in teammates)
+        CharacterStats[] allCharacters = Resources.FindObjectsOfTypeAll<CharacterStats>();
+        foreach(var teammate in allCharacters)
         {
-            var allyStats = teammate.GetComponent<CharacterStats>();
-            if(allyStats != null && allyStats.currentHealth <= 0)
+            if(teammate.CompareTag("AI") && teammate != this.stats && teammate.currentHealth <= 0)
             {
+                Debug.Log("[Healer DEBUG] Attempting to revive " + teammate.name);
                 lastResusTime = Time.time;
-                allyStats.Revive();
+                teammate.Revive();
                 ApplyColor(resusColor);
                 if(this is QLearningHealerController q) q.SetResusUsed();
-                if (showAbilityLogs) Debug.Log("Resus used");
+                if (showAbilityLogs) Debug.Log("Resus ACTIVATED");
                 Invoke(nameof(ResetColor), 1f);
                 break;
             }
@@ -104,11 +107,10 @@ public class AIHealerController : AIController
 
     protected bool HasDeadTeammate()
     {
-        var teammates = GameObject.FindGameObjectsWithTag("Ally");
-        foreach(var teammate in teammates)
+        CharacterStats[] allCharacters = Resources.FindObjectsOfTypeAll<CharacterStats>();
+        foreach(var teammate in allCharacters)
         {
-            var allyStats = teammate.GetComponent<CharacterStats>();
-            if(allyStats != null && allyStats.currentHealth <= 0)
+            if(teammate.CompareTag("AI") && teammate != this.stats && teammate.currentHealth <= 0)
             {
                 return true;
             }
@@ -123,7 +125,7 @@ public class AIHealerController : AIController
         lastSiphonTime = Time.time;
         ApplyColor(siphonColor);
         stats.OnDealDamage += HandleSiphonHeal;
-        if(showAbilityLogs) Debug.Log("Siphon Active");
+        if(showAbilityLogs) Debug.Log("Siphon ACTIVATED");
         Invoke(nameof(StopSiphon), siphonDuration);
     }
 
@@ -145,13 +147,12 @@ public class AIHealerController : AIController
 
     protected void TriggerLastStand()
     {
-        canLastStand = false;
         ApplyColor(lastStandColor);
         if(showAbilityLogs) Debug.Log("Last Stand Used");
         var bossStats = bossTarget.GetComponent<CharacterStats>();
         if(bossStats != null)
         {
-            float damage = stats.BaseAttackDamage * lastStandMultiplier;
+            float damage = stats.damage * lastStandMultiplier;
             bossStats.TakeDamage(damage);
         }
         stats.Die();
@@ -168,8 +169,7 @@ public class AIHealerController : AIController
 
     protected void ResetColor()
     {
-        if(GetComponent<Renderer>() != null)
-        {
+        if (GetComponent<Renderer>() != null)
             GetComponent<Renderer>().material.color = originalMaterial.color;
-        }
     }
+}

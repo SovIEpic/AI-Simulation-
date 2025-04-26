@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-tank
+
 public class QLearningHealerController : AIHealerController
 {
     [Header("QLearning Settings")]
@@ -108,8 +108,7 @@ public class QLearningHealerController : AIHealerController
         bool hasDeadAlly = HasDeadTeammate();
 
         return $"dist_{Mathf.Round(distance)}_hp_{Mathf.Round(healthPercentage * 10)}_" +
-               $"siphon_{canSiphon}_resus_{canResus}_lastStand_{canLastStand}_" +
-               $"atk_{canAttack}_inAtk_{inAttackRange}_deadAlly_{hasDeadAlly}";
+               $"siphon_{canSiphon}_resus_{canResus}_atk_{canAttack}_inAtk_{inAttackRange}_deadAlly_{hasDeadAlly}";
     }
 
     private int ChooseAction(string state)
@@ -167,7 +166,7 @@ public class QLearningHealerController : AIHealerController
                 }
                 break;
             case 2: // Last Stand
-                if (canLastStand && stats.currentHealth <= stats.maxHealth * lastStandThreshold)
+                if (stats.currentHealth <= stats.maxHealth * lastStandThreshold)
                 {
                     TriggerLastStand();
                 }
