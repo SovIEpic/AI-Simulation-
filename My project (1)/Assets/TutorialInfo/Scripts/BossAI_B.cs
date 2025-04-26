@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossAI : MonoBehaviour
+public class BossAI_B : MonoBehaviour
 {
     [Header("Combat Settings")]
     public float attackRange = 3f;
@@ -18,7 +18,7 @@ public class BossAI : MonoBehaviour
     private float lastSpecialAttackTime;
     private bool isEnraged;
 
-    void Start()
+    protected virtual void Start()
     {
         stats = GetComponent<CharacterStats>();
         movement = GetComponent<Movement>();
@@ -27,7 +27,7 @@ public class BossAI : MonoBehaviour
             Debug.LogError($"No objects with tag '{aiTag}' found!", this);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (stats.currentHealth <= 0) return;
 

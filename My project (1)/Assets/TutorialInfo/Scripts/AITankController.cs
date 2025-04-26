@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI; // For NavMesh functionality
 
 public class AITankController : AIController
 {
@@ -29,6 +30,13 @@ public class AITankController : AIController
     [Header("Debug")]
     [SerializeField] private bool showAbilityLogs = true;
 
+    [Header("Navigation Settings")]
+    [SerializeField] protected NavMeshAgent navAgent;
+    [SerializeField] protected float pathUpdateRate = 0.2f;
+
+    protected float lastPathUpdate;
+    protected bool isPathfinding = false;
+
     protected override void Start()
     {
         base.Start();
@@ -36,6 +44,20 @@ public class AITankController : AIController
 
         if (shieldIndicator != null)
             shieldIndicator.SetActive(false);
+
+        // Get or add NavMeshAgent
+        if (navAgent == null)
+            navAgent = GetComponent<NavMeshAgent>();
+
+        if (navAgent == null)
+            navAgent = gameObject.AddComponent<NavMeshAgent>();
+
+        // Configure NavMeshAgent
+        navAgent.speed = tankSpeed;
+        navAgent.angularSpeed = 120f;
+        navAgent.acceleration = 8f;
+        navAgent.stoppingDistance = attackRange * 0.8f;
+        navAgent.autoBraking = false;
     }
 
     protected override void Update()
@@ -74,6 +96,13 @@ public class AITankController : AIController
         }
         else if (distance <= attackRange)
         {
+            // Stop moving when in attack range
+            if (navAgent != null)
+            {
+                navAgent.isStopped = true;
+                isPathfinding = false;
+            }
+
             if (Time.time >= lastBlockTime + blockCooldown)
                 StartBlocking();
             else if (Time.time >= lastAttackTime + attackCooldown)
@@ -81,12 +110,26 @@ public class AITankController : AIController
         }
         else if (distance <= detectionRange)
         {
-            Vector3 direction = (bossPosition - transform.position).normalized;
-            movement.Move(direction * tankSpeed);
+            // Use NavMesh for pathing to target
+            if (navAgent != null && (Time.time >= lastPathUpdate + pathUpdateRate || !isPathfinding))
+            {
+                navAgent.SetDestination(bossPosition);
+                navAgent.isStopped = false;
+                isPathfinding = true;
+                lastPathUpdate = Time.time;
+            }
         }
-        else
+        else if (navAgent != null)
         {
-            movement.Move(Vector3.zero);
+            // Stop moving when target is out of detection range
+            navAgent.isStopped = true;
+            isPathfinding = false;
+        }
+
+        // Synchronize tank speed with navAgent
+        if (isPathfinding && navAgent != null)
+        {
+            navAgent.speed = tankSpeed;
         }
     }
 
@@ -96,8 +139,8 @@ public class AITankController : AIController
         ApplyColor(tauntColor);
         if (showAbilityLogs) Debug.Log($"Taunt ACTIVATED at {Time.time}");
 
-        if (bossTarget.TryGetComponent<BossAI>(out var bossAI))
-            bossAI.SetCurrentTarget(transform);
+        if (bossTarget.TryGetComponent<BossAI_A>(out var bossAI_A))
+            bossAI_A.SetCurrentTarget(transform);
 
         Invoke(nameof(ResetColor), tauntDuration);
     }
@@ -176,5 +219,20 @@ public class AITankController : AIController
         // Taunt Range (Yellow)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, tauntRange);
+
+        // Detection Range (Cyan)
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        // If we have a target and are pathfinding, show the path
+        if (Application.isPlaying && navAgent != null && navAgent.hasPath)
+        {
+            Gizmos.color = Color.green;
+            Vector3[] corners = navAgent.path.corners;
+            for (int i = 0; i < corners.Length - 1; i++)
+            {
+                Gizmos.DrawLine(corners[i], corners[i + 1]);
+            }
+        }
     }
 }

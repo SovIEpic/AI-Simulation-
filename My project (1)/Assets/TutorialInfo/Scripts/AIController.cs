@@ -56,8 +56,23 @@ public class AIController : MonoBehaviour
     {
         if (Time.time > lastAttackTime + attackCooldown)
         {
-            lastAttackTime = Time.time;
-            stats.Attack(bossTarget.GetComponent<CharacterStats>());
+            // Add robust null checking
+            if (bossTarget == null) return;
+
+            var targetStats = bossTarget.GetComponent<CharacterStats>();
+            if (targetStats == null)
+            {
+                Debug.LogWarning($"Target {bossTarget.name} missing CharacterStats!");
+                return;
+            }
+
+            // Verify distance again (in case target moved)
+            if (Vector3.Distance(transform.position, bossTarget.position) <= attackRange)
+            {
+                lastAttackTime = Time.time;
+                targetStats.TakeDamage(stats.damage); // Use the attacker's damage value
+                Debug.Log($"{name} attacked {bossTarget.name} for {stats.damage} damage");
+            }
         }
     }
 

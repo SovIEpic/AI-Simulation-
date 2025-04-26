@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEngine.AI;
 
 public class QLearningTankController : AITankController
 {
@@ -12,6 +13,12 @@ public class QLearningTankController : AITankController
     public float explorationDecay = 0.995f;
     public int maxMemorySize = 1000;
 
+    [Header("NavMesh Settings")]
+    [SerializeField] private float navigationRewardScale = 0.3f;
+    [SerializeField] private int pathPointCount = 3;
+
+    [SerializeField] new private bool useNavMeshLearning = true;
+
     private Dictionary<string, Dictionary<int, float>> qTable;
     private List<QLearningMemory> memory;
     private int lastAction;
@@ -19,21 +26,53 @@ public class QLearningTankController : AITankController
     private string lastState;
     private float lastActionTime;
     private const float minActionInterval = 0.5f;
+    private List<Vector3> currentPathPoints = new List<Vector3>();
 
     [System.Serializable]
     private class QTableSaveData
     {
-        public string version = "1.0";
-        public List<string> states = new List<string>();
-        public List<List<int>> actions = new List<List<int>>();
-        public List<List<float>> values = new List<List<float>>();
-        public int totalExperiences;
+        public string version = "1.2"; // Bumped version for new format
+        public List<StateEntry> entries = new List<StateEntry>();
+
+        [System.Serializable]
+        public class StateEntry
+        {
+            public string state;
+            public List<int> actions;
+            public List<float> values;
+
+            public StateEntry(string state, Dictionary<int, float> stateData)
+            {
+                this.state = state;
+                actions = new List<int>();
+                values = new List<float>();
+
+                foreach (var pair in stateData)
+                {
+                    actions.Add(pair.Key);
+                    values.Add(pair.Value);
+                }
+            }
+        }
     }
 
     protected override void Start()
     {
         base.Start();
         InitializeQTable();
+
+        if (navAgent == null)
+            navAgent = GetComponent<NavMeshAgent>();
+
+        if (navAgent == null)
+            navAgent = gameObject.AddComponent<NavMeshAgent>();
+
+        navAgent.agentTypeID = 0;
+        navAgent.speed = tankSpeed;
+        navAgent.angularSpeed = 120f;
+        navAgent.acceleration = 8f;
+        navAgent.stoppingDistance = attackRange * 0.8f;
+        navAgent.autoBraking = false;
 
         if (!TryLoadQTable())
         {
@@ -50,28 +89,17 @@ public class QLearningTankController : AITankController
             if (bossTarget == null) return;
         }
 
-        // Get current state
         string currentState = GetState();
-
-        // Choose action (explore or exploit)
         int action = ChooseAction(currentState);
-
-        // Execute action
         ExecuteAction(action);
 
-        // If no action was taken (due to cooldowns), move toward boss
-        if (action != 4 &&
-            Time.time - lastActionTime > minActionInterval &&
-            Vector3.Distance(transform.position, bossTarget.position) > attackRange)
+        float reward = 0f;
+        if (bossTarget != null)
         {
-            MoveTowardBoss();
+            reward = CalculateReward();
         }
 
-        // Calculate reward
-        float reward = CalculateReward();
-
-        // Store experience in memory
-        if (!string.IsNullOrEmpty(lastState))
+        if (!string.IsNullOrEmpty(lastState) && !string.IsNullOrEmpty(currentState))
         {
             memory.Add(new QLearningMemory(lastState, lastAction, reward, currentState));
             if (memory.Count > maxMemorySize)
@@ -80,14 +108,10 @@ public class QLearningTankController : AITankController
             }
         }
 
-        // Learn from experience
         Learn();
-
-        // Update exploration rate
         explorationRate *= explorationDecay;
         explorationRate = Mathf.Max(0.01f, explorationRate);
 
-        // Save for next frame
         lastState = currentState;
         lastAction = action;
         lastReward = reward;
@@ -108,27 +132,141 @@ public class QLearningTankController : AITankController
         bool inBashRange = distance <= shieldBashRange;
         bool inTauntRange = distance <= tauntRange;
 
+        string pathState = GetPathState();
+
         return $"dist_{Mathf.Round(distance)}_hp_{Mathf.Round(healthPercentage * 10)}_" +
                $"taunt_{canTaunt}_bash_{canBash}_block_{canBlock}_" +
-               $"atk_{canAttack}_inAtk_{inAttackRange}_inBash_{inBashRange}_inTaunt_{inTauntRange}";
+               $"atk_{canAttack}_inAtk_{inAttackRange}_inBash_{inBashRange}_inTaunt_{inTauntRange}" +
+               $"_{pathState}";
+    }
+
+    private string GetPathState()
+    {
+        if (!useNavMeshLearning || bossTarget == null || navAgent == null)
+            return "nopath";
+
+        UpdatePathPoints();
+
+        if (currentPathPoints.Count == 0)
+            return "nopath";
+
+        string pathState = "p";
+        for (int i = 0; i < Mathf.Min(pathPointCount, currentPathPoints.Count); i++)
+        {
+            if (i < currentPathPoints.Count)
+            {
+                Vector3 dirToWaypoint = currentPathPoints[i] - transform.position;
+                dirToWaypoint.y = 0;
+                float angle = Vector3.SignedAngle(transform.forward, dirToWaypoint, Vector3.up);
+                int angleDir = angle > 45 ? 1 : (angle < -45 ? -1 : 0);
+
+                float dist = dirToWaypoint.magnitude;
+                int distBin = dist < 2 ? 0 : (dist < 5 ? 1 : 2);
+
+                pathState += $"{angleDir}{distBin}";
+            }
+        }
+
+        NavMeshPath directPath = new NavMeshPath();
+        Vector3 bossPosition = new Vector3(bossTarget.position.x, transform.position.y, bossTarget.position.z);
+
+        int agentTypeID = navAgent.agentTypeID;
+
+        bool hasDirectPath = false;
+        try
+        {
+            hasDirectPath = NavMesh.CalculatePath(
+                transform.position,
+                bossPosition,
+                new NavMeshQueryFilter
+                {
+                    agentTypeID = agentTypeID,
+                    areaMask = navAgent.areaMask
+                },
+                directPath
+            );
+        }
+        catch
+        {
+            return "nopath";
+        }
+
+        bool isPathStraight = directPath.status == NavMeshPathStatus.PathComplete &&
+                              directPath.corners.Length <= 2;
+
+        pathState += isPathStraight ? "d" : "i";
+        return pathState;
+    }
+
+    private void UpdatePathPoints()
+    {
+        if (Time.time >= lastPathUpdate + pathUpdateRate || currentPathPoints.Count == 0)
+        {
+            lastPathUpdate = Time.time;
+
+            if (navAgent.hasPath && navAgent.path.corners.Length > 1)
+            {
+                currentPathPoints.Clear();
+                foreach (Vector3 corner in navAgent.path.corners)
+                {
+                    currentPathPoints.Add(corner);
+                }
+            }
+            else if (bossTarget != null)
+            {
+                Vector3 bossPosition = new Vector3(
+                    bossTarget.position.x,
+                    transform.position.y,
+                    bossTarget.position.z
+                );
+
+                NavMeshPath path = new NavMeshPath();
+                int agentTypeID = navAgent.agentTypeID;
+
+                bool pathSuccess = false;
+                try
+                {
+                    pathSuccess = NavMesh.CalculatePath(
+                        transform.position,
+                        bossPosition,
+                        new NavMeshQueryFilter
+                        {
+                            agentTypeID = agentTypeID,
+                            areaMask = navAgent.areaMask
+                        },
+                        path
+                    );
+                }
+                catch
+                {
+                    return;
+                }
+
+                if (pathSuccess)
+                {
+                    currentPathPoints.Clear();
+                    foreach (Vector3 corner in path.corners)
+                    {
+                        currentPathPoints.Add(corner);
+                    }
+                }
+            }
+        }
     }
 
     private int ChooseAction(string state)
     {
-        // Explore (random action)
         if (Random.Range(0f, 1f) < explorationRate)
         {
-            return Random.Range(0, 5); // 5 possible actions
+            return Random.Range(0, 6);
         }
 
-        // Exploit (best known action)
         if (!qTable.ContainsKey(state))
         {
             qTable[state] = new Dictionary<int, float>();
         }
 
-        // Initialize Q-values for this state if not exists
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (!qTable[state].ContainsKey(i))
             {
@@ -136,7 +274,6 @@ public class QLearningTankController : AITankController
             }
         }
 
-        // Find best action
         int bestAction = 0;
         float bestValue = float.MinValue;
         foreach (var entry in qTable[state])
@@ -155,33 +292,65 @@ public class QLearningTankController : AITankController
     {
         switch (action)
         {
-            case 0: // Taunt
+            case 0:
                 if (Time.time >= lastTauntTime + tauntCooldown)
                 {
                     TryTaunt();
                 }
                 break;
-            case 1: // Shield Bash
+            case 1:
                 if (Time.time >= lastShieldBashTime + shieldBashCooldown)
                 {
                     TryShieldBash();
                 }
                 break;
-            case 2: // Block
+            case 2:
                 if (Time.time >= lastBlockTime + blockCooldown)
                 {
                     StartBlocking();
                 }
                 break;
-            case 3: // Attack
+            case 3:
                 if (Time.time >= lastAttackTime + attackCooldown)
                 {
                     TryAttack();
                 }
                 break;
-            case 4: // Move toward boss
+            case 4:
+                NavigateTowardsBoss();
+                break;
+            case 5:
                 MoveTowardBoss();
                 break;
+        }
+    }
+
+    private void NavigateTowardsBoss()
+    {
+        if (bossTarget == null || navAgent == null) return;
+
+        Vector3 bossPosition = new Vector3(
+            bossTarget.position.x,
+            transform.position.y,
+            bossTarget.position.z
+        );
+
+        float distance = Vector3.Distance(transform.position, bossPosition);
+
+        if (distance <= attackRange)
+        {
+            navAgent.isStopped = true;
+            isPathfinding = false;
+            return;
+        }
+
+        if (Time.time >= lastPathUpdate + pathUpdateRate || !isPathfinding)
+        {
+            navAgent.SetDestination(bossPosition);
+            navAgent.isStopped = false;
+            isPathfinding = true;
+            lastPathUpdate = Time.time;
+            UpdatePathPoints();
         }
     }
 
@@ -197,43 +366,70 @@ public class QLearningTankController : AITankController
 
         Vector3 direction = (bossPosition - transform.position).normalized;
         movement.Move(direction * tankSpeed);
+
+        if (navAgent != null)
+        {
+            navAgent.isStopped = true;
+            isPathfinding = false;
+        }
     }
 
     private float CalculateReward()
     {
         float reward = 0f;
-        float distance = bossTarget ? Vector3.Distance(transform.position, bossTarget.position) : float.MaxValue;
 
-        // Positive rewards
-        if (bossTarget.GetComponent<CharacterStats>().currentHealth <= 0)
+        if (bossTarget == null)
+            return reward;
+
+        float distance = Vector3.Distance(transform.position, bossTarget.position);
+
+        float previousDistance = float.MaxValue;
+        if (!string.IsNullOrEmpty(lastState) && lastState.StartsWith("dist_"))
+        {
+            string[] stateParts = lastState.Split('_');
+            if (stateParts.Length > 1)
+            {
+                float.TryParse(stateParts[1], out previousDistance);
+            }
+        }
+
+        CharacterStats bossStats = bossTarget.GetComponent<CharacterStats>();
+        if (bossStats != null && bossStats.currentHealth <= 0)
             reward += 100f;
 
-        // Negative rewards
-        if (stats.currentHealth <= 0)
+        if (stats != null && stats.currentHealth <= 0)
             reward -= 100f;
 
-        // Action-specific rewards
+        if (lastAction == 4 || lastAction == 5)
+        {
+            float distanceDelta = previousDistance - distance;
+            reward += distanceDelta * navigationRewardScale;
+
+            if (navAgent != null && navAgent.pathStatus == NavMeshPathStatus.PathPartial)
+                reward -= 1f;
+
+            if (distance > detectionRange)
+                reward -= 1f;
+
+            if (lastAction == 4 && navAgent != null && navAgent.path.corners.Length > 2)
+                reward += 0.5f;
+
+            if (lastAction == 5 && navAgent != null &&
+               (navAgent.path.corners.Length <= 2 || Vector3.Distance(transform.position, bossTarget.position) < 3f))
+                reward += 0.2f;
+        }
+
         switch (lastAction)
         {
-            case 0 when Time.time - lastTauntTime < 0.1f: // Taunt
+            case 0 when Time.time - lastTauntTime < 0.1f:
                 reward += 5f;
                 break;
-            case 1 when Time.time - lastShieldBashTime < 0.1f: // Bash
+            case 1 when Time.time - lastShieldBashTime < 0.1f:
                 reward += 10f;
-                break;
-            case 4: // Movement
-                // Reward for closing distance when not in attack range
-                if (distance > attackRange && distance < detectionRange)
-                    reward += 0.1f * (detectionRange - distance);
                 break;
         }
 
-        // Penalty for being too far
-        if (distance > detectionRange)
-            reward -= 1f;
-
-        // Health-based penalty
-        if (stats.currentHealth < stats.maxHealth * 0.5f)
+        if (stats != null && stats.currentHealth < stats.maxHealth * 0.5f)
             reward -= 2f;
 
         return reward;
@@ -241,14 +437,12 @@ public class QLearningTankController : AITankController
 
     private void Learn()
     {
-        // Sample random experiences from memory
         int batchSize = Mathf.Min(32, memory.Count);
         for (int i = 0; i < batchSize; i++)
         {
             int randomIndex = Random.Range(0, memory.Count);
             QLearningMemory experience = memory[randomIndex];
 
-            // Get max Q for next state
             float maxNextQ = 0f;
             if (qTable.ContainsKey(experience.nextState))
             {
@@ -261,7 +455,6 @@ public class QLearningTankController : AITankController
                 }
             }
 
-            // Update Q-value
             if (!qTable.ContainsKey(experience.state))
             {
                 qTable[experience.state] = new Dictionary<int, float>();
@@ -271,7 +464,6 @@ public class QLearningTankController : AITankController
                 qTable[experience.state][experience.action] = 0f;
             }
 
-            // Q-learning formula
             qTable[experience.state][experience.action] =
                 (1f - learningRate) * qTable[experience.state][experience.action] +
                 learningRate * (experience.reward + discountFactor * maxNextQ);
@@ -288,68 +480,12 @@ public class QLearningTankController : AITankController
 
     private string GetSavePath()
     {
-        return Path.Combine(Application.persistentDataPath, "qlearning_tank_save_v2.json");
-    }
-
-    public void SaveQTable()
-    {
-        if (qTable == null || qTable.Count == 0)
+        string directory = Path.Combine(Application.persistentDataPath, "QLearningSaves");
+        if (!Directory.Exists(directory))
         {
-            Debug.LogWarning("QTable is empty - nothing to save");
-            return;
+            Directory.CreateDirectory(directory);
         }
-
-        try
-        {
-            var saveData = new QTableSaveData();
-            int totalEntries = 0;
-
-            foreach (var stateEntry in qTable.Where(entry => entry.Value != null && entry.Value.Count > 0))
-            {
-                saveData.states.Add(stateEntry.Key);
-
-                var actionList = new List<int>();
-                var valueList = new List<float>();
-
-                foreach (var actionEntry in stateEntry.Value)
-                {
-                    actionList.Add(actionEntry.Key);
-                    valueList.Add(actionEntry.Value);
-                    totalEntries++;
-                }
-
-                saveData.actions.Add(actionList);
-                saveData.values.Add(valueList);
-            }
-
-            saveData.totalExperiences = totalEntries;
-
-            if (saveData.states.Count == 0)
-            {
-                Debug.LogWarning("No valid data to save");
-                return;
-            }
-
-            string json = JsonUtility.ToJson(saveData, true);
-            string savePath = GetSavePath();
-
-            // Ensure directory exists
-            Directory.CreateDirectory(Path.GetDirectoryName(savePath));
-
-            // Write to temporary file first
-            string tempPath = savePath + ".tmp";
-            File.WriteAllText(tempPath, json);
-
-            // Atomic file replacement
-            if (File.Exists(savePath)) File.Delete(savePath);
-            File.Move(tempPath, savePath);
-
-            Debug.Log($"Saved Q-table with {saveData.states.Count} states and {totalEntries} entries");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"Save failed: {e.Message}\n{e.StackTrace}");
-        }
+        return Path.Combine(directory, "navmesh_tank_qlearning_v1.json");
     }
 
     public bool TryLoadQTable()
@@ -368,64 +504,219 @@ public class QLearningTankController : AITankController
             if (string.IsNullOrWhiteSpace(json))
             {
                 Debug.LogWarning("Save file is empty");
+                HandleCorruptedSave();
                 return false;
             }
 
             QTableSaveData saveData = JsonUtility.FromJson<QTableSaveData>(json);
-            if (saveData == null)
+
+            // Handle version transition
+            if (saveData.version == "1.0" || saveData.version == "1.1")
             {
-                Debug.LogWarning("Failed to parse save file");
+                Debug.Log("Converting old save format to new format");
+                return ConvertLegacySave(json);
+            }
+
+            if (saveData == null || saveData.entries == null)
+            {
+                Debug.LogWarning("Failed to parse save file - invalid data structure");
+                HandleCorruptedSave();
                 return false;
             }
 
-            // Validate data structure
-            if (saveData.states == null || saveData.actions == null || saveData.values == null ||
-                saveData.states.Count != saveData.actions.Count ||
-                saveData.states.Count != saveData.values.Count)
-            {
-                Debug.LogWarning("Save data structure is invalid");
-                return false;
-            }
+            // Initialize fresh Q-table
+            qTable = new Dictionary<string, Dictionary<int, float>>();
 
-            // Rebuild Q-table with validation
-            var newQTable = new Dictionary<string, Dictionary<int, float>>();
-            int validStates = 0;
-
-            for (int i = 0; i < saveData.states.Count; i++)
+            // Rebuild Q-table
+            foreach (var entry in saveData.entries)
             {
-                if (string.IsNullOrEmpty(saveData.states[i]) ||
-                    saveData.actions[i] == null ||
-                    saveData.values[i] == null ||
-                    saveData.actions[i].Count != saveData.values[i].Count)
+                if (entry.actions == null || entry.values == null ||
+                    entry.actions.Count != entry.values.Count)
                 {
-                    Debug.LogWarning($"Skipping invalid state at index {i}");
+                    Debug.LogWarning($"Skipping corrupted state entry: {entry.state}");
                     continue;
                 }
 
                 var stateActions = new Dictionary<int, float>();
-                for (int j = 0; j < saveData.actions[i].Count; j++)
+                for (int i = 0; i < entry.actions.Count; i++)
                 {
-                    stateActions[saveData.actions[i][j]] = saveData.values[i][j];
+                    stateActions[entry.actions[i]] = entry.values[i];
                 }
 
-                newQTable[saveData.states[i]] = stateActions;
-                validStates++;
+                qTable[entry.state] = stateActions;
             }
 
-            if (validStates == 0)
-            {
-                Debug.LogWarning("No valid states found in save file");
-                return false;
-            }
-
-            qTable = newQTable;
-            Debug.Log($"Loaded Q-table with {validStates} valid states and ~{saveData.totalExperiences} experiences");
-            return true;
+            Debug.Log($"Successfully loaded Q-table with {qTable.Count} states");
+            return qTable.Count > 0;
         }
         catch (System.Exception e)
         {
             Debug.LogError($"Load failed: {e.Message}\n{e.StackTrace}");
+            HandleCorruptedSave();
             return false;
+        }
+    }
+
+    private bool ConvertLegacySave(string json)
+    {
+        try
+        {
+            // Parse old format
+            var legacyData = JsonUtility.FromJson<LegacyQTableSaveData>(json);
+
+            if (legacyData == null || legacyData.states == null ||
+                legacyData.actions == null || legacyData.values == null)
+            {
+                Debug.LogWarning("Failed to parse legacy save file");
+                return false;
+            }
+
+            // Convert to new format
+            var saveData = new QTableSaveData();
+
+            for (int i = 0; i < legacyData.states.Count; i++)
+            {
+                if (i >= legacyData.actions.Count || i >= legacyData.values.Count ||
+                    legacyData.actions[i].Count != legacyData.values[i].Count)
+                {
+                    Debug.LogWarning($"Skipping corrupted legacy state: {legacyData.states[i]}");
+                    continue;
+                }
+
+                var stateActions = new Dictionary<int, float>();
+                for (int j = 0; j < legacyData.actions[i].Count; j++)
+                {
+                    stateActions[legacyData.actions[i][j]] = legacyData.values[i][j];
+                }
+
+                saveData.entries.Add(new QTableSaveData.StateEntry(legacyData.states[i], stateActions));
+            }
+
+            // Save in new format
+            string newJson = JsonUtility.ToJson(saveData, true);
+            File.WriteAllText(GetSavePath(), newJson);
+
+            // Now load the converted file
+            return TryLoadQTable();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Legacy conversion failed: {e.Message}");
+            return false;
+        }
+    }
+
+    [System.Serializable]
+    private class LegacyQTableSaveData
+    {
+        public string version;
+        public List<string> states;
+        public List<List<int>> actions;
+        public List<List<float>> values;
+        public int totalExperiences;
+    }
+
+    public void ValidateQTable()
+    {
+        if (qTable == null)
+        {
+            Debug.LogWarning("QTable is null");
+            return;
+        }
+
+        int corruptedStates = 0;
+        foreach (var state in qTable.Keys.ToList())
+        {
+            if (qTable[state] == null)
+            {
+                Debug.LogWarning($"Removing null state: {state}");
+                qTable.Remove(state);
+                corruptedStates++;
+                continue;
+            }
+
+            // Remove any actions with NaN values
+            var actionsToRemove = qTable[state]
+                .Where(pair => float.IsNaN(pair.Value))
+                .Select(pair => pair.Key)
+                .ToList();
+
+            foreach (var action in actionsToRemove)
+            {
+                Debug.LogWarning($"Removing NaN value for action {action} in state {state}");
+                qTable[state].Remove(action);
+            }
+
+            if (qTable[state].Count == 0)
+            {
+                Debug.LogWarning($"Removing empty state: {state}");
+                qTable.Remove(state);
+                corruptedStates++;
+            }
+        }
+
+        if (corruptedStates > 0)
+        {
+            Debug.Log($"Validated Q-table, removed {corruptedStates} corrupted states");
+            SaveQTable(); // Auto-save after cleanup
+        }
+    }
+
+
+    public void SaveQTable()
+    {
+        if (qTable == null || qTable.Count == 0)
+        {
+            Debug.LogWarning("QTable is empty - nothing to save");
+            return;
+        }
+
+        try
+        {
+            // Create new save data with encapsulated state entries
+            var saveData = new QTableSaveData();
+
+            foreach (var stateEntry in qTable)
+            {
+                if (stateEntry.Value == null || stateEntry.Value.Count == 0)
+                    continue;
+
+                saveData.entries.Add(new QTableSaveData.StateEntry(stateEntry.Key, stateEntry.Value));
+            }
+
+            string savePath = GetSavePath();
+            string tempPath = savePath + ".tmp";
+            string directory = Path.GetDirectoryName(savePath);
+
+            // Ensure directory exists
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            // Serialize to JSON
+            string json = JsonUtility.ToJson(saveData, true);
+
+            // Write to temporary file first
+            File.WriteAllText(tempPath, json);
+
+            // Verify the temporary file
+            if (!File.Exists(tempPath) || new FileInfo(tempPath).Length == 0)
+            {
+                Debug.LogError("Failed to write temporary save file");
+                if (File.Exists(tempPath)) File.Delete(tempPath);
+                return;
+            }
+
+            // Replace existing file atomically
+            if (File.Exists(savePath))
+                File.Delete(savePath);
+
+            File.Move(tempPath, savePath);
+
+            Debug.Log($"Successfully saved Q-table with {saveData.entries.Count} states");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Save failed: {e.Message}\n{e.StackTrace}");
         }
     }
 
@@ -438,9 +729,17 @@ public class QLearningTankController : AITankController
         {
             if (File.Exists(savePath))
             {
-                string backupPath = savePath + ".corrupted";
-                File.Move(savePath, backupPath);
-                Debug.Log($"Moved corrupted save to: {backupPath}");
+                string backupDir = Path.Combine(Path.GetDirectoryName(savePath), "Backups");
+                if (!Directory.Exists(backupDir))
+                    Directory.CreateDirectory(backupDir);
+
+                string timestamp = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string backupPath = Path.Combine(backupDir, $"corrupted_save_{timestamp}.json");
+
+                File.Copy(savePath, backupPath);
+                File.Delete(savePath);
+
+                Debug.Log($"Created backup of corrupted save at: {backupPath}");
             }
 
             qTable = new Dictionary<string, Dictionary<int, float>>();
@@ -450,16 +749,6 @@ public class QLearningTankController : AITankController
         {
             Debug.LogError($"Failed to handle corrupted save: {e.Message}");
         }
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveQTable();
-    }
-
-    private void OnDestroy()
-    {
-        SaveQTable();
     }
 
     public void ResetLearning()
@@ -485,19 +774,33 @@ public class QLearningTankController : AITankController
         }
     }
 
-    void OnDrawGizmosSelected()
+    private void OnApplicationQuit()
+    {
+        SaveQTable();
+    }
+
+    private void OnDestroy()
+    {
+        SaveQTable();
+    }
+
+    protected new void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
 
-        // Movement decision range
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-
-        // Current target direction
-        if (bossTarget != null)
+        if (Application.isPlaying && currentPathPoints.Count > 0)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, bossTarget.position);
+            for (int i = 0; i < currentPathPoints.Count - 1; i++)
+            {
+                Gizmos.DrawLine(currentPathPoints[i], currentPathPoints[i + 1]);
+            }
+
+            Gizmos.color = Color.blue;
+            foreach (Vector3 point in currentPathPoints)
+            {
+                Gizmos.DrawSphere(point, 0.3f);
+            }
         }
     }
 

@@ -1,11 +1,12 @@
-using UnityEngine;
-
+using UnityEngine;  // Added this using directive
+using UnityEngine.AI;  // Added for NavMeshAgent
 namespace BehaviorTree.Actions
 {
-    public class MoveToTargetNode : ActionNode
+    public class MoveToTargetNode : Node
     {
         private BossAI boss;
         private System.Func<Transform> getTarget;
+        private float stoppingDistance = 1.5f;
 
         public MoveToTargetNode(BossAI boss, System.Func<Transform> getTarget)
         {
@@ -15,20 +16,32 @@ namespace BehaviorTree.Actions
 
         public override NodeState Evaluate()
         {
-            var target = getTarget();
-            if (target == null || !target.gameObject.activeInHierarchy)
-                return NodeState.Failure;
-
-
-            float distance = Vector3.Distance(boss.transform.position, target.position);
-            if (distance <= boss.stats.attackRange)
+            Transform target = getTarget();
+            if (target == null)
             {
-                boss.GetAgent().ResetPath();
-                return NodeState.Success;
+                state = NodeState.FAILURE;
+                return state;
             }
 
-            boss.GetAgent().SetDestination(target.position);
-            return NodeState.Running;
+            NavMeshAgent agent = boss.GetAgent();
+            if (agent == null)
+            {
+                state = NodeState.FAILURE;
+                return state;
+            }
+
+            // Check if we've reached the target
+            float distance = Vector3.Distance(boss.transform.position, target.position);
+            if (distance <= stoppingDistance)
+            {
+                state = NodeState.SUCCESS;
+                return state;
+            }
+
+            // Move toward target
+            agent.SetDestination(target.position);
+            state = NodeState.RUNNING;
+            return state;
         }
     }
 }

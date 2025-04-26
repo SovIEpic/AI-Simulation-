@@ -1,12 +1,13 @@
-using UnityEngine;
-using UnityEngine.AI;
-
+using UnityEngine;  // Added this using directive
+using UnityEngine.AI;  // Added for NavMesh
 namespace BehaviorTree.Actions
 {
-    public class RetreatNode : ActionNode
+    public class RetreatNode : Node
     {
         private BossAI boss;
-        private float retreatDistance = 5f;
+        private float retreatDistance = 10f;
+        private float retreatCooldown = 10f;
+        private float lastRetreatTime;
 
         public RetreatNode(BossAI boss)
         {
@@ -15,25 +16,36 @@ namespace BehaviorTree.Actions
 
         public override NodeState Evaluate()
         {
-            if (boss.stats.currentHP / boss.stats.maxHP > 0.2f &&
-                boss.stats.stamina > 20f &&
-                boss.GetAllPlayers().Count <= 2)
-                return NodeState.Failure;
-
-            Transform target = boss.GetCurrentTarget();
-            if (target == null) return NodeState.Failure;
-
-            Vector3 awayDir = (boss.transform.position - target.position).normalized;
-            Vector3 retreatPoint = boss.transform.position + awayDir * retreatDistance;
-
-            if (NavMesh.SamplePosition(retreatPoint, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+            // Check cooldown
+            if (Time.time - lastRetreatTime < retreatCooldown)
             {
-                boss.GetAgent().SetDestination(hit.position);
-                Debug.Log("Boss is retreating!");
-                return NodeState.Success;
+                state = NodeState.FAILURE;
+                return state;
             }
 
-            return NodeState.Failure;
+            // Only retreat when health is low
+            if (boss.stats.currentHP / boss.stats.maxHP > 0.3f)
+            {
+                state = NodeState.FAILURE;
+                return state;
+            }
+
+            // Find retreat position
+            Vector3 retreatDirection = -boss.transform.forward;
+            Vector3 retreatPosition = boss.transform.position + retreatDirection * retreatDistance;
+
+            // Sample position on NavMesh
+            if (NavMesh.SamplePosition(retreatPosition, out NavMeshHit hit, retreatDistance, NavMesh.AllAreas))
+            {
+                boss.GetAgent().SetDestination(hit.position);
+                lastRetreatTime = Time.time;
+                Debug.Log("Boss is retreating!");
+                state = NodeState.SUCCESS;
+                return state;
+            }
+
+            state = NodeState.FAILURE;
+            return state;
         }
     }
 }

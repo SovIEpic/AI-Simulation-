@@ -36,12 +36,18 @@ public class CharacterStats : MonoBehaviour
 
     public void Attack(CharacterStats target)
     {
+        if (target == null)
+        {
+            Debug.LogWarning("Attack called with null target!");
+            return;
+        }
+
         if (Time.time > lastAttackTime + attackCooldown)
         {
             if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
             {
                 target.TakeDamage(damage);
-                Debug.Log(gameObject.name + " attacked " + target.gameObject.name);
+                Debug.Log($"{gameObject.name} attacked {target.gameObject.name} for {damage} damage");
                 lastAttackTime = Time.time;
             }
         }

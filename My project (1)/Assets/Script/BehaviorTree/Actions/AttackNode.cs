@@ -1,11 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 namespace BehaviorTree.Actions
 {
-    public class AttackNode : ActionNode
+    public class AttackNode : Node
     {
         private BossAI boss;
         private System.Func<Transform> getTarget;
+        private float attackCooldown = 2f;
+        private float lastAttackTime;
 
         public AttackNode(BossAI boss, System.Func<Transform> getTarget)
         {
@@ -15,18 +18,25 @@ namespace BehaviorTree.Actions
 
         public override NodeState Evaluate()
         {
-            var target = getTarget();
-            if (target == null || !target.gameObject.activeInHierarchy)
-                return NodeState.Failure;
+            Transform target = getTarget();
+            if (target == null)
+            {
+                state = NodeState.FAILURE;
+                return state;
+            }
 
-            float distance = Vector3.Distance(boss.transform.position, target.position);
-            if (distance > boss.stats.attackRange) return NodeState.Failure;
+            if (Time.time - lastAttackTime < attackCooldown)
+            {
+                state = NodeState.FAILURE;
+                return state;
+            }
 
-            if (boss.stats.stamina < 10f) return NodeState.Failure;
+            boss.transform.LookAt(new Vector3(target.position.x, boss.transform.position.y, target.position.z));
+            boss.StartCoroutine(boss.ExecuteComboAttack(target));
+            lastAttackTime = Time.time;
 
-            target.GetComponent<PlayerAI>()?.TakeDamage(boss.stats.damagePerSecond);
-            boss.stats.stamina -= 10f;
-            return NodeState.Success;
+            state = NodeState.SUCCESS;
+            return state;
         }
     }
 }

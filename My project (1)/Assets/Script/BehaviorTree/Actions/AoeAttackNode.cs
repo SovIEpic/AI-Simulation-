@@ -1,15 +1,17 @@
 using UnityEngine;
-using System.Linq;
+using BehaviorTree; // Add this using directive
 
 namespace BehaviorTree.Actions
 {
-    public class AoeAttackNode : ActionNode
+    public class AoeAttackNode : Node
     {
         private BossAI boss;
         private float radius;
         private float damage;
+        private float cooldown = 5f;
+        private float lastCastTime;
 
-        public AoeAttackNode(BossAI boss, float radius, float damage)
+        public AoeAttackNode(BossAI boss, float radius, float damage) : base()
         {
             this.boss = boss;
             this.radius = radius;
@@ -18,27 +20,39 @@ namespace BehaviorTree.Actions
 
         public override NodeState Evaluate()
         {
-            var targetsInRange = boss.GetAllPlayers()
-                .Where(p => p != null && p.gameObject.activeInHierarchy &&
-                            Vector3.Distance(boss.transform.position, p.position) <= radius)
-                .ToList();
-
-            if (targetsInRange.Count < 2 || boss.stats.stamina < 20f)
+            // Check cooldown
+            if (Time.time - lastCastTime < cooldown)
             {
-                return NodeState.Failure;
+                return NodeState.FAILURE;
             }
 
-            foreach (var p in targetsInRange)
+            // Find all players in radius
+            Collider[] hitPlayers = Physics.OverlapSphere(boss.transform.position, radius, LayerMask.GetMask("Player"));
+            if (hitPlayers.Length < 2) // Only use AOE when 2+ players are close
             {
-                var playerAI = p.GetComponent<PlayerAI>();
-                if (playerAI != null)
+                return NodeState.FAILURE;
+            }
+
+            // Damage all players in radius
+            foreach (Collider player in hitPlayers)
+            {
+                CharacterStats playerStats = player.GetComponent<CharacterStats>();
+                if (playerStats != null)
                 {
-                    playerAI.TakeDamage(damage);
-                    boss.stats.stamina -= 10f;
+                    playerStats.TakeDamage(damage);
+                    Debug.Log($"AOE attack hit {player.name} for {damage} damage");
                 }
             }
 
-            return NodeState.Success;
+            // Play AOE effect
+            if (boss.aoeEffectPrefab != null)
+            {
+                GameObject effect = GameObject.Instantiate(boss.aoeEffectPrefab, boss.transform.position, Quaternion.identity);
+                GameObject.Destroy(effect, 3f);
+            }
+
+            lastCastTime = Time.time;
+            return NodeState.SUCCESS;
         }
     }
 }

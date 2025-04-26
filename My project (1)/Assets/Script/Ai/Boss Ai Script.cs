@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 using System.Collections.Generic;
-using BehaviorTree.Actions;
-using ReinforcementLearning;
-using Utilities;
 using BehaviorTree;
+using ReinforcementLearning;
+using BehaviorTree.Actions;
 
 public enum BossPhase { Phase1, Phase2, Phase3 }
 
@@ -14,74 +14,204 @@ public class BossAI : MonoBehaviour
     public BossStats stats;
     public List<Transform> playerAgents;
     public GameObject hpBarPrefab;
+    public GameObject aoeEffectPrefab;
 
-    private NavMeshAgent agent;
-    private Transform currentTarget;
-    private float attackTimer;
-    public ThreatMeter threatMeter;
-    private Node behaviorTree;
-
-    private QTableManager qTable;
-    private RLRewardEstimator rewardEstimator;
-    private TacticalDecisionFusion fusion;
-
-    public BossPhase currentPhase = BossPhase.Phase1;
-    public float phase2Threshold = 0.66f;
-    public float phase3Threshold = 0.33f;
-    private bool phase2Triggered = false;
-    private bool phase3Triggered = false;
+    [Header("Combo Settings")]
+    public int maxComboHits = 3;
+    public float comboResetTime = 3f;
+    public float timeBetweenComboHits = 0.5f;
+    public GameObject[] attackEffects;
 
     [Header("AOE Settings")]
     public float aoeRadius = 4f;
     public float aoeDamage = 30f;
 
+    [Header("Phase Settings")]
+    public BossPhase currentPhase = BossPhase.Phase1;
+    public float phase2Threshold = 0.66f;
+    public float phase3Threshold = 0.33f;
+
+    private NavMeshAgent agent;
+    private Transform currentTarget;
+    private float attackTimer;
+    private ThreatMeter threatMeter;
+    private Node behaviorTree;
+    private bool phase2Triggered = false;
+    private bool phase3Triggered = false;
     private float lastHP;
     private float damageRate;
     private float dodgeCooldown = 5f;
     private float dodgeTimer;
     private int dodgesUsed = 0;
+    private int currentComboCount = 0;
+    private float lastAttackTime;
+    private bool isAttacking = false;
+    private QTableManager qTable;
+    private RLRewardEstimator rewardEstimator;
+    private TacticalDecisionFusion fusion;
 
     void Start()
     {
+        if (playerAgents == null)
+        {
+            playerAgents = new List<Transform>();
+            Debug.LogWarning("Initialized empty playerAgents list");
+        }
+
+        stats = GetComponent<BossStats>();
+        if (stats == null)
+        {
+            Debug.LogError("Missing BossStats component!");
+            enabled = false; // Disable the script
+            return;
+        }
+
+
         stats.ResetHP();
         lastHP = stats.currentHP;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = stats.movementSpeed;
 
         threatMeter = new ThreatMeter(playerAgents);
+
+        // Initialize Q-learning components
         qTable = new QTableManager();
         qTable.LoadFromDisk();
-
         rewardEstimator = new RLRewardEstimator(qTable);
         fusion = new TacticalDecisionFusion(threatMeter, rewardEstimator);
 
         behaviorTree = BuildBehaviorTree();
         attackTimer = stats.attackCooldown;
     }
-    public RLRewardEstimator GetRewardEstimator() => rewardEstimator;
-    public void SaveQTable() => qTable.SaveToDisk();
+
     void Update()
     {
+        // 1. Null check for playerAgents list
+        if (playerAgents == null)
+        {
+            Debug.LogWarning("playerAgents list is null!");
+            return;
+        }
+
+        // 2. Clean up null players safely
         playerAgents.RemoveAll(p => p == null || !p.gameObject.activeInHierarchy);
 
-        threatMeter.CleanupInactiveTargets();
-
-        if(currentTarget != null && !currentTarget.gameObject.activeInHierarchy)
+        // 3. Early exit if no valid players
+        if (playerAgents.Count == 0)
+        {
             currentTarget = null;
+            return;
+        }
 
-        if (playerAgents.Count == 0) return;
+        // 4. Null check for threatMeter
+        if (threatMeter == null)
+        {
+            Debug.LogWarning("threatMeter is null! Initializing new one.");
+            threatMeter = new ThreatMeter(playerAgents);
+        }
+        else
+        {
+            threatMeter.CleanupInactiveTargets();
+        }
 
+        // 5. Handle null currentTarget
+        if (currentTarget != null && !currentTarget.gameObject.activeInHierarchy)
+        {
+            currentTarget = null;
+        }
+
+        // 6. Null check for stats
+        if (stats == null)
+        {
+            Debug.LogError("BossStats reference is null!");
+            return;
+        }
+
+        // Main update logic (now safe from null references)
         HandlePhaseTransition();
         TrackDamageRate();
         TryDodge();
 
+        if (attackTimer > 0) attackTimer -= Time.deltaTime;
+
         currentTarget = ChooseBalancedTarget();
-        behaviorTree.Evaluate();
+
+        // Null check for behaviorTree
+        if (behaviorTree != null)
+        {
+            behaviorTree.Evaluate();
+        }
+        else
+        {
+            Debug.LogWarning("Behavior Tree is null!");
+        }
 
         dodgeTimer -= Time.deltaTime;
         RegenerateStamina();
+
+        if (Time.time - lastAttackTime > comboResetTime)
+        {
+            currentComboCount = 0;
+        }
     }
 
+    public IEnumerator ExecuteComboAttack(Transform target)
+    {
+        if (isAttacking || target == null || stats == null) yield break;
+
+        isAttacking = true;
+
+        int hitsInCombo = Mathf.Min(currentComboCount + 1, maxComboHits);
+
+        for (int i = 0; i < hitsInCombo; i++)
+        {
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+
+            if (attackEffects != null && attackEffects.Length > i && attackEffects[i] != null)
+            {
+                GameObject effect = Instantiate(
+                    attackEffects[i],
+                    transform.position + Vector3.up * 1.5f,
+                    Quaternion.identity
+                );
+                effect.transform.LookAt(target);
+                Destroy(effect, 0.5f);
+            }
+
+            stats.PerformAttack(target);
+            rewardEstimator.LearnFromOutcome(target, 5f); // Reward for attacking
+
+            if (i < hitsInCombo - 1)
+                yield return new WaitForSeconds(timeBetweenComboHits);
+        }
+
+        currentComboCount = (currentComboCount + 1) % maxComboHits;
+        lastAttackTime = Time.time;
+        isAttacking = false;
+    }
+
+    // ===== Q-Learning and Threat System Methods =====
+    public RLRewardEstimator GetRewardEstimator() => rewardEstimator;
+
+    public void SaveQTable()
+    {
+        qTable?.SaveToDisk();
+        Debug.Log("Boss QTable saved");
+    }
+
+    public void ResetThreatMeter()
+    {
+        threatMeter = new ThreatMeter(playerAgents);
+        Debug.Log("Threat meter reset");
+    }
+
+    public void ReloadQTable()
+    {
+        qTable?.LoadFromDisk();
+        Debug.Log("Boss QTable reloaded");
+    }
+
+    // ===== Combat and Movement Methods =====
     void HandlePhaseTransition()
     {
         float hpPercent = stats.currentHP / stats.maxHP;
@@ -102,11 +232,19 @@ public class BossAI : MonoBehaviour
         currentPhase = phase;
         switch (phase)
         {
+            case BossPhase.Phase1:
+                maxComboHits = 2;
+                break;
             case BossPhase.Phase2:
+                maxComboHits = 3;
+                timeBetweenComboHits = 0.4f;
                 stats.damagePerSecond += 20f;
                 stats.movementSpeed += 1.5f;
                 break;
             case BossPhase.Phase3:
+                maxComboHits = 4;
+                timeBetweenComboHits = 0.3f;
+                comboResetTime = 4f;
                 stats.attackCooldown *= 0.5f;
                 stats.staminaRegenRate += 20f;
                 break;
@@ -118,7 +256,7 @@ public class BossAI : MonoBehaviour
     {
         stats.stamina = Mathf.Min(100f, stats.stamina + stats.staminaRegenRate * Time.deltaTime);
     }
-    
+
     public void TakeDamage(float damage, Transform attacker)
     {
         stats.currentHP -= damage;
@@ -128,25 +266,70 @@ public class BossAI : MonoBehaviour
 
     void Die()
     {
-        qTable.SaveToDisk();
+        SaveQTable();
         Debug.Log("Boss has been defeated.");
         Destroy(gameObject);
     }
 
     private Node BuildBehaviorTree()
     {
-        return new Selector(new List<Node> {
-            new AoeAttackNode(this, aoeRadius, aoeDamage),
-            new AttackNode(this, () => currentTarget),
-            new MoveToTargetNode(this, () => currentTarget),
-            new RetreatNode(this)
-        });
+        // Create all nodes first
+        var aoeAttackSequence = new Sequence(new List<Node>
+    {
+        new ConditionNode(() => IsMultiplePlayersClose()),
+        new AoeAttackNode(this, aoeRadius, aoeDamage)
+    });
+
+        var attackSequence = new Sequence(new List<Node>
+    {
+        new ConditionNode(() => IsInAttackRange() && attackTimer <= 0 && !isAttacking),
+        new AttackNode(this, () => currentTarget)
+    });
+
+        var retreatSequence = new Sequence(new List<Node>
+    {
+        new ConditionNode(() => ShouldRetreat()),
+        new RetreatNode(this)
+    });
+
+        var moveToNode = new MoveToTargetNode(this, () => currentTarget);
+
+        // Create main selector
+        return new Selector(new List<Node>
+    {
+        aoeAttackSequence,
+        attackSequence,
+        retreatSequence,
+        moveToNode
+    });
     }
 
-    public Transform GetCurrentTarget() => currentTarget;
-    public List<Transform> GetAllPlayers() => playerAgents;
-    public NavMeshAgent GetAgent() => agent;
+    bool IsInAttackRange()
+    {
+        if (currentTarget == null) return false;
+        float distance = Vector3.Distance(transform.position, currentTarget.position);
+        return distance <= stats.attackRange;
+    }
 
+    bool IsMultiplePlayersClose()
+    {
+        int closePlayers = 0;
+        foreach (var p in playerAgents)
+        {
+            if (p != null && Vector3.Distance(transform.position, p.position) <= aoeRadius * 1.5f)
+            {
+                closePlayers++;
+            }
+        }
+        return closePlayers >= 2;
+    }
+
+    bool ShouldRetreat()
+    {
+        return (stats.currentHP / stats.maxHP) < 0.2f;
+    }
+
+    // ===== Utility Methods =====
     void TrackDamageRate()
     {
         damageRate = (lastHP - stats.currentHP) / Time.deltaTime;
@@ -163,18 +346,6 @@ public class BossAI : MonoBehaviour
             default: return false;
         }
     }
-
-    public void ReloadQTable()
-    {
-        qTable.LoadFromDisk();
-        Debug.Log("Q-table reloaded manually.");
-    }
-
-    public void ResetThreatMeter()
-    {
-        threatMeter = new ThreatMeter(playerAgents);
-    }
-
 
     void TryDodge()
     {
@@ -196,9 +367,22 @@ public class BossAI : MonoBehaviour
 
     Transform ChooseBalancedTarget()
     {
+        if (playerAgents == null || playerAgents.Count == 0)
+            return null;
+
+        if (fusion == null)
+        {
+            Debug.LogWarning("TacticalDecisionFusion is null! Using simple target selection");
+            return playerAgents[0]; // Fallback to first player
+        }
+
         float alpha = 0.6f, beta = 0.4f;
         if (currentPhase == BossPhase.Phase3) { alpha = 0.3f; beta = 0.7f; }
 
         return fusion.GetBestTarget(playerAgents, alpha, beta);
     }
+
+    public Transform GetCurrentTarget() => currentTarget;
+    public List<Transform> GetAllPlayers() => playerAgents;
+    public NavMeshAgent GetAgent() => agent;
 }
