@@ -849,6 +849,7 @@ GameObject:
   - component: {fileID: 508864103}
   - component: {fileID: 508864104}
   - component: {fileID: 508864105}
+  - component: {fileID: 508864106}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -868,24 +869,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d51eed07700620439fd3a89ceeca688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-    maxHP: 1000
-    currentHP: 0
-    stamina: 100
-    damagePerSecond: 50
-    movementSpeed: 3.5
-    detectionRange: 15
-    attackRange: 3
-    attackCooldown: 2
-    staminaRegenRate: 10
+  stats: {fileID: 0}
   playerAgents:
+  - {fileID: 709252983}
   - {fileID: 56356515}
   hpBarPrefab: {fileID: 1226615285}
+  aoeEffectPrefab: {fileID: 0}
+  maxComboHits: 3
+  comboResetTime: 3
+  timeBetweenComboHits: 0.5
+  attackEffects: []
+  aoeRadius: 4
+  aoeDamage: 30
   currentPhase: 0
   phase2Threshold: 0.66
   phase3Threshold: 0.33
-  aoeRadius: 4
-  aoeDamage: 30
 --- !u!195 &508864097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1073,6 +1071,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &508864106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508864095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df6496768b38ef43960f806e855b714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1000
+  currentHP: 0
+  movementSpeed: 3.5
+  attackRange: 2
+  attackCooldown: 2
+  damagePerHit: 25
+  stamina: 100
+  staminaRegenRate: 10
+  damagePerSecond: 30
 --- !u!1 &626429448
 GameObject:
   m_ObjectHideFlags: 0
