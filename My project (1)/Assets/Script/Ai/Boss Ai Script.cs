@@ -24,12 +24,28 @@ public class BossAI : MonoBehaviour
     private QTableManager qTable;
     private RLRewardEstimator rewardEstimator;
     private TacticalDecisionFusion fusion;
+    
+    [Header("Attack Cooldown Settings")]
+    public float attackCooldownTime = 6.0f; // seconds
+    private float attackCooldownTimer = 0f;
+    private bool isAttackOnCooldown = false;
 
     public BossPhase currentPhase = BossPhase.Phase1;
     public float phase2Threshold = 0.66f;
     public float phase3Threshold = 0.33f;
     private bool phase2Triggered = false;
     private bool phase3Triggered = false;
+
+    [Header("Movement AI Settings")]
+    public float walkSpeed = 2f;
+    public float approachSpeed = 5f;
+    public float attackRange = 3.0f;
+    public float pauseDurationMin = 1f;
+    public float pauseDurationMax = 2.5f;
+
+    private float pauseTimer = 0f;
+    private bool isPausing = false;
+
 
     [Header("AOE Settings")]
     public float aoeRadius = 4f;
@@ -62,12 +78,55 @@ public class BossAI : MonoBehaviour
     public void SaveQTable() => qTable.SaveToDisk();
     void Update()
     {
+        if (isAttackOnCooldown)
+        {
+            attackCooldownTime -= Time.deltaTime;
+            if (attackCooldownTime <= 0f) { 
+                isAttackOnCooldown = false;
+            }
+        }
+
         playerAgents.RemoveAll(p => p == null || !p.gameObject.activeInHierarchy);
 
         threatMeter.CleanupInactiveTargets();
 
+        if (isPausing)
+        {
+            pauseTimer -= Time.deltaTime;
+            if(pauseTimer < 0f)
+            {
+                isPausing = false;
+            }
+            return;
+        }
         if(currentTarget != null && !currentTarget.gameObject.activeInHierarchy)
-            currentTarget = null;
+        {
+            float distance = Vector3.Distance(transform.position, currentTarget.position);
+
+            if(distance > attackRange)
+            {
+                agent.speed = walkSpeed;
+                agent.SetDestination(currentTarget.position);
+
+                if(Random.value < 0.005f)
+                {
+                    StartPause();
+                }
+            }
+            else
+            {
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+
+                Vector3 direction = (currentTarget.position - transform.position).normalized;
+                direction.y = 0f;
+                if(direction != Vector3.zero)
+                {
+                    Quaternion lookRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+                }
+            }
+        }
 
         if (playerAgents.Count == 0) return;
 
@@ -80,8 +139,36 @@ public class BossAI : MonoBehaviour
 
         dodgeTimer -= Time.deltaTime;
         RegenerateStamina();
+
+        if (currentTarget != null && currentTarget.gameObject.activeInHierarchy) {
+            float distance = Vector3.Distance(transform.position, currentTarget.position);
+            if(distance <= attackRange && !isAttackOnCooldown)
+            {
+                PerformAttack();
+            }
+        }
+    }
+    private void PerformAttack()
+    {
+        var playerAI = currentTarget.GetComponent<PlayerAI>();
+        if (playerAI != null)
+        {
+            playerAI.TakeDamage(stats.damagePerSecond); 
+        }
+
+        Debug.Log($"Boss attacked {currentTarget.name}!");
+
+        isAttackOnCooldown = true;
+        attackCooldownTimer = attackCooldownTime;
     }
 
+    private void StartPause()
+    {
+        isPausing = true;
+        pauseTimer = Random.Range(pauseDurationMin, pauseDurationMax);
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+    }
     void HandlePhaseTransition()
     {
         float hpPercent = stats.currentHP / stats.maxHP;

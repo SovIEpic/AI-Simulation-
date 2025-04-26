@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\gameresetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gameresetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\ai\\boss ai script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\ai\\boss ai script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\script\\gameresetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gameresetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\reinforcementlearning\\rlrewardestimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,7 +27,7 @@
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\actions\\attacknode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\script\\playerwander.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\playerwander.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playerwander.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -39,11 +39,11 @@
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\ai\\threatmeter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\script\\ui\\unithudui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\ui\\unithudui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\ui\\unithudui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\script\\camerafollowboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\camerafollowboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\camerafollowboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -90,17 +90,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Boss Ai Script.cs",
               "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\Boss Ai Script.cs",
               "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\Boss Ai Script.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAWwD0AAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T01:04:34.941Z",
               "IsPinned": true,
@@ -116,8 +116,7 @@
               "RelativeToolTip": "Assets\\Script\\UI\\UnitHUDUI.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T21:12:42.589Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T21:12:42.589Z"
             },
             {
               "$type": "Document",
@@ -129,8 +128,7 @@
               "RelativeToolTip": "Assets\\Script\\Ai\\ThreatMeter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:38:33.005Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:38:33.005Z"
             },
             {
               "$type": "Document",
@@ -142,8 +140,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:49:08.987Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:49:08.987Z"
             },
             {
               "$type": "Document",
@@ -155,8 +152,7 @@
               "RelativeToolTip": "Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T19:23:05.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T19:23:05.31Z"
             },
             {
               "$type": "Document",
@@ -168,8 +164,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:49:03.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:49:03.464Z"
             },
             {
               "$type": "Document",
@@ -181,18 +176,17 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:49:13.607Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:49:13.607Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameResetManager.cs",
               "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\GameResetManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameResetManager.cs",
               "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\GameResetManager.cs",
               "RelativeToolTip": "Assets\\Script\\GameResetManager.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA1wBgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T19:49:08.119Z",
               "EditorCaption": ""
@@ -207,8 +201,7 @@
               "RelativeToolTip": "Assets\\Script\\PlayerWander.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T20:58:35.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T20:58:35.923Z"
             },
             {
               "$type": "Document",
@@ -220,8 +213,7 @@
               "RelativeToolTip": "Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T19:25:24.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T19:25:24.25Z"
             },
             {
               "$type": "Document",
@@ -233,8 +225,7 @@
               "RelativeToolTip": "Assets\\Script\\CameraFollowBoss.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T21:02:46.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T21:02:46.695Z"
             },
             {
               "$type": "Document",
@@ -246,8 +237,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Node.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:19.139Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:48:19.139Z"
             },
             {
               "$type": "Document",
@@ -259,8 +249,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAkwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T05:11:14.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T05:11:14.269Z"
             },
             {
               "$type": "Document",
@@ -272,8 +261,7 @@
               "RelativeToolTip": "Assets\\Script\\PlayerAI.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:04:22.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:04:22.086Z"
             },
             {
               "$type": "Document",
@@ -285,8 +273,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Selector.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:35.802Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:48:35.802Z"
             },
             {
               "$type": "Document",
@@ -298,8 +285,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Sequence.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:43.931Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:48:43.931Z"
             },
             {
               "$type": "Document",
@@ -311,8 +297,7 @@
               "RelativeToolTip": "Assets\\Script\\Ai\\Boss Stats Class.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T02:44:52.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T02:44:52.748Z"
             },
             {
               "$type": "Document",
@@ -324,8 +309,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\ActionNode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:49.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:48:49.281Z"
             },
             {
               "$type": "Document",
@@ -337,8 +321,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\ConditionNode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:56.518Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:48:56.518Z"
             },
             {
               "$type": "Document",
@@ -350,8 +333,7 @@
               "RelativeToolTip": "Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T19:24:52.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-23T19:24:52.627Z"
             }
           ]
         }
