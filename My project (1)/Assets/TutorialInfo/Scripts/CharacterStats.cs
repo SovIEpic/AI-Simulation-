@@ -40,6 +40,8 @@ public class CharacterStats : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
             {
+                float damageToDeal = damage;
+                OnDealDamage?.Invoke(target.gameObject, ref damageToDeal);
                 target.TakeDamage(damage);
                 Debug.Log(gameObject.name + " attacked " + target.gameObject.name);
                 lastAttackTime = Time.time;
@@ -47,9 +49,26 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    void Die()
+    public delegate void DealDamageEvent(GameObject target, ref float damage);
+    public event DealDamageEvent OnDealDamage;
+
+    public void Revive()
+    {
+        currentHealth = maxHealth;
+        gameObject.SetActive(true);
+        Debug.Log(gameObject.name + " was revived!");
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        Debug.Log(gameObject.name + " healed for " + amount);
+    }
+
+    public void Die()
     {
         Debug.Log(gameObject.name + " died!");
-        Destroy(gameObject);
+        currentHealth = 0;
+        gameObject.SetActive(false);
     }
 }

@@ -236,6 +236,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 294702446}
     m_Modifications:
+    - target: {fileID: 1248037768555049244, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+      propertyPath: maxHealth
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 2294031803059204681, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: rb
       value: 
@@ -298,16 +302,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_Name
-      value: AiCharacter (2)
+      value: Healer
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_TagString
       value: AI
       objectReference: {fileID: 0}
+    - target: {fileID: 8721965370786572121, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bd0e0cc574fcc67499ea9f70c274acc0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 2138903905}
   m_SourcePrefab: {fileID: 100100000, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
 --- !u!1 &294702445
 GameObject:
@@ -431,13 +442,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.31818905, y: -0, z: -0, w: 0.9480273}
+  m_LocalPosition: {x: 0, y: 10.82, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.107, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +774,7 @@ GameObject:
   - component: {fileID: 548003176}
   - component: {fileID: 548003175}
   m_Layer: 0
-  m_Name: Sheild
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,7 +1338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_Name
-      value: AiCharacter
+      value: AI1(Swordmaster)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_TagString
@@ -1408,7 +1423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_Name
-      value: AiCharacter (3)
+      value: AI4(Assassin)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
       propertyPath: m_TagString
@@ -1429,7 +1448,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1248037768555049244, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
   m_PrefabInstance: {fileID: 281289066}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2138903904}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1166187e267be444a2c495c27f63d34, type: 3}
@@ -1445,12 +1464,51 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6577813365744398333, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
   m_PrefabInstance: {fileID: 281289066}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2138903904}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f78aa5538360ea145970116daf6f44aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2138903904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5531205568344363446, guid: d6fd9fa350324b945b322d678049e65b, type: 3}
+  m_PrefabInstance: {fileID: 281289066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2138903905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138903904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca819234c52aa4a43a5b606e3d19ee40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 3.5
+  attackRange: 2
+  detectionRange: 10
+  attackCooldown: 2
+  bossTarget: {fileID: 544110463}
+  stats: {fileID: 2129919816}
+  movement: {fileID: 2129919818}
+  rb: {fileID: 2129919817}
+  healerSpeed: 5
+  siphonCooldown: 20
+  siphonDuration: 5
+  lastStandThreshold: 0.05
+  lastStandMultiplier: 3
+  resusColor: {r: 0, g: 1, b: 0, a: 1}
+  siphonColor: {r: 1, g: 0, b: 1, a: 1}
+  lastStandColor: {r: 1, g: 0.5, b: 0, a: 1}
+  showAbilityLogs: 1
+  learningRate: 0.1
+  discountFactor: 0.9
+  explorationRate: 0.3
+  explorationDecay: 0.995
+  maxMemorySize: 1000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
