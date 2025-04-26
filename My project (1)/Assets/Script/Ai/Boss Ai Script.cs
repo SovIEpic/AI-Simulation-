@@ -50,6 +50,15 @@ public class BossAI : MonoBehaviour
     private RLRewardEstimator rewardEstimator;
     private TacticalDecisionFusion fusion;
 
+    [Header("Taunt Settings")]
+    private Transform tauntTarget = null;
+    private float tauntExpireTime = 0f;
+    private bool isTaunted = false;
+    public float phase1TauntDuration = 5f;
+    public float phase2TauntDuration = 3.75f; // 25% reduction
+    public float phase3TauntDuration = 2.5f;  // 50% reduction
+    public GameObject tauntEffectPrefab;
+
     void Start()
     {
         if (playerAgents == null)
@@ -125,6 +134,12 @@ public class BossAI : MonoBehaviour
         {
             Debug.LogError("BossStats reference is null!");
             return;
+        }
+
+        if (isTaunted && Time.time >= tauntExpireTime)
+        {
+            isTaunted = false;
+            tauntTarget = null;
         }
 
         // Main update logic (now safe from null references)
@@ -260,7 +275,16 @@ public class BossAI : MonoBehaviour
     public void TakeDamage(float damage, Transform attacker)
     {
         stats.currentHP -= damage;
-        threatMeter.AddThreat(attacker, damage);
+
+        // Taunting player gets extra threat
+        float threatAmount = damage;
+        if (isTaunted && attacker == tauntTarget)
+        {
+            threatAmount *= 1.5f; // 50% more threat for taunter
+        }
+
+        threatMeter.AddThreat(attacker, threatAmount);
+
         if (stats.currentHP <= 0f) Die();
     }
 
@@ -326,10 +350,40 @@ public class BossAI : MonoBehaviour
 
     bool ShouldRetreat()
     {
+        if (isTaunted) return false;
         return (stats.currentHP / stats.maxHP) < 0.2f;
     }
 
-    // ===== Utility Methods =====
+    private void ApplyTauntVisuals()
+    {
+        if (tauntEffectPrefab != null)
+        {
+            Instantiate(tauntEffectPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
+        }
+    }
+
+    public void ApplyTaunt(Transform taunter, float baseDuration)
+    {
+        // Calculate duration based on current phase
+        float duration = currentPhase switch
+        {
+            BossPhase.Phase1 => Mathf.Min(baseDuration, phase1TauntDuration),
+            BossPhase.Phase2 => Mathf.Min(baseDuration, phase2TauntDuration),
+            BossPhase.Phase3 => Mathf.Min(baseDuration, phase3TauntDuration),
+            _ => baseDuration
+        };
+
+        tauntTarget = taunter;
+        tauntExpireTime = Time.time + duration;
+        isTaunted = true;
+
+        // Add significant threat to the taunter
+        threatMeter.AddThreat(taunter, 50f);
+
+        ApplyTauntVisuals();
+        Debug.Log($"{name} is taunted by {taunter.name} for {duration} seconds (Phase: {currentPhase})");
+    }
+
     void TrackDamageRate()
     {
         damageRate = (lastHP - stats.currentHP) / Time.deltaTime;
@@ -367,19 +421,31 @@ public class BossAI : MonoBehaviour
 
     Transform ChooseBalancedTarget()
     {
+        // Taunt takes absolute priority if active
+        if (isTaunted && Time.time < tauntExpireTime && tauntTarget != null)
+        {
+            // Verify target is still valid
+            if (tauntTarget.gameObject.activeInHierarchy && playerAgents.Contains(tauntTarget))
+            {
+                return tauntTarget;
+            }
+            isTaunted = false; // Reset if target became invalid
+        }
+
         if (playerAgents == null || playerAgents.Count == 0)
             return null;
 
-        if (fusion == null)
+        // Phase-based targeting weights
+        float threatWeight = 0.6f;
+        float rewardWeight = 0.4f;
+
+        if (currentPhase == BossPhase.Phase3)
         {
-            Debug.LogWarning("TacticalDecisionFusion is null! Using simple target selection");
-            return playerAgents[0]; // Fallback to first player
+            threatWeight = 0.3f;
+            rewardWeight = 0.7f;
         }
 
-        float alpha = 0.6f, beta = 0.4f;
-        if (currentPhase == BossPhase.Phase3) { alpha = 0.3f; beta = 0.7f; }
-
-        return fusion.GetBestTarget(playerAgents, alpha, beta);
+        return fusion.GetBestTarget(playerAgents, threatWeight, rewardWeight);
     }
 
     public Transform GetCurrentTarget() => currentTarget;

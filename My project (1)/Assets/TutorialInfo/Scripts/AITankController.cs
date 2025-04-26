@@ -34,6 +34,9 @@ public class AITankController : AIController
     [SerializeField] protected NavMeshAgent navAgent;
     [SerializeField] protected float pathUpdateRate = 0.2f;
 
+    [Header("Effects")]
+    [SerializeField] private GameObject tauntEffectPrefab;
+
     protected float lastPathUpdate;
     protected bool isPathfinding = false;
 
@@ -135,14 +138,23 @@ public class AITankController : AIController
 
     protected void TryTaunt()
     {
+        if (Time.time < lastTauntTime + tauntCooldown) return;
+
         lastTauntTime = Time.time;
         ApplyColor(tauntColor);
         if (showAbilityLogs) Debug.Log($"Taunt ACTIVATED at {Time.time}");
 
-        if (bossTarget.TryGetComponent<BossAI_A>(out var bossAI_A))
-            bossAI_A.SetCurrentTarget(transform);
+        if (bossTarget != null && bossTarget.TryGetComponent<BossAI>(out var bossAI))
+        {
+            bossAI.ApplyTaunt(transform, tauntDuration);
 
-        Invoke(nameof(ResetColor), tauntDuration);
+            if (tauntEffectPrefab != null)
+            {
+                Instantiate(tauntEffectPrefab, bossTarget.position, Quaternion.identity);
+            }
+        }
+
+        Invoke(nameof(ResetColor), 0.5f);
     }
 
     protected void TryShieldBash()
