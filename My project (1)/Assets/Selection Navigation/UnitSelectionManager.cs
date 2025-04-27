@@ -5,6 +5,9 @@ public class UnitSelectionManager : MonoBehaviour
 {
     public static UnitSelectionManager Instance { get; set; }
 
+    public Abilities abilities; //referencing Abilities script (for hiding Ability UI bar after deselecting character) 
+    public GameObject groundObject; 
+
     public List<GameObject> allUnitsList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
 
@@ -41,6 +44,11 @@ public class UnitSelectionManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
+            if (Physics.Raycast(ray, out hit))
+            {
+                groundObject = hit.collider.gameObject;  // Assign the ground object during the raycast
+            }
+
             //check if clicking on a clickable object, if not just unselect everything
             if (Physics.Raycast(ray, out hit))
             {
@@ -54,6 +62,10 @@ public class UnitSelectionManager : MonoBehaviour
                     {
                         SelectByClicking(hit.collider.gameObject);
                     }
+                }
+                else if (((1 << hit.collider.gameObject.layer) & ground) != 0)
+                {
+                    DeselectAll(); // Deselect when clicking on the ground
                 }
                 else
                 {
@@ -84,6 +96,7 @@ public class UnitSelectionManager : MonoBehaviour
                 groundMarker.transform.position = hit.point;
                 groundMarker.SetActive(false);
                 groundMarker.SetActive(true);
+                abilities.UpdateAbilityUI();
             }
 
         }
@@ -101,6 +114,10 @@ public class UnitSelectionManager : MonoBehaviour
         }
         groundMarker.SetActive(false);
         unitsSelected.Clear(); //clear all selected units.
+        if (abilities != null)
+        {
+            abilities.UpdateAbilityUI();
+        }
     }
 
     private  void SelectByClicking(GameObject gameObject)

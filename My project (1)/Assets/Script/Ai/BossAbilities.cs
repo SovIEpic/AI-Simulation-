@@ -32,8 +32,6 @@ public class BossAbilities : MonoBehaviour
         if (bossRenderer != null)
             originalColor = bossRenderer.material.color;
         boss = GetComponent<BossAI>();
-        if (boss != null)
-            Debug.LogError("Boss component missing");
     }
 
     void Update()

@@ -1,7 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+
 public class Abilities : MonoBehaviour
 {
+
+    public GameObject abilityUI;
+
+
     [Header("Ability1")]
     public Image abilityImage1;
     public float cooldown1 = 10;
@@ -30,10 +36,16 @@ public class Abilities : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Ability1();
-        Ability2();
-        Ability3();
+    {   
+
+        UpdateAbilityUI(); 
+        //check if the UI is already activated
+        if (abilityUI.activeSelf)
+        {
+            Ability1();
+            Ability2();
+            Ability3();
+        }
     }
 
     void Ability1()
@@ -91,6 +103,18 @@ public class Abilities : MonoBehaviour
                 abilityImage3.fillAmount = 1;
                 isCooldown3 = false;
             }
+        }
+    }
+
+    public void UpdateAbilityUI()
+    {
+        if (UnitSelectionManager.Instance.unitsSelected.Count == 1)
+        {
+            abilityUI.SetActive(true);
+        }
+        else
+        {
+            abilityUI.SetActive(false);
         }
     }
 }

@@ -943,6 +943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Healer
       objectReference: {fileID: 0}
+    - target: {fileID: 7940719953895527930, guid: 6a3c3c37133b6ae4d9590995c8166d88, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1349,6 +1353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3cabcac491e674084cda5b2ee9e706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityUI: {fileID: 536761348}
   abilityImage1: {fileID: 746274809}
   cooldown1: 10
   ability1: 282
@@ -2795,6 +2800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978e76f1c2fce6b47ac78c5b1d04b4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities: {fileID: 0}
+  groundObject: {fileID: 0}
   allUnitsList: []
   unitsSelected: []
   clickable:
@@ -3230,6 +3237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 1949430161825482, guid: 9e066cea98814aa448c70270a3c60251, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4394185532969230, guid: 9e066cea98814aa448c70270a3c60251, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.304184
@@ -3400,7 +3411,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.6
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -3474,7 +3485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eff1fa46eeb67b4fabec5b2f483bf9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 3.5
+  chaseSpeed: 1.5
   attackRange: 2
   detectionRange: 10
   attackCooldown: 2
@@ -4371,7 +4382,7 @@ GameObject:
   - component: {fileID: 1580136692}
   - component: {fileID: 1580136691}
   - component: {fileID: 1580136694}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4716,7 +4727,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1609131251}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 0.5
+  m_Radius: 3.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -5947,6 +5958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 56995825459094021, guid: 6aed7d5a7a495f94d8d55a61815701c6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 829134890054924479, guid: 6aed7d5a7a495f94d8d55a61815701c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.126304
@@ -6114,7 +6129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2db49012497a0458893bfc254f5c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 3.5
+  chaseSpeed: 1.5
   attackRange: 2
   detectionRange: 10
   attackCooldown: 2
@@ -6186,7 +6201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78aa5538360ea145970116daf6f44aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 1.5
   rotationSpeed: 90
 --- !u!114 &1962701739
 MonoBehaviour:
@@ -6448,7 +6463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ca57cb8c46ff499abdaf81f64e8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 10
+  chaseSpeed: 1.5
   attackRange: 2
   detectionRange: 10
   attackCooldown: 2
@@ -6494,7 +6509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78aa5538360ea145970116daf6f44aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 1.5
   rotationSpeed: 90
 --- !u!114 &1999343977
 MonoBehaviour:
