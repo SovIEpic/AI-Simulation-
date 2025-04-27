@@ -42,20 +42,30 @@ public class UnitSelectionManager : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             //check if clicking on a clickable object, if not just unselect everything
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
+            if (Physics.Raycast(ray, out hit))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (((1 << hit.collider.gameObject.layer) & clickable) != 0)
                 {
-                    MultiSelect(hit.collider.gameObject);
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        MultiSelect(hit.collider.gameObject);
+                    }
+                    else
+                    {
+                        SelectByClicking(hit.collider.gameObject);
+                    }
                 }
                 else
                 {
-                    SelectByClicking(hit.collider.gameObject);
+                    if (!Input.GetKey(KeyCode.LeftShift))
+                    {
+                        DeselectAll();
+                    }
                 }
             }
             else
             {
-                if (!Input.GetKey(KeyCode.LeftShift)) //if shift is not holding, and clicked on not clickable object, deselect all
+                if (!Input.GetKey(KeyCode.LeftShift))
                 {
                     DeselectAll();
                 }
@@ -105,7 +115,11 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void EnableUnitMovement(GameObject unit, bool moveable)
     {
-        unit.GetComponent<unitMovement>().enabled = moveable;
+        var movement = unit.GetComponent<unitMovement>();
+        if (movement != null)
+        {
+            movement.enabled = moveable;
+        }
     }
 
     private void MultiSelect(GameObject unit)
@@ -126,6 +140,10 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void TriggerSelectionIndicator(GameObject unit, bool isVisible)
     {
-        unit.transform.GetChild(0).gameObject.SetActive(isVisible); //set the first child of the object visible (selected indicator)
+        //set the first child of the object visible (selected indicator)
+        if (unit != null && unit.transform.childCount > 0)
+        {
+            unit.transform.GetChild(0).gameObject.SetActive(isVisible);
+        }
     }
 }
