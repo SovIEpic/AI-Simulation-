@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -59,10 +63,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\ReinforcementLearning\\QTableManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -114,11 +114,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Lit.shader",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
@@ -126,12 +126,11 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-27T00:07:41.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T00:07:41.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "testUnit.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs",
               "RelativeDocumentMoniker": "Assets\\testUnit.cs",
@@ -139,12 +138,11 @@
               "RelativeToolTip": "Assets\\testUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T21:55:15.515Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T21:55:15.515Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UnitSelectionManager.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\UnitSelectionManager.cs",
@@ -157,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "unit_instance.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs",
               "RelativeDocumentMoniker": "Assets\\unit_instance.cs",
@@ -168,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Unit.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs",
               "RelativeDocumentMoniker": "Assets\\Unit.cs",
@@ -179,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Unit.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\Unit.cs",
@@ -190,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "unitSelectionManager.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs",
               "RelativeDocumentMoniker": "Assets\\unitSelectionManager.cs",
@@ -202,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "unitMovement.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\unitMovement.cs",
@@ -210,12 +208,11 @@
               "RelativeToolTip": "Assets\\Selection Navigation\\unitMovement.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T19:09:06.114Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-26T19:09:06.114Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "statsInputManager.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs",
               "RelativeDocumentMoniker": "Assets\\UI\\statsInputManager.cs",
@@ -227,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "HealthBar.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs",
               "RelativeDocumentMoniker": "Assets\\HealthBar.cs",
@@ -238,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RLRewardEstimator.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
@@ -250,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "TacticalDecisionFusion.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
@@ -262,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "QTableManager.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
@@ -274,15 +271,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 0,
               "Title": "Boss Ai Script.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\Boss Ai Script.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\Boss Ai Script.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAUwKwAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAMgAAAAAAAAAAAAswOUAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:04:34.941Z"
+              "WhenOpened": "2025-04-22T01:04:34.941Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -322,7 +320,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ThreatMeter.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\ThreatMeter.cs",
