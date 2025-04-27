@@ -49,6 +49,7 @@ public class BossAI : MonoBehaviour
     private QTableManager qTable;
     private RLRewardEstimator rewardEstimator;
     private TacticalDecisionFusion fusion;
+    private bool isStunned = false;
 
     [Header("Taunt Settings")]
     private Transform tauntTarget = null;
@@ -58,6 +59,8 @@ public class BossAI : MonoBehaviour
     public float phase2TauntDuration = 3.75f; // 25% reduction
     public float phase3TauntDuration = 2.5f;  // 50% reduction
     public GameObject tauntEffectPrefab;
+
+
 
     void Start()
     {
@@ -75,6 +78,7 @@ public class BossAI : MonoBehaviour
             return;
         }
 
+        if (isStunned) return;
 
         stats.ResetHP();
         lastHP = stats.currentHP;
@@ -172,7 +176,7 @@ public class BossAI : MonoBehaviour
 
     public IEnumerator ExecuteComboAttack(Transform target)
     {
-        if (isAttacking || target == null || stats == null) yield break;
+        if (isStunned || isAttacking || target == null || stats == null) yield break;
 
         isAttacking = true;
 
@@ -297,26 +301,25 @@ public class BossAI : MonoBehaviour
 
     private Node BuildBehaviorTree()
     {
-        // Create all nodes first
-        var aoeAttackSequence = new Sequence(new List<Node>
-    {
-        new ConditionNode(() => IsMultiplePlayersClose()),
-        new AoeAttackNode(this, aoeRadius, aoeDamage)
-    });
+        // Create condition nodes first
+        Node aoeCondition = new ConditionNode(() => !isStunned && IsMultiplePlayersClose());
+        Node attackCondition = new ConditionNode(() => !isStunned && IsInAttackRange() && attackTimer <= 0 && !isAttacking);
+        Node retreatCondition = new ConditionNode(() => !isStunned && ShouldRetreat());
+        Node moveCondition = new ConditionNode(() => !isStunned);
 
-        var attackSequence = new Sequence(new List<Node>
-    {
-        new ConditionNode(() => IsInAttackRange() && attackTimer <= 0 && !isAttacking),
-        new AttackNode(this, () => currentTarget)
-    });
+        // Create action nodes
+        Node aoeAttack = new AoeAttackNode(this, aoeRadius, aoeDamage);
+        Node attack = new AttackNode(this, () => currentTarget);
+        Node retreat = new RetreatNode(this);
+        Node moveTo = new MoveToTargetNode(this, () => currentTarget);
 
-        var retreatSequence = new Sequence(new List<Node>
-    {
-        new ConditionNode(() => ShouldRetreat()),
-        new RetreatNode(this)
-    });
+        // Create sequences
+        var aoeAttackSequence = new Sequence(new List<Node> { aoeCondition, aoeAttack });
+        var attackSequence = new Sequence(new List<Node> { attackCondition, attack });
+        var retreatSequence = new Sequence(new List<Node> { retreatCondition, retreat });
 
-        var moveToNode = new MoveToTargetNode(this, () => currentTarget);
+        // For moveTo with condition, use a sequence
+        var moveSequence = new Sequence(new List<Node> { moveCondition, moveTo });
 
         // Create main selector
         return new Selector(new List<Node>
@@ -324,7 +327,7 @@ public class BossAI : MonoBehaviour
         aoeAttackSequence,
         attackSequence,
         retreatSequence,
-        moveToNode
+        moveSequence
     });
     }
 
@@ -383,6 +386,31 @@ public class BossAI : MonoBehaviour
         ApplyTauntVisuals();
         Debug.Log($"{name} is taunted by {taunter.name} for {duration} seconds (Phase: {currentPhase})");
     }
+    public void ApplyStun(float duration)
+    {
+        StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if (agent == null) yield break;
+
+        // Store original values
+        float originalSpeed = agent.speed;
+        isStunned = true;
+
+        // Apply stun effects
+        agent.speed = 0;
+
+        // Wait for stun duration
+        yield return new WaitForSeconds(duration);
+
+        // Restore original values
+        agent.speed = originalSpeed;
+        isStunned = false;
+    }
+
 
     void TrackDamageRate()
     {
@@ -403,6 +431,8 @@ public class BossAI : MonoBehaviour
 
     void TryDodge()
     {
+
+        if (isStunned) return;
         if (!CanDodge() || dodgeTimer > 0f) return;
         Transform target = GetCurrentTarget();
         if (target == null) return;
