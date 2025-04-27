@@ -149,8 +149,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 508864101}
-  - {fileID: 56356515}
   - {fileID: 709252983}
+  - {fileID: 56356515}
   - {fileID: 1262437950}
   - {fileID: 2138512505}
   m_Father: {fileID: 0}
@@ -207,9 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ceff96628c5ea43a16537ecc17dde6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 200
-  currentHP: 200
-  player: {fileID: 0}
 --- !u!195 &56356517
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -320,9 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fd634a1d6f47c4caabb17e824688ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Player
-  maxHP: 100
-  currentHP: 100
 --- !u!114 &56356522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,9 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fd634a1d6f47c4caabb17e824688ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Enemy
-  maxHP: 100
-  currentHP: 100
 --- !u!114 &56356523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,8 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3554ff703e937134eba099222fb9d8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 10
-  wanderDelay: 2
 --- !u!114 &56356524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76468fec138474fa5dc06b7037c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossTarget: {fileID: 508864101}
 --- !u!1 &395411418
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,13 +834,11 @@ GameObject:
   - component: {fileID: 508864099}
   - component: {fileID: 508864098}
   - component: {fileID: 508864097}
-  - component: {fileID: 508864096}
-  - component: {fileID: 508864102}
-  - component: {fileID: 508864103}
   - component: {fileID: 508864104}
   - component: {fileID: 508864105}
-  - component: {fileID: 508864106}
   - component: {fileID: 508864107}
+  - component: {fileID: 508864109}
+  - component: {fileID: 508864108}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -860,34 +846,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &508864096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508864095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d51eed07700620439fd3a89ceeca688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  playerAgents:
-  - {fileID: 709252983}
-  - {fileID: 56356515}
-  - {fileID: 1262437950}
-  - {fileID: 2138512505}
-  maxComboHits: 3
-  comboResetTime: 3
-  timeBetweenComboHits: 0.5
-  attackEffects: []
-  aoeRadius: 4
-  aoeDamage: 30
-  currentPhase: 0
-  phase2Threshold: 0.66
-  phase3Threshold: 0.33
-  aoeEffectPrefab: {fileID: 0}
 --- !u!195 &508864097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1001,36 +959,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 18404581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &508864102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508864095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7fd634a1d6f47c4caabb17e824688ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: Boss
-  maxHP: 2000
-  currentHP: 2000
---- !u!114 &508864103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508864095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 897f8c6109b7f134486da2f18e0ffd41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hudPanel: {fileID: 1487624742}
-  nameText: {fileID: 2090937727}
-  hpSlider: {fileID: 1145247146}
 --- !u!114 &508864104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,28 +1003,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &508864106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508864095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df6496768b38ef43960f806e855b714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 1000
-  currentHP: 0
-  movementSpeed: 3.5
-  attackRange: 2
-  attackCooldown: 2
-  damagePerHit: 25
-  stamina: 100
-  staminaRegenRate: 10
-  damagePerSecond: 30
-  chargeMultiplier: 1
 --- !u!114 &508864107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfb6a548b1ee942a471ba2eafa9294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 508864106}
+  stats: {fileID: 0}
   bossRenderer: {fileID: 508864099}
   tidalWaveColor: {r: 0, g: 0, b: 1, a: 1}
   teleportColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1117,6 +1023,56 @@ MonoBehaviour:
   tidalWaveCooldown: 25
   teleportCooldown: 15
   chargeCooldown: 40
+--- !u!114 &508864108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508864095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b275e06ecd2d97c439098dc4e11b77a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1000
+  currentHP: 0
+  movementSpeed: 3.5
+  attackRange: 2
+  attackCooldown: 2
+  damagePerHit: 25
+  stamina: 100
+  staminaRegenRate: 10
+  damagePerSecond: 30
+  chargeMultiplier: 1
+--- !u!114 &508864109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508864095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6296b7964a11e204e828ee9fee7e1cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  playerAgents:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxComboHits: 3
+  comboResetTime: 3
+  timeBetweenComboHits: 0.5
+  attackEffects: []
+  aoeRadius: 4
+  aoeDamage: 30
+  currentPhase: 0
+  phase2Threshold: 0.66
+  phase3Threshold: 0.33
+  aoeEffectPrefab: {fileID: 0}
 --- !u!1 &626429448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,13 +3312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6460f1ae539c24bb3c444abd99ec24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 508864096}
-  bossStartPoint: {fileID: 2021129627}
-  players:
-  - {fileID: 56356516}
-  playerStartPoints:
-  - {fileID: 784744952}
-  resetButton: {fileID: 1588110136}
 --- !u!1 &1679062898
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,9 +3449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897f8c6109b7f134486da2f18e0ffd41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudPanel: {fileID: 1487624742}
-  nameText: {fileID: 2090937727}
-  hpSlider: {fileID: 1145247146}
 --- !u!4 &1772120299
 Transform:
   m_ObjectHideFlags: 0
@@ -4010,7 +3956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc76468fec138474fa5dc06b7037c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossTarget: {fileID: 709252983}
 --- !u!114 &1958774254
 MonoBehaviour:
   m_ObjectHideFlags: 0

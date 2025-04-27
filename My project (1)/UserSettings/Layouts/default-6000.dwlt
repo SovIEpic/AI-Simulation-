@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 941
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -96,8 +96,8 @@ MonoBehaviour:
     y: 0
     width: 362
     height: 557
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 636
+    y: 581
     width: 1465
     height: 358
   m_SerializedDataModeController:
@@ -382,7 +382,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 60}
     m_SelectedIDs: 00a70000
     m_LastClickedID: 42752
-    m_ExpandedIDs: 0000000000a7000010a7000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000d4aa0000d6aa0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -411,7 +411,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000000a7000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000d4aa0000d6aa0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -490,8 +490,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1466
-    y: 79
+    x: 1467
+    y: 24
     width: 453
     height: 915
   m_SerializedDataModeController:
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 361
     height: 531
   m_SerializedDataModeController:
@@ -557,8 +557,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ccb8feff
-      m_LastClickedID: -83764
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: e8a3feff36b9feff90bcfeffe4befeff4cc5feffacd7feff82dcfeff7ceafeff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -605,8 +605,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 362
-    y: 79
+    x: 363
+    y: 24
     width: 1102
     height: 531
   m_SerializedDataModeController:
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.2915029, y: -0.37212977, z: 0.12435607, w: -0.87233156}
     speed: 2
-    m_Value: {x: -0.2915202, y: -0.37215185, z: 0.12436345, w: -0.87238336}
+    m_Value: {x: 0.2915029, y: 0.37212977, z: -0.12435607, w: 0.87233156}
   m_Size:
     m_Target: 2.5883474
     speed: 2
