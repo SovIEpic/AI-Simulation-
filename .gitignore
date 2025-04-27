@@ -33,3 +33,6 @@ sysinfo.txt
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+My project/DocumentLayout.json
+My project/UserSettings/default-6000.dwll
