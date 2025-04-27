@@ -1070,8 +1070,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1352,6 +1352,7 @@ MonoBehaviour:
   blockCooldown: 10
   tauntDuration: 5
   shieldBashDamage: 25
+  bashKnockbackForce: 3
   shieldIndicator: {fileID: 0}
   blockColor: {r: 0, g: 0, b: 1, a: 1}
   bashColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1487,6 +1488,7 @@ MonoBehaviour:
   blockCooldown: 10
   tauntDuration: 5
   shieldBashDamage: 25
+  bashKnockbackForce: 3
   shieldIndicator: {fileID: 0}
   blockColor: {r: 0, g: 0, b: 1, a: 1}
   bashColor: {r: 1, g: 0, b: 0, a: 1}

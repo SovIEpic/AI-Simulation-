@@ -13,6 +13,8 @@ public class AITankController : AIController
     [SerializeField] protected float blockCooldown = 10f;
     [SerializeField] protected float tauntDuration = 5f;
     [SerializeField] protected float shieldBashDamage = 25f;
+    [Header("Shield Bash Settings")]
+    [SerializeField] private float bashKnockbackForce = 3f;
 
     [Header("Visual Feedback")]
     [SerializeField] private GameObject shieldIndicator;
@@ -168,10 +170,16 @@ public class AITankController : AIController
         {
             if (hit.CompareTag("Boss"))
             {
+                // Apply damage
                 hit.GetComponent<CharacterStats>()?.TakeDamage(shieldBashDamage);
-                hit.GetComponent<Rigidbody>()?.AddForce(
-                    (hit.transform.position - transform.position).normalized * 5f,
-                    ForceMode.Impulse);
+
+                // Apply knockback (MODIFIED PART)
+                Rigidbody bossRb = hit.GetComponent<Rigidbody>();
+                if (bossRb != null)
+                {
+                    Vector3 knockbackDir = (hit.transform.position - transform.position).normalized;
+                    bossRb.AddForce(knockbackDir * bashKnockbackForce, ForceMode.Impulse);
+                }
             }
         }
         Invoke(nameof(ResetColor), 0.5f);

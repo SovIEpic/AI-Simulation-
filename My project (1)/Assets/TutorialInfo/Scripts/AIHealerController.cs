@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class AIHealerController : AIController
@@ -11,6 +12,12 @@ public class AIHealerController : AIController
     [SerializeField] protected float lastStandThreshold = 0.05f;
     [SerializeField] protected float lastStandMultiplier = 3f;
 
+    [Header("Navigation Settings")]
+    [SerializeField] protected NavMeshAgent navAgent;
+    [SerializeField] protected float pathUpdateRate = 0.2f;
+    protected float lastPathUpdate;
+    protected bool isPathfinding = false;
+
     [Header("Visuals")]
     [SerializeField] private Color resusColor = Color.green;
     [SerializeField] private Color siphonColor = Color.magenta;
@@ -20,7 +27,6 @@ public class AIHealerController : AIController
     protected float lastSiphonTime = Mathf.NegativeInfinity;
     private Material originalMaterial;
     protected bool siphonActive = false;
-    protected virtual void OnDrawGizmosSelected() {}
 
     [Header("Debug")]
     [SerializeField] private bool showAbilityLogs = true;
@@ -29,13 +35,27 @@ public class AIHealerController : AIController
     {
         base.Start();
         originalMaterial = GetComponent<Renderer>().material;
+
+        // Initialize NavMeshAgent
+        if (navAgent == null)
+            navAgent = GetComponent<NavMeshAgent>();
+
+        if (navAgent == null)
+            navAgent = gameObject.AddComponent<NavMeshAgent>();
+
+        // Configure NavMeshAgent
+        navAgent.speed = healerSpeed;
+        navAgent.angularSpeed = 120f;
+        navAgent.acceleration = 8f;
+        navAgent.stoppingDistance = attackRange * 0.8f;
+        navAgent.autoBraking = false;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if(bossTarget == null)
+        if (bossTarget == null)
         {
             bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
             if (bossTarget == null) return;
@@ -50,13 +70,13 @@ public class AIHealerController : AIController
         float distance = Vector3.Distance(transform.position, bossPosition);
 
         // Debug siphon cooldown
-        if(showAbilityLogs)
+        if (showAbilityLogs)
         {
             Debug.Log($"Siphon Cooldown: {Mathf.Max(0, lastSiphonTime + siphonCooldown - Time.time):F1}s");
         }
 
         // Attempt abilities
-        if(stats.currentHealth <= stats.maxHealth * lastStandThreshold)
+        if (stats.currentHealth <= stats.maxHealth * lastStandThreshold)
         {
             TriggerLastStand();
         }
@@ -64,25 +84,46 @@ public class AIHealerController : AIController
         {
             TryResus();
         }
-        else if(!siphonActive && Time.time >= lastSiphonTime + siphonCooldown)
+        else if (!siphonActive && Time.time >= lastSiphonTime + siphonCooldown)
         {
             TrySiphon();
         }
-        else if(distance <= attackRange)
+        else if (distance <= attackRange)
         {
-            if(Time.time >= lastAttackTime + attackCooldown)
+            // Stop moving when in attack range
+            if (navAgent != null)
+            {
+                navAgent.isStopped = true;
+                isPathfinding = false;
+            }
+
+            if (Time.time >= lastAttackTime + attackCooldown)
             {
                 TryAttack();
             }
         }
-        else if(distance <= detectionRange)
+        else if (distance <= detectionRange)
         {
-            Vector3 direction = (bossPosition - transform.position).normalized;
-            movement.Move(direction * chaseSpeed);
+            // Use NavMesh for pathing to target
+            if (navAgent != null && (Time.time >= lastPathUpdate + pathUpdateRate || !isPathfinding))
+            {
+                navAgent.SetDestination(bossPosition);
+                navAgent.isStopped = false;
+                isPathfinding = true;
+                lastPathUpdate = Time.time;
+            }
         }
-        else
+        else if (navAgent != null)
         {
-            movement.Move(Vector3.zero);
+            // Stop moving when target is out of detection range
+            navAgent.isStopped = true;
+            isPathfinding = false;
+        }
+
+        // Synchronize healer speed with navAgent
+        if (isPathfinding && navAgent != null)
+        {
+            navAgent.speed = healerSpeed;
         }
     }
 
@@ -171,5 +212,27 @@ public class AIHealerController : AIController
     {
         if (GetComponent<Renderer>() != null)
             GetComponent<Renderer>().material.color = originalMaterial.color;
+    }
+
+    protected void OnDrawGizmosSelected()
+    {
+        // Attack Range (Red)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // Detection Range (Cyan)
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        // If we have a target and are pathfinding, show the path
+        if (Application.isPlaying && navAgent != null && navAgent.hasPath)
+        {
+            Gizmos.color = Color.green;
+            Vector3[] corners = navAgent.path.corners;
+            for (int i = 0; i < corners.Length - 1; i++)
+            {
+                Gizmos.DrawLine(corners[i], corners[i + 1]);
+            }
+        }
     }
 }
