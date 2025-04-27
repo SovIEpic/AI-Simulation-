@@ -55,8 +55,10 @@ public class AIHealerController : AIController
     {
         base.Update();
 
-        if (bossTarget == null)
+        if (bossTarget == null || !bossTarget.gameObject.activeInHierarchy)
         {
+            navAgent.isStopped = true;
+            isPathfinding= false;
             bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
             if (bossTarget == null) return;
         }

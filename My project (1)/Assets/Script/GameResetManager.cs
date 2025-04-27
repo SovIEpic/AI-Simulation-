@@ -43,19 +43,25 @@ public class GameResetManager : MonoBehaviour
         {
             if (!player.gameObject.activeInHierarchy)
             {
-                rewardEstimator.LearnFromOutcome(player.transform, 50f); // Reward value can vary per role
+                rewardEstimator.LearnFromOutcome(player.transform, 50f);
                 Debug.Log($"Rewarded Boss for defeating {player.name}");
             }
         }
 
         Debug.Log("Saving Q-Table...");
-        boss.SaveQTable(); // Boss should expose this method
+        boss.SaveQTable();
 
-        //Reset Boss
-        boss.transform.position = bossStartPoint.position;
+
+        var agent = boss.GetAgent();
+        agent.enabled = false; // 1. Disable the NavMeshAgent
+        boss.transform.position = bossStartPoint.position; // 2. Move the boss
+        agent.enabled = true; // 3. Re-enable agent
+        agent.Warp(bossStartPoint.position); // 4. Warp properly onto NavMesh
+        agent.ResetPath(); // 5. Now safe to reset path
+        agent.isStopped = false; // 6. Resume
+
         boss.stats.ResetHP();
         boss.stats.stamina = 100f;
-        boss.GetAgent().ResetPath();
         boss.playerAgents.Clear();
 
         //Reset Players
@@ -77,4 +83,5 @@ public class GameResetManager : MonoBehaviour
 
         Debug.Log("Game Reset Complete. Boss will now resume learned behavior.");
     }
+
 }

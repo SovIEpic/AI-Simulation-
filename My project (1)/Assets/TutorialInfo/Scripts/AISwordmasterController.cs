@@ -72,8 +72,9 @@ public class AISwordmasterController : AIController
     {
         base.Update();
 
-        if (bossTarget == null)
+        if (bossTarget == null || !bossTarget.gameObject.activeInHierarchy)
         {
+            navAgent.isStopped = true;
             bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
             if (bossTarget == null) return;
         }

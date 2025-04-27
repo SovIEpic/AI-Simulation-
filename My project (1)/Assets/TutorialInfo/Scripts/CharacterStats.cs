@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats : MonoBehaviour, IUnitHealth
 {
     // Basic Stats
     public float maxHealth = 100f;
@@ -14,7 +14,7 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
+    
     public virtual void TakeDamage(float damageAmount)
     {
         var tankController = GetComponent<AITankController>();
@@ -32,8 +32,14 @@ public class CharacterStats : MonoBehaviour
             Die();
         }
     }
-
-
+    public float GetCurrentHP()
+    {
+        return currentHealth;
+    }
+    public float GetMaxHP()
+    {
+        return maxHealth;
+    }
     public void Attack(CharacterStats target)
     {
         if (Time.time > lastAttackTime + attackCooldown)

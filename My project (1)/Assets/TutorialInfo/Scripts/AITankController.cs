@@ -67,8 +67,10 @@ public class AITankController : AIController
 
     protected override void Update()
     {
-        if (bossTarget == null)
+        if (bossTarget == null || !bossTarget.gameObject.activeInHierarchy)
         {
+            navAgent.enabled = true;
+            isPathfinding = false;
             bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
             if (bossTarget == null) return;
         }

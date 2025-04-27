@@ -1,67 +1,88 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ThreatMeter
 {
-    private Dictionary<Transform, float> threatTable = new Dictionary<Transform, float>();
+    private Dictionary<Transform, float> threatLevels = new Dictionary<Transform, float>();
+    private float decayRate;
 
-    public ThreatMeter(List<Transform> players)
+    public ThreatMeter(List<Transform> players, float decayRate = 1f)
     {
         foreach (var player in players)
         {
-            threatTable[player] = 0f;
+            if (player != null)
+                threatLevels[player] = 0f;
         }
+        this.decayRate = decayRate;
     }
 
-    public void AddThreat(Transform target, float amount)
+    public void AddThreat(Transform player, float amount)
     {
-        if (threatTable.ContainsKey(target))
-        {
-            threatTable[target] += amount;
-        }
+        if (player == null) return;
+        if (!threatLevels.ContainsKey(player))
+            threatLevels[player] = 0f;
+
+        threatLevels[player] += amount;
     }
 
-    public float GetThreat(Transform target)
+    public float GetThreatValue(Transform player)
     {
-        return threatTable.ContainsKey(target) ? threatTable[target] : 0f;
+        if (player == null || !threatLevels.ContainsKey(player)) return 0f;
+        return threatLevels[player];
     }
 
     public Transform GetHighestThreatTarget()
     {
-        Transform highestTarget = null;
+        Transform bestTarget = null;
         float highestThreat = float.MinValue;
 
-        foreach (var entry in threatTable)
+        foreach (var kvp in threatLevels)
         {
-            if (entry.Value > highestThreat)
+            if (kvp.Value > highestThreat)
             {
-                highestThreat = entry.Value;
-                highestTarget = entry.Key;
+                highestThreat = kvp.Value;
+                bestTarget = kvp.Key;
             }
         }
+        return bestTarget;
+    }
 
-        return highestTarget;
+    public void AddDamageThreat(Transform player, float damage)
+    {
+        AddThreat(player, damage);
+    }
+
+    public void AddHealingThreat(Transform player, float healAmount)
+    {
+        AddThreat(player, healAmount * 0.5f); // Healing generates 50% threat compared to damage
+    }
+
+    public void AddCCThreat(Transform player, float ccAmount)
+    {
+        AddThreat(player, ccAmount * 2f); // CC abilities generate double threat
+    }
+
+    public void DecayThreat(float deltaTime)
+    {
+        List<Transform> keys = new List<Transform>(threatLevels.Keys);
+        foreach (var key in keys)
+        {
+            threatLevels[key] = Mathf.Max(0, threatLevels[key] - decayRate * deltaTime);
+        }
     }
 
     public void CleanupInactiveTargets()
     {
-        var toRemove = new List<Transform>();
-        foreach (var entry in threatTable)
+        List<Transform> toRemove = new List<Transform>();
+        foreach (var kvp in threatLevels)
         {
-            if (entry.Key == null || !entry.Key.gameObject.activeInHierarchy)
-            {
-                toRemove.Add(entry.Key);
-            }
+            if (kvp.Key == null || !kvp.Key.gameObject.activeInHierarchy)
+                toRemove.Add(kvp.Key);
         }
 
-        foreach (var target in toRemove)
+        foreach (var key in toRemove)
         {
-            threatTable.Remove(target);
+            threatLevels.Remove(key);
         }
-    }
-
-    public float GetThreatValue(Transform target)
-    {
-        return threatTable.ContainsKey(target) ? threatTable[target] : 0f;
     }
 }

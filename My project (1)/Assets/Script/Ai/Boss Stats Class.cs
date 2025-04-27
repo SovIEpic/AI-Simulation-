@@ -11,6 +11,8 @@ public class BossStats : MonoBehaviour
     public float stamina = 100f;
     public float staminaRegenRate = 10f;
     public float damagePerSecond = 30f;
+    [Header("Charge Attack")]
+    public float chargeMultiplier = 1f; // Default is normal damage (x1)
 
     public void ResetHP()
     {
