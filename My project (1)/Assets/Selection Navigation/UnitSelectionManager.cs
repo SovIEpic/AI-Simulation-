@@ -92,7 +92,7 @@ public class UnitSelectionManager : MonoBehaviour
 
 
 
-    private void DeselectAll()
+    public void DeselectAll()
     {
         foreach(var unit in unitsSelected) 
         {
@@ -146,4 +146,14 @@ public class UnitSelectionManager : MonoBehaviour
             unit.transform.GetChild(0).gameObject.SetActive(isVisible);
         }
     }
+    internal void DragSelect(GameObject unit)
+    {
+        if (!unitsSelected.Contains(unit))
+        {
+            unitsSelected.Add(unit);
+            TriggerSelectionIndicator(unit, true);
+            EnableUnitMovement(unit, true);
+        }
+    }
+
 }
