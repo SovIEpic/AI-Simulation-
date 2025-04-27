@@ -49,6 +49,9 @@ public class BossAI : MonoBehaviour
     private QTableManager qTable;
     private RLRewardEstimator rewardEstimator;
     private TacticalDecisionFusion fusion;
+    [Header("Pushback Settings")]
+    public bool isRecoveringFromPush = false;
+    public float pushRecoveryTime = 1.5f; // Time in seconds before boss can move again
 
     [Header("Taunt Settings")]
     private Transform tauntTarget = null;
@@ -180,6 +183,13 @@ public class BossAI : MonoBehaviour
 
         for (int i = 0; i < hitsInCombo; i++)
         {
+            //SAFETY CHECK
+            if (target == null || !target.gameObject.activeInHierarchy)
+            {
+                Debug.LogWarning("Combo interrupted: target destroyed mid-attack!");
+                break; // exit attack loop safely
+            }
+
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
             if (attackEffects != null && attackEffects.Length > i && attackEffects[i] != null)
@@ -204,6 +214,7 @@ public class BossAI : MonoBehaviour
         lastAttackTime = Time.time;
         isAttacking = false;
     }
+
 
     // ===== Q-Learning and Threat System Methods =====
     public RLRewardEstimator GetRewardEstimator() => rewardEstimator;
@@ -361,6 +372,51 @@ public class BossAI : MonoBehaviour
             Instantiate(tauntEffectPrefab, transform.position + Vector3.up * 2f, Quaternion.identity);
         }
     }
+    public void ApplyPushback(Vector3 pushDirection, float pushForce)
+    {
+        if (agent.enabled)
+        {
+            agent.isStopped = true;
+            agent.updatePosition = false;
+            agent.updateRotation = false;
+        }
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero; // Very important
+            rb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+        }
+
+        isRecoveringFromPush = true;
+        Invoke(nameof(RecoverFromPushback), pushRecoveryTime);
+    }
+
+    private void RecoverFromPushback()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        if (agent.enabled)
+        {
+            agent.updatePosition = true;
+            agent.updateRotation = true;
+            agent.isStopped = false;
+        }
+
+        if (currentTarget != null && currentTarget.gameObject.activeInHierarchy)
+        {
+            transform.LookAt(new Vector3(currentTarget.position.x, transform.position.y, currentTarget.position.z));
+            agent.SetDestination(currentTarget.position);
+        }
+
+        isRecoveringFromPush = false;
+    }
+
 
     public void ApplyTaunt(Transform taunter, float baseDuration)
     {
@@ -407,17 +463,22 @@ public class BossAI : MonoBehaviour
         Transform target = GetCurrentTarget();
         if (target == null) return;
 
-        Vector3 dodgeDir = (target.position - transform.position).normalized;
+        Vector3 dodgeDir = (transform.position - target.position).normalized; // move away
         Vector3 dodgeTarget = transform.position + dodgeDir * 5f;
+
         if (NavMesh.SamplePosition(dodgeTarget, out NavMeshHit hit, 2f, NavMesh.AllAreas))
         {
             agent.ResetPath();
             agent.SetDestination(hit.position);
+
             dodgesUsed++;
             dodgeTimer = dodgeCooldown;
+            damageRate = 0f; // reset after dodge (very important)
+
             Debug.Log("Boss dodged!");
         }
     }
+
 
     Transform ChooseBalancedTarget()
     {

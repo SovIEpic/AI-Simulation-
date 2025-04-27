@@ -29,7 +29,8 @@ public class CharacterStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Debug.Log(gameObject.name + " died!");
+            gameObject.SetActive(false);
         }
     }
 
@@ -56,6 +57,6 @@ public class CharacterStats : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + " died!");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

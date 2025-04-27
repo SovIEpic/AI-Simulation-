@@ -2,16 +2,22 @@ using UnityEngine;
 
 public class SelectableUnit : MonoBehaviour
 {
-    public string unitName = "Enemy";
-    public float maxHP = 100f;
-    public float currentHP = 100f;
+    public string unitName;
 
-    public void TakeDamage(float amount)
+    private CharacterStats characterStats;
+
+    void Awake()
     {
-        currentHP -= amount;
-        if (currentHP <= 0f) Destroy(gameObject);
+        characterStats = GetComponent<CharacterStats>();
     }
 
-    public float GetHP() => currentHP;
-    public float GetMaxHP() => maxHP;
+    public float GetHP()
+    {
+        return characterStats != null ? characterStats.currentHealth : 0;
+    }
+
+    public float GetMaxHP()
+    {
+        return characterStats != null ? characterStats.maxHealth : 0;
+    }
 }

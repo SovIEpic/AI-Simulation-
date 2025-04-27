@@ -1,22 +1,27 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ReinforcementLearning; // make sure your namespace matches
+using ReinforcementLearning;
 
 public class GameResetManager : MonoBehaviour
 {
     [Header("References")]
     public BossAI boss;
     public Transform bossStartPoint;
-    public List<PlayerAI> players;
-    public List<Transform> playerStartPoints;
+
+    [Header("Single Player Setup")]
+    public PlayerAI player; // The regular DPS player
+    public Transform playerStartPoint;
+
+    [Header("Single Tank Setup")]
+    public AITankController tank; // The tank
+    public Transform tankStartPoint;
+
     public Button resetButton;
 
     private RLRewardEstimator rewardEstimator;
 
     void Start()
     {
-        // Make sure button is hooked up
         if (resetButton != null)
             resetButton.onClick.AddListener(ResetGame);
         else
@@ -38,40 +43,55 @@ public class GameResetManager : MonoBehaviour
 
         Debug.Log("Starting AI learning reward phase...");
 
-        // Give rewards to boss for any defeated (inactive) players
-        foreach (var player in players)
+        // Reward boss if player is dead
+        if (player != null && !player.gameObject.activeInHierarchy)
         {
-            if (!player.gameObject.activeInHierarchy)
-            {
-                rewardEstimator.LearnFromOutcome(player.transform, 50f); // Reward value can vary per role
-                Debug.Log($"Rewarded Boss for defeating {player.name}");
-            }
+            rewardEstimator.LearnFromOutcome(player.transform, 50f);
+            Debug.Log($"Rewarded Boss for defeating {player.name}");
+        }
+
+        // Reward boss if tank is dead
+        if (tank != null && !tank.gameObject.activeInHierarchy)
+        {
+            rewardEstimator.LearnFromOutcome(tank.transform, 70f);
+            Debug.Log($"Rewarded Boss for defeating {tank.name}");
         }
 
         Debug.Log("Saving Q-Table...");
-        boss.SaveQTable(); // Boss should expose this method
+        boss.SaveQTable();
 
-        //Reset Boss
-        boss.transform.position = bossStartPoint.position;
-        boss.stats.ResetHP();
-        boss.stats.stamina = 100f;
-        boss.GetAgent().ResetPath();
-        boss.playerAgents.Clear();
-
-        //Reset Players
-        for (int i = 0; i < players.Count; i++)
+        // Reset Boss]
+        if (boss != null && bossStartPoint != null)
         {
-            if (players[i] != null && playerStartPoints[i] != null)
-            {
-                players[i].gameObject.SetActive(true);
-                players[i].transform.position = playerStartPoints[i].position;
-                players[i].currentHP = players[i].maxHP;
+            boss.transform.position = bossStartPoint.position;
+            boss.stats.ResetHP();
+            boss.stats.stamina = 100f;
+            boss.GetAgent().ResetPath();
+            boss.playerAgents.Clear();
+        }
+        // Reset Player
+        if (player != null && playerStartPoint != null)
+        {
+            player.gameObject.SetActive(true);
+            player.transform.position = playerStartPoint.position;
+            player.currentHP = player.maxHP;
 
-                boss.playerAgents.Add(players[i].transform);
-            }
+            boss.playerAgents.Add(player.transform);
         }
 
-        //Reinitialize threat and reload learning
+        // Reset Tank
+        if (tank != null && tankStartPoint != null)
+        {
+            tank.gameObject.SetActive(true);
+            tank.transform.position = tankStartPoint.position;
+            var stats = tank.GetComponent<CharacterStats>();
+            if (stats != null)
+                stats.currentHealth = stats.maxHealth;
+
+            boss.playerAgents.Add(tank.transform);
+        }
+
+        // Refresh Boss memory
         boss.ResetThreatMeter();
         boss.ReloadQTable();
 

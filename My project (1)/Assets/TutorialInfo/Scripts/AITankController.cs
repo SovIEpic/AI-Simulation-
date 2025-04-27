@@ -169,9 +169,11 @@ public class AITankController : AIController
             if (hit.CompareTag("Boss"))
             {
                 hit.GetComponent<CharacterStats>()?.TakeDamage(shieldBashDamage);
-                hit.GetComponent<Rigidbody>()?.AddForce(
-                    (hit.transform.position - transform.position).normalized * 5f,
-                    ForceMode.Impulse);
+                if(hit.TryGetComponent<BossAI>(out var BossAI))
+                {
+                    Vector3 pushDirection = (hit.transform.position - transform.position).normalized;
+                    BossAI.ApplyPushback(pushDirection, 3f);
+                }
             }
         }
         Invoke(nameof(ResetColor), 0.5f);
