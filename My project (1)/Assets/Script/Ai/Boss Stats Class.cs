@@ -30,4 +30,5 @@ public class BossStats : MonoBehaviour
             targetStats.TakeDamage(damagePerHit);
         }
     }
+
 }

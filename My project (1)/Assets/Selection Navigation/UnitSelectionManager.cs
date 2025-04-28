@@ -7,7 +7,7 @@ public class UnitSelectionManager : MonoBehaviour
     public static UnitSelectionManager Instance { get; set; }
 
     public Abilities abilities; //referencing Abilities script (for hiding Ability UI bar after deselecting character) 
-    public GameObject statsPanel; //
+    public GameObject statsPanel; //creating statsPanel
 
     public List<GameObject> allUnitsList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
@@ -16,12 +16,10 @@ public class UnitSelectionManager : MonoBehaviour
     public LayerMask ground;
     public GameObject groundMarker;
 
-    private Camera cam;
-
-
+    private Camera cam;//referecing main camera
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if(Instance != null && Instance != this) // if there was already an instance destroy this one
         {
             Destroy(gameObject);
         }
@@ -33,13 +31,12 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void Start()
     {
-        cam = Camera.main;
-
+        cam = Camera.main; //grab main camera
         UpdateStatsPanelVisibility();
     }
 
 
-    //ray cast on a character to select it
+    //ray cast on a character when player click on it to select it
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -47,7 +44,7 @@ public class UnitSelectionManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            //check if clicking on a clickable object, if not just unselect everything
+            //check if we clicked on a clickable object,decide to select or multi-select
             if (Physics.Raycast(ray, out hit))
             {
                 if (((1 << hit.collider.gameObject.layer) & clickable) != 0)
@@ -83,7 +80,7 @@ public class UnitSelectionManager : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonDown(1) && unitsSelected.Count>0)
+        if (Input.GetMouseButtonDown(1) && unitsSelected.Count>0) // right click to move unit
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -102,7 +99,7 @@ public class UnitSelectionManager : MonoBehaviour
 
 
 
-
+    //deselect all the unit that were selected
     public void DeselectAll()
     {
         foreach(var unit in unitsSelected) 
@@ -111,7 +108,7 @@ public class UnitSelectionManager : MonoBehaviour
             TriggerSelectionIndicator(unit, false);//hide select indicator
         }
         groundMarker.SetActive(false);
-        unitsSelected.Clear(); //clear all selected units.
+        unitsSelected.Clear(); //clear all selected units in the list
         if (abilities != null)
         {
             abilities.UpdateAbilityUI();
@@ -125,7 +122,7 @@ public class UnitSelectionManager : MonoBehaviour
 
         unitsSelected.Add(gameObject);
         TriggerSelectionIndicator(gameObject,true);
-        EnableUnitMovement(gameObject, true);
+        EnableUnitMovement(gameObject, true); //enable movement for selected units
 
         UpdateStatsPanelVisibility();
     }
@@ -139,6 +136,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
+    // function to add or remove units from selection when shift is held
     private void MultiSelect(GameObject unit)
     {
         if(unitsSelected.Contains(unit)== false)
@@ -147,7 +145,7 @@ public class UnitSelectionManager : MonoBehaviour
             TriggerSelectionIndicator(unit, true); //make selecting indicator visible
             EnableUnitMovement(unit, true);
         }
-        else
+        else // if the unit is already selected, deselect it
         {
             EnableUnitMovement(unit,false);
             TriggerSelectionIndicator(unit, false); // make selecting indicator invisible
@@ -165,11 +163,12 @@ public class UnitSelectionManager : MonoBehaviour
             unit.transform.GetChild(0).gameObject.SetActive(isVisible);
         }
     }
-    internal void DragSelect(GameObject unit)
+
+    internal void DragSelect(GameObject unit) 
     {
-        if (!unitsSelected.Contains(unit))
+        if (!unitsSelected.Contains(unit)) 
         {
-            unitsSelected.Add(unit);
+            unitsSelected.Add(unit); // if the unit isn't already selected, add it
             TriggerSelectionIndicator(unit, true);
             EnableUnitMovement(unit, true);
             UpdateStatsPanelVisibility();
@@ -177,6 +176,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     }
 
+    // function to update the stats panel visibility based on whether any units are already selected
     private void UpdateStatsPanelVisibility()
     {
         if (statsPanel != null)

@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
+
         if (direction.magnitude > 0.1f)
         {
             // Only modify X/Z velocity (preserve Y for gravity)

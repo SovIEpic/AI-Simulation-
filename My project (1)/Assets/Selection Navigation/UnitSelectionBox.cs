@@ -25,16 +25,13 @@ public class UnitSelectionBox : MonoBehaviour
 
     private void Update()
     {
-        // When Clicked
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) // mouse left click
         {
             startPosition = Input.mousePosition;
-
-            // For selection the Units
             selectionBox = new Rect();
         }
 
-        // When Dragging
+        // handling dragging box, unit can only be selected when box is dragged bigger than 0 on both x and y axis
         if (Input.GetMouseButton(0))
         {
             if (boxVisual.rect.width>0 || boxVisual.rect.height>0) {
@@ -42,13 +39,12 @@ public class UnitSelectionBox : MonoBehaviour
                 SelectUnits();
             }
 
-
             endPosition = Input.mousePosition;
             DrawVisual();
             DrawSelection();
         }
 
-        // When Releasing
+        // when releasing drag, select the units inside of the box
         if (Input.GetMouseButtonUp(0))
         {
             SelectUnits();
@@ -61,16 +57,14 @@ public class UnitSelectionBox : MonoBehaviour
 
     void DrawVisual()
     {
-        // Calculate the starting and ending positions of the selection box.
+        // calculate box size
         Vector2 boxStart = startPosition;
         Vector2 boxEnd = endPosition;
 
         // Calculate the center of the selection box.
         Vector2 boxCenter = (boxStart + boxEnd) / 2;
 
-        // Set the position of the visual selection box based on its center.
         boxVisual.position = boxCenter;
-
         // Calculate the size of the selection box in both width and height.
         Vector2 boxSize = new Vector2(Mathf.Abs(boxStart.x - boxEnd.x), Mathf.Abs(boxStart.y - boxEnd.y));
 

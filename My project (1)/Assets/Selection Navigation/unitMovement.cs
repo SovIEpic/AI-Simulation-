@@ -14,17 +14,19 @@ public class unitMovement : MonoBehaviour
 
     }
 
-    //Use ray casting for character direction
+    //use ray casting for character direction
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1)) //check if player click on right button
+        if (UnitSelectionManager.Instance.unitsSelected.Contains(gameObject))
+            return;
+
+        if (Input.GetMouseButtonDown(1)) // mouse right click
         {
             RaycastHit hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition); //shoot ray cast from camera to the position of the mouse
-
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, ground)) //check if ray is hitting ground
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                agent.SetDestination(hit.point); // set destination to the point of click
+                agent.SetDestination(hit.point); //set the ray casting hitting point as destination
             }
         }
     }

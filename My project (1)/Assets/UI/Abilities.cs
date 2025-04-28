@@ -6,7 +6,7 @@ public class Abilities : MonoBehaviour
 {
 
     public GameObject abilityUI;
-
+    public Slider healthBarSlider;
 
     [Header("Ability1")]
     public Image abilityImage1;
@@ -26,7 +26,7 @@ public class Abilities : MonoBehaviour
     bool isCooldown3 = false;
     public KeyCode ability3;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         abilityImage1.fillAmount = 1;
@@ -106,15 +106,31 @@ public class Abilities : MonoBehaviour
         }
     }
 
+    // function to update the ability UI based on selected unit
     public void UpdateAbilityUI()
     {
         if (UnitSelectionManager.Instance.unitsSelected.Count == 1)
         {
             abilityUI.SetActive(true);
+            UpdateHealthBar();
         }
         else
         {
             abilityUI.SetActive(false);
+        }
+    }
+    // function to update the health bar based on the selected unit
+    public void UpdateHealthBar()
+    {
+        if (UnitSelectionManager.Instance.unitsSelected.Count == 1)
+        {
+            var selectedUnit = UnitSelectionManager.Instance.unitsSelected[0];  // get the first selected unit
+            var stats = selectedUnit.GetComponent<CharacterStats>(); // get character stats component of the unit
+            if (stats != null && healthBarSlider != null)
+            {
+                healthBarSlider.maxValue = stats.GetMaxHP(); // set the max value of the health bar
+                healthBarSlider.value = stats.GetCurrentHP(); // as well as current in case current HP went higher than MaxHP
+            }
         }
     }
 }

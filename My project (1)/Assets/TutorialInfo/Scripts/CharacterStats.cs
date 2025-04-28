@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour, IUnitHealth
 {
+
     // Basic Stats
     public float maxHealth = 100f;
     public float currentHealth;
@@ -13,6 +14,7 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
     void Start()
     {
         currentHealth = maxHealth;
+
     }
     
     public virtual void TakeDamage(float damageAmount)
@@ -23,10 +25,8 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
             damageAmount *= 0.5f;
             Debug.Log("Block reduced damage to: " + damageAmount);
         }
-
         currentHealth -= damageAmount;
-        Debug.Log(gameObject.name + " took " + damageAmount + " damage!");
-
+        UpdateHealthUI(); // Call this awhen hp changes
         if (currentHealth <= 0)
         {
             Die();
@@ -63,12 +63,18 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
         currentHealth = maxHealth;
         gameObject.SetActive(true);
         Debug.Log(gameObject.name + " was revived!");
+
+        //update UI if character were revived
+        UpdateHealthUI();
     }
 
     public void Heal(float amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         Debug.Log(gameObject.name + " healed for " + amount);
+
+        //update UI if character were Healed
+        UpdateHealthUI();
     }
 
     public void Die()
@@ -89,5 +95,15 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
         damage = newDamage;
         Debug.Log(gameObject.name + " damage set to " + newDamage);
     }
-
+    private void UpdateHealthUI()
+    {
+        if (UnitSelectionManager.Instance.unitsSelected.Contains(gameObject))
+        {
+            Abilities abilities = FindObjectOfType<Abilities>();
+            if (abilities != null)
+            {
+                abilities.UpdateHealthBar();
+            }
+        }
+    }
 }

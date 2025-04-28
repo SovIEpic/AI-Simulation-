@@ -4,14 +4,15 @@ using TMPro;
 public class statsInputManager : MonoBehaviour
 {
     public TMP_InputField hpInputField;
-    public float hpLevel;
+    public float hpLevel; 
     public TMP_InputField powerInputField;
     public float powerLevel;
 
-    private testUnit selectedUnit;
+    private testUnit selectedUnit; //referencing selected units(not used yet)
 
     void Start()
     {
+        // add listeners for when player finishes editing HP and Power(Attack)
         if (hpInputField != null)
         {
             hpInputField.onEndEdit.AddListener(UpdateHealthPoint);
@@ -23,6 +24,7 @@ public class statsInputManager : MonoBehaviour
         }
 
     }
+
 
     void UpdateHealthPoint(string input)
     {
@@ -37,18 +39,18 @@ public class statsInputManager : MonoBehaviour
                     var characterStats = unit.GetComponent<CharacterStats>();
                     if (characterStats != null)
                     {
-                        characterStats.SetHealth(value);  // Only update this unit's health
+                        characterStats.SetHealth(value);  // only update this unit health
                     }
                 }
             }
             else
             {
-                Debug.LogWarning("No unit selected to update HP!");
+                Debug.LogWarning("no unit selected");
             }
         }
         else
         {
-            Debug.LogWarning("Invalid input for HP!");
+            Debug.LogWarning("Invalid input");
         }
     }
 
@@ -56,30 +58,30 @@ public class statsInputManager : MonoBehaviour
     {
         if (float.TryParse(input, out float value))
         {
-            Debug.Log("Power input updated to: " + value);
 
-            if (UnitSelectionManager.Instance.unitsSelected.Count > 0)
+            if (UnitSelectionManager.Instance.unitsSelected.Count > 0) // check if any unit is selected
             {
-                foreach (var unit in UnitSelectionManager.Instance.unitsSelected)
+                foreach (var unit in UnitSelectionManager.Instance.unitsSelected) // loop through all selected units
                 {
                     var characterStats = unit.GetComponent<CharacterStats>();
                     if (characterStats != null)
                     {
-                        characterStats.SetDamage(value);  // Only update this unit's power
+                        characterStats.SetDamage(value);  // only update this units power
                     }
                 }
             }
             else
             {
-                Debug.LogWarning("No unit selected to update Power!");
+                Debug.LogWarning("no unit selected");
             }
         }
         else
         {
-            Debug.LogWarning("Invalid input for Power!");
+            Debug.LogWarning("Invalid input");
         }
     }
 
+    // get the first selected unit
     private testUnit SelectedUnit
     {
         get
