@@ -311,7 +311,19 @@ public class QLearningHealerController : AIHealerController
                 learningRate * (experience.reward + discountFactor * maxNextQ);
         }
     }
+    public void LearnFromReward(float reward)
+    {
+        if (!string.IsNullOrEmpty(lastState))
+        {
+            memory.Add(new QLearningMemory(lastState, lastAction, reward, lastState));
+            if (memory.Count > maxMemorySize)
+            {
+                memory.RemoveAt(0);
+            }
+            Learn();
+        }
 
+    }
     private void InitializeQTable()
     {
         qTable = new Dictionary<string, Dictionary<int, float>>();
