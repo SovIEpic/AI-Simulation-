@@ -7,10 +7,8 @@ public class statsInputManager : MonoBehaviour
     public float hpLevel;
     public TMP_InputField powerInputField;
     public float powerLevel;
-    public TMP_InputField amourInputField;
-    public float amourLevel;
-    public TMP_InputField speedInputField;
-    public float speedLevel;
+
+    private testUnit selectedUnit;
 
     void Start()
     {
@@ -24,63 +22,73 @@ public class statsInputManager : MonoBehaviour
             powerInputField.onEndEdit.AddListener(UpdatePower);
         }
 
-        if (amourInputField != null)
-        {
-            amourInputField.onEndEdit.AddListener(UpdateAmour);
-        }
-        if (speedInputField != null)
-        {
-            speedInputField.onEndEdit.AddListener(UpdateSpeed);
-        }
-
     }
 
     void UpdateHealthPoint(string input)
     {
         if (float.TryParse(input, out float value))
         {
-            hpLevel = value;
-            Debug.Log("HP updated to: " + hpLevel);
+            Debug.Log("HP input updated to: " + value);
+
+            if (UnitSelectionManager.Instance.unitsSelected.Count > 0)
+            {
+                foreach (var unit in UnitSelectionManager.Instance.unitsSelected)
+                {
+                    var characterStats = unit.GetComponent<CharacterStats>();
+                    if (characterStats != null)
+                    {
+                        characterStats.SetHealth(value);  // Only update this unit's health
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No unit selected to update HP!");
+            }
         }
         else
         {
-            Debug.LogWarning("Invalid input for hp");
+            Debug.LogWarning("Invalid input for HP!");
         }
     }
+
     void UpdatePower(string input)
     {
         if (float.TryParse(input, out float value))
         {
-            powerLevel = value;
-            Debug.Log("Power updated to: " + powerLevel);
+            Debug.Log("Power input updated to: " + value);
+
+            if (UnitSelectionManager.Instance.unitsSelected.Count > 0)
+            {
+                foreach (var unit in UnitSelectionManager.Instance.unitsSelected)
+                {
+                    var characterStats = unit.GetComponent<CharacterStats>();
+                    if (characterStats != null)
+                    {
+                        characterStats.SetDamage(value);  // Only update this unit's power
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No unit selected to update Power!");
+            }
         }
         else
         {
-            Debug.LogWarning("Invalid input for Power");
+            Debug.LogWarning("Invalid input for Power!");
         }
     }
-    void UpdateAmour(string input)
+
+    private testUnit SelectedUnit
     {
-        if (float.TryParse(input, out float value))
+        get
         {
-            amourLevel = value;
-            Debug.Log("Amour updated to: " + amourLevel);
-        }
-        else
-        {
-            Debug.LogWarning("Invalid input for Amour");
-        }
-    }
-    void UpdateSpeed(string input)
-    {
-        if (float.TryParse(input, out float value))
-        {
-            speedLevel = value;
-            Debug.Log("Speed updated to: " + speedLevel);
-        }
-        else
-        {
-            Debug.LogWarning("Invalid input for Speed");
+            if (UnitSelectionManager.Instance.unitsSelected.Count > 0)
+            {
+                return UnitSelectionManager.Instance.unitsSelected[0].GetComponent<testUnit>();
+            }
+            return null;
         }
     }
 }

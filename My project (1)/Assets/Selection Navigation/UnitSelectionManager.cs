@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class UnitSelectionManager : MonoBehaviour
 {
     public static UnitSelectionManager Instance { get; set; }
 
     public Abilities abilities; //referencing Abilities script (for hiding Ability UI bar after deselecting character) 
-    public GameObject groundObject; 
 
     public List<GameObject> allUnitsList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
@@ -39,15 +39,10 @@ public class UnitSelectionManager : MonoBehaviour
     //ray cast on a character to select it
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                groundObject = hit.collider.gameObject;  // Assign the ground object during the raycast
-            }
 
             //check if clicking on a clickable object, if not just unselect everything
             if (Physics.Raycast(ray, out hit))

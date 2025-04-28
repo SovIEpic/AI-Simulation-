@@ -76,4 +76,18 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
         Debug.Log(gameObject.name + " died!");
         gameObject.SetActive(false);
     }
+
+    public void SetHealth(float newHealth)
+    {
+        maxHealth = newHealth;
+        currentHealth = newHealth; // setting current health also to the new max health
+        Debug.Log(gameObject.name + " health set to " + newHealth);
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+        Debug.Log(gameObject.name + " damage set to " + newDamage);
+    }
+
 }

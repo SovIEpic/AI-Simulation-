@@ -70,10 +70,16 @@ public class BossAI : MonoBehaviour
 
     void Update()
     {
+        threatMeter.CleanupDeadPlayers();
+
         if (playerAgents == null || playerAgents.Count == 0)
         {
             currentTarget = null;
             return;
+        }
+        if (currentTarget != null && !currentTarget.gameObject.activeInHierarchy)
+        {
+            currentTarget = null;
         }
 
         threatMeter.DecayThreat(Time.deltaTime);
@@ -89,19 +95,33 @@ public class BossAI : MonoBehaviour
 
     public IEnumerator ExecuteComboAttack(Transform target)
     {
-        if (isStunned || isAttacking || target == null) yield break;
+        if (isStunned || isAttacking || target == null || !target.gameObject.activeInHierarchy) yield break;
 
         isAttacking = true;
-        int hits = Mathf.Min(maxComboHits, 3);
+        FreezeMovement(); //Stop moving before attacking
 
+        int hits = Mathf.Min(maxComboHits, 3);
         for (int i = 0; i < hits; i++)
         {
+            if (target == null || !target.gameObject.activeInHierarchy)
+            {
+                isAttacking = false;
+                ResumeMovement();
+                yield break;
+            } // Handle dying players
+
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+
             stats.PerformAttack(target);
             rewardEstimator.LearnFromOutcome(target, 5f);
+
             yield return new WaitForSeconds(timeBetweenComboHits);
         }
 
+        ResumeMovement(); //After combo is done, allow movement again
+
         lastAttackTime = Time.time;
+        isAttacking = false;
     }
     // Already partially exist, but confirming:
     public void ResetThreatMeter()
@@ -168,7 +188,7 @@ public class BossAI : MonoBehaviour
 
     public void ReceiveCC(Transform attacker)
     {
-        threatMeter.AddCCThreat(attacker,10f);
+        threatMeter.AddCCThreat(attacker, 10f);
     }
 
     public void ReceiveHealingThreat(Transform healer, float healAmount)
@@ -193,7 +213,7 @@ public class BossAI : MonoBehaviour
 
         var moveSequence = new Sequence(new List<Node>
         {
-            new ConditionNode(() => !isStunned && currentTarget != null),
+            new ConditionNode(() => !isStunned && currentTarget != null && !IsInAttackRange()),
             new MoveToTargetNode(this, () => currentTarget)
         });
 
@@ -210,9 +230,9 @@ public class BossAI : MonoBehaviour
     {
         if (isTaunted && tauntTarget != null && tauntTarget.gameObject.activeInHierarchy)
             return tauntTarget;
-        List<Transform> alivePlayers = GetAllPlayers();
-        if(alivePlayers.Count == 0) return null;
-        return fusion.GetBestTarget(alivePlayers,0.6f,0.4f);
+        List<Transform> alivePlayers = GetAlivePlayers();
+        if (alivePlayers.Count == 0) return null;
+        return fusion.GetBestTarget(alivePlayers, 0.6f, 0.4f);
     }
 
     public void SaveQTable()

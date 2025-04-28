@@ -15,6 +15,23 @@ public class ThreatMeter
         }
         this.decayRate = decayRate;
     }
+    public void CleanupDeadPlayers()
+    {
+        List<Transform> deadPlayers = new List<Transform>();
+
+        foreach (var pair in threatLevels)
+        {
+            if (pair.Key == null || !pair.Key.gameObject.activeInHierarchy)
+            {
+                deadPlayers.Add(pair.Key);
+            }
+        }
+
+        foreach (var dead in deadPlayers)
+        {
+            threatLevels.Remove(dead);
+        }
+    }
 
     public void AddThreat(Transform player, float amount)
     {
