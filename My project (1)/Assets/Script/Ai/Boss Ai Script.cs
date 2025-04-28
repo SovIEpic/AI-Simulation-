@@ -45,6 +45,8 @@ public class BossAI : MonoBehaviour
     private Transform tauntTarget;
     private float tauntExpireTime;
     private bool isStunned = false;
+    private float targetSwitchCooldown = 2f;
+    private float nextTargetSwitchTime = 0f;
 
     void Start()
     {
@@ -53,7 +55,12 @@ public class BossAI : MonoBehaviour
         stats = GetComponent<BossStats>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = stats.movementSpeed;
-
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if(rb != null)
+        {
+            rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotation;
+        }
         threatMeter = new ThreatMeter(playerAgents, 1f);
 
         qTable = new QTableManager();
@@ -85,8 +92,17 @@ public class BossAI : MonoBehaviour
         threatMeter.DecayThreat(Time.deltaTime);
 
         if (attackTimer > 0) attackTimer -= Time.deltaTime;
+        if(Time.time >= nextTargetSwitchTime)
+        {
+            currentTarget = ChooseBalancedTarget();
+            nextTargetSwitchTime = Time.time + targetSwitchCooldown;
+        }
+        
+        if(currentTarget != null)
+        {
+            SmoothLookAtTarget(currentTarget,5f);
+        }
 
-        currentTarget = ChooseBalancedTarget();
         behaviorTree?.Evaluate();
 
         if (Time.time - lastAttackTime > comboResetTime)
@@ -146,8 +162,8 @@ public class BossAI : MonoBehaviour
     {
         if (agent != null)
         {
+            agent.speed = 0f;
             agent.isStopped = true;
-            agent.ResetPath();
         }
     }
 
@@ -155,10 +171,21 @@ public class BossAI : MonoBehaviour
     {
         if (agent != null)
         {
+            agent.speed = stats.movementSpeed;
             agent.isStopped = false;
         }
     }
+    private void SmoothLookAtTarget(Transform target, float rotationSpeed = 5f)
+    {
+        if (target == null) return;
 
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0f;
+        if (direction == Vector3.zero) return;
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+    }
     private IEnumerator StunRoutine(float duration)
     {
         if (agent == null) yield break;
@@ -176,6 +203,8 @@ public class BossAI : MonoBehaviour
     public void TakeDamage(float damage, Transform attacker)
     {
         stats.currentHP -= damage;
+
+        Debug.Log($"Boss HP {stats.currentHP}");
 
         if (isTaunted && attacker == tauntTarget)
             damage *= 1.5f;

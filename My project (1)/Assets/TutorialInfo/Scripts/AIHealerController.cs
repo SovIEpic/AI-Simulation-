@@ -90,7 +90,7 @@ public class AIHealerController : AIController
         {
             TrySiphon();
         }
-        else if (distance <= attackRange)
+        else if (IsInAttackRange())
         {
             // Stop moving when in attack range
             if (navAgent != null)
@@ -128,7 +128,10 @@ public class AIHealerController : AIController
             navAgent.speed = healerSpeed;
         }
     }
-
+    protected new void TryAttack()
+    {
+        base.TryAttack();
+    }
     protected void TryResus()
     {
         CharacterStats[] allCharacters = Resources.FindObjectsOfTypeAll<CharacterStats>();

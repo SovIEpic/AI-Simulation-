@@ -101,7 +101,7 @@ public class AITankController : AIController
         {
             TryShieldBash();
         }
-        else if (distance <= attackRange)
+        else if (IsInAttackRange())
         {
             // Stop moving when in attack range
             if (navAgent != null)
@@ -139,7 +139,28 @@ public class AITankController : AIController
             navAgent.speed = tankSpeed;
         }
     }
+    protected new void TryAttack()
+    {
+        if(Time.time > lastAttackTime + attackCooldown)
+        {
+            if (bossTarget == null) return;
 
+            var targetStats = bossTarget.GetComponent<CharacterStats>();
+            if (targetStats == null)
+            {
+                Debug.LogWarning($"Tank target {bossTarget.name} missing CharacterStats!");
+                return;
+            }
+
+            if (Vector3.Distance(transform.position, bossTarget.position) <= attackRange)
+            {
+                lastAttackTime = Time.time;
+                targetStats.TakeDamage(stats.damage);
+                Debug.Log($"{name} attacked {bossTarget.name} for {stats.damage} damage");
+            }
+
+        }
+    }
     protected void TryTaunt()
     {
         if (Time.time < lastTauntTime + tauntCooldown) return;

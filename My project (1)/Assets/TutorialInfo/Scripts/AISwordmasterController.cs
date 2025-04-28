@@ -88,7 +88,7 @@ public class AISwordmasterController : AIController
         float distance = Vector3.Distance(transform.position, bossPosition);
 
         // Check ability conditions
-        if (distance <= attackRange)
+        if (IsInAttackRange())
         {
             // Stop moving when in attack range
             if (navAgent != null)

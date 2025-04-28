@@ -11,6 +11,14 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
     public float attackCooldown = 1f;
     private float lastAttackTime;
 
+    //Boss Stats
+    public float maxHP = 1000f;
+    public float currentHP;
+    public float movementSpeed = 3.5f;
+    
+
+
+
     void Start()
     {
         currentHealth = maxHealth;
