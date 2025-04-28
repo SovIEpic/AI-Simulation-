@@ -68,7 +68,7 @@ public class CharacterStats : MonoBehaviour, IUnitHealth
 
     public void Revive()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth * 0.5f;
         gameObject.SetActive(true);
         Debug.Log(gameObject.name + " was revived!");
 

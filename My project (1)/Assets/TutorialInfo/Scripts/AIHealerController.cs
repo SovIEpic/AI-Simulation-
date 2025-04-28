@@ -90,7 +90,7 @@ public class AIHealerController : AIController
         {
             TrySiphon();
         }
-        else if (IsInAttackRange())
+        else if (distance <= attackRange)
         {
             // Stop moving when in attack range
             if (navAgent != null)
@@ -128,10 +128,7 @@ public class AIHealerController : AIController
             navAgent.speed = healerSpeed;
         }
     }
-    protected new void TryAttack()
-    {
-        base.TryAttack();
-    }
+
     protected void TryResus()
     {
         CharacterStats[] allCharacters = Resources.FindObjectsOfTypeAll<CharacterStats>();
@@ -139,7 +136,6 @@ public class AIHealerController : AIController
         {
             if(teammate.CompareTag("AI") && teammate != this.stats && teammate.currentHealth <= 0)
             {
-                Debug.Log("[Healer DEBUG] Attempting to revive " + teammate.name);
                 lastResusTime = Time.time;
                 teammate.Revive();
                 ApplyColor(resusColor);

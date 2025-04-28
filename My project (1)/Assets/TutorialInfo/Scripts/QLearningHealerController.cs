@@ -106,9 +106,10 @@ public class QLearningHealerController : AIHealerController
         bool canAttack = Time.time >= lastAttackTime + attackCooldown;
         bool inAttackRange = distance <= attackRange;
         bool hasDeadAlly = HasDeadTeammate();
+        bool lowHealth = healthPercentage <= 0.3f;
 
         return $"dist_{Mathf.Round(distance)}_hp_{Mathf.Round(healthPercentage * 10)}_" +
-               $"siphon_{canSiphon}_resus_{canResus}_atk_{canAttack}_inAtk_{inAttackRange}_deadAlly_{hasDeadAlly}";
+               $"siphon_{canSiphon}_resus_{canResus}_atk_{canAttack}_inAtk_{inAttackRange}_deadAlly_{hasDeadAlly}_lowHP_{lowHealth}";
     }
 
     private int ChooseAction(string state)
@@ -116,7 +117,7 @@ public class QLearningHealerController : AIHealerController
         // Explore (random action)
         if (Random.Range(0f, 1f) < explorationRate)
         {
-            return Random.Range(0, 5); // 5 possible actions
+            return Random.Range(0, 7); // 7 possible actions
         }
 
         // Exploit (best known action)
@@ -126,7 +127,7 @@ public class QLearningHealerController : AIHealerController
         }
 
         // Initialize Q-values for this state if not exists
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 7; i++)
         {
             if (!qTable[state].ContainsKey(i))
             {
@@ -178,7 +179,13 @@ public class QLearningHealerController : AIHealerController
                 }
                 break;
             case 4: // Move toward boss
+                NavigateTowardsBoss();
+                break;
+            case 5: // Move toward boss
                 MoveTowardBoss();
+                break;
+            case 6: // Move toward boss
+                RetreatFromBoss();
                 break;
         }
     }
@@ -197,6 +204,27 @@ public class QLearningHealerController : AIHealerController
 
         Vector3 direction = (bossPosition - transform.position).normalized;
         movement.Move(direction * healerSpeed);
+    }
+
+    private void NavigateTowardsBoss()
+    {
+        if (bossTarget == null || navAgent == null) return;
+
+        Vector3 bossPosition = new Vector3(bossTarget.position.x, transform.position.y, bossTarget.position.z);
+        navAgent.SetDestination(bossPosition);
+        navAgent.isStopped = false;
+    }
+
+    private void RetreatFromBoss()
+    {
+        if (bossTarget == null || movement == null) return;
+
+        Vector3 bossPosition = new Vector3(bossTarget.position.x, transform.position.y, bossTarget.position.z);
+        Vector3 awayFromBoss = (transform.position - bossPosition).normalized;
+        movement.Move(awayFromBoss * healerSpeed);
+
+        if (navAgent != null)
+            navAgent.isStopped = true;
     }
 
     private float CalculateReward()
@@ -221,10 +249,16 @@ public class QLearningHealerController : AIHealerController
             case 1 when Time.time - lastSiphonTime < 0.1f: // Siphon
                 reward += 10f;
                 break;
-            case 4: // Movement
+            case 5: // Movement
                 // Reward for closing distance when not in attack range
                 if (distance > attackRange && distance < detectionRange)
                     reward += 0.1f * (detectionRange - distance);
+                break;
+            case 6:
+                if (stats.currentHealth <= stats.maxHealth * 0.3f)
+                    reward += 5f;
+                else
+                    reward -= 5f;
                 break;
         }
 
