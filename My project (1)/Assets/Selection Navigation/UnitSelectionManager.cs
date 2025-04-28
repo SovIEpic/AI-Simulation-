@@ -7,6 +7,7 @@ public class UnitSelectionManager : MonoBehaviour
     public static UnitSelectionManager Instance { get; set; }
 
     public Abilities abilities; //referencing Abilities script (for hiding Ability UI bar after deselecting character) 
+    public GameObject statsPanel; //
 
     public List<GameObject> allUnitsList = new List<GameObject>();
     public List<GameObject> unitsSelected = new List<GameObject>();
@@ -33,6 +34,8 @@ public class UnitSelectionManager : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+
+        UpdateStatsPanelVisibility();
     }
 
 
@@ -113,6 +116,7 @@ public class UnitSelectionManager : MonoBehaviour
         {
             abilities.UpdateAbilityUI();
         }
+        UpdateStatsPanelVisibility();
     }
 
     private  void SelectByClicking(GameObject gameObject)
@@ -123,6 +127,7 @@ public class UnitSelectionManager : MonoBehaviour
         TriggerSelectionIndicator(gameObject,true);
         EnableUnitMovement(gameObject, true);
 
+        UpdateStatsPanelVisibility();
     }
 
     private void EnableUnitMovement(GameObject unit, bool moveable)
@@ -148,6 +153,8 @@ public class UnitSelectionManager : MonoBehaviour
             TriggerSelectionIndicator(unit, false); // make selecting indicator invisible
             unitsSelected.Remove(unit);
         }
+        UpdateStatsPanelVisibility();
+
     }
 
     private void TriggerSelectionIndicator(GameObject unit, bool isVisible)
@@ -165,6 +172,16 @@ public class UnitSelectionManager : MonoBehaviour
             unitsSelected.Add(unit);
             TriggerSelectionIndicator(unit, true);
             EnableUnitMovement(unit, true);
+            UpdateStatsPanelVisibility();
+        }
+
+    }
+
+    private void UpdateStatsPanelVisibility()
+    {
+        if (statsPanel != null)
+        {
+            statsPanel.SetActive(unitsSelected.Count > 0);
         }
     }
 
