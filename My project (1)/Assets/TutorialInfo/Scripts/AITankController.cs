@@ -13,6 +13,8 @@ public class AITankController : AIController
     [SerializeField] protected float blockCooldown = 10f;
     [SerializeField] protected float tauntDuration = 5f;
     [SerializeField] protected float shieldBashDamage = 25f;
+    [Header("Shield Bash Settings")]
+    [SerializeField] private float bashKnockbackForce = 3f;
 
     [Header("Visual Feedback")]
     [SerializeField] private GameObject shieldIndicator;
@@ -65,8 +67,10 @@ public class AITankController : AIController
 
     protected override void Update()
     {
-        if (bossTarget == null)
+        if (bossTarget == null || !bossTarget.gameObject.activeInHierarchy)
         {
+            navAgent.enabled = true;
+            isPathfinding = false;
             bossTarget = GameObject.FindGameObjectWithTag("Boss")?.transform;
             if (bossTarget == null) return;
         }
@@ -97,7 +101,7 @@ public class AITankController : AIController
         {
             TryShieldBash();
         }
-        else if (distance <= attackRange)
+        else if (IsInAttackRange())
         {
             // Stop moving when in attack range
             if (navAgent != null)
@@ -135,7 +139,28 @@ public class AITankController : AIController
             navAgent.speed = tankSpeed;
         }
     }
+    protected new void TryAttack()
+    {
+        if(Time.time > lastAttackTime + attackCooldown)
+        {
+            if (bossTarget == null) return;
 
+            var targetStats = bossTarget.GetComponent<CharacterStats>();
+            if (targetStats == null)
+            {
+                Debug.LogWarning($"Tank target {bossTarget.name} missing CharacterStats!");
+                return;
+            }
+
+            if (Vector3.Distance(transform.position, bossTarget.position) <= attackRange)
+            {
+                lastAttackTime = Time.time;
+                targetStats.TakeDamage(stats.damage);
+                Debug.Log($"{name} attacked {bossTarget.name} for {stats.damage} damage");
+            }
+
+        }
+    }
     protected void TryTaunt()
     {
         if (Time.time < lastTauntTime + tauntCooldown) return;
@@ -168,11 +193,15 @@ public class AITankController : AIController
         {
             if (hit.CompareTag("Boss"))
             {
+                // Apply damage
                 hit.GetComponent<CharacterStats>()?.TakeDamage(shieldBashDamage);
-                if(hit.TryGetComponent<BossAI>(out var BossAI))
+
+                // Apply knockback (MODIFIED PART)
+                Rigidbody bossRb = hit.GetComponent<Rigidbody>();
+                if (bossRb != null)
                 {
-                    Vector3 pushDirection = (hit.transform.position - transform.position).normalized;
-                    BossAI.ApplyPushback(pushDirection, 3f);
+                    Vector3 knockbackDir = (hit.transform.position - transform.position).normalized;
+                    bossRb.AddForce(knockbackDir * bashKnockbackForce, ForceMode.Impulse);
                 }
             }
         }

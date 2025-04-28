@@ -76,6 +76,16 @@ public class AIController : MonoBehaviour
         }
     }
 
+    protected virtual bool IsInAttackRange()
+    {
+        if(bossTarget == null) return false;
+        float distance = Vector3.Distance(transform.position, bossTarget.position);
+        return distance <= attackRange;
+    }
+    public CharacterStats GetStats()
+    {
+        return stats;
+    }
     protected bool IsGrounded()
     {
         float rayLength = groundCheckDistance + 0.2f; // Extra margin

@@ -26,7 +26,7 @@ namespace ReinforcementLearning
             {
                 if (player == null) continue;
 
-                float threatScore = threatMeter.GetThreat(player) * threatWeight;
+                float threatScore = threatMeter.GetThreatValue(player) * threatWeight;
                 float rewardScore = rewardEstimator.EstimateReward(player) * rewardWeight;
                 float totalScore = threatScore + rewardScore;
 
