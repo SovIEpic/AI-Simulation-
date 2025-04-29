@@ -44,10 +44,9 @@ public class UnitSelectionManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            //check if we clicked on a clickable object,decide to select or multi-select
             if (Physics.Raycast(ray, out hit))
             {
-                if (((1 << hit.collider.gameObject.layer) & clickable) != 0)
+                if (((1 << hit.collider.gameObject.layer) & clickable) != 0) // shift click for multi select
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
@@ -60,13 +59,13 @@ public class UnitSelectionManager : MonoBehaviour
                 }
                 else if (((1 << hit.collider.gameObject.layer) & ground) != 0)
                 {
-                    DeselectAll(); // Deselect when clicking on the ground
+                    DeselectAll(); // clicked on ground, deselect
                 }
                 else
                 {
                     if (!Input.GetKey(KeyCode.LeftShift))
                     {
-                        DeselectAll();
+                        DeselectAll(); // clicked somewhere else, deselect unless shift
                     }
                 }
             }
@@ -79,21 +78,18 @@ public class UnitSelectionManager : MonoBehaviour
             }
 
         }
-
-        if (Input.GetMouseButtonDown(1) && unitsSelected.Count>0) // right click to move unit
+        // right click stuff(not used in demo version)
+        if (Input.GetMouseButtonDown(1) && unitsSelected.Count > 0)
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            //check if clicking on ground
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
                 groundMarker.transform.position = hit.point;
                 groundMarker.SetActive(false);
                 groundMarker.SetActive(true);
-                abilities.UpdateAbilityUI();
             }
-
         }
     }
 
@@ -102,29 +98,40 @@ public class UnitSelectionManager : MonoBehaviour
     //deselect all the unit that were selected
     public void DeselectAll()
     {
-        foreach(var unit in unitsSelected) 
+        foreach (var unit in unitsSelected)
         {
-            EnableUnitMovement(unit, false); //disable all selected unit's movement after deselected
-            TriggerSelectionIndicator(unit, false);//hide select indicator
+            EnableUnitMovement(unit, false);
+            TriggerSelectionIndicator(unit, false);
+
+            // hide ability UI for all deselected units
+            var abilities = unit.GetComponent<Abilities>();
+            if (abilities != null)
+            {
+                abilities.SetAbilityUIActive(false);
+            }
         }
+
         groundMarker.SetActive(false);
-        unitsSelected.Clear(); //clear all selected units in the list
-        if (abilities != null)
-        {
-            abilities.UpdateAbilityUI();
-        }
+        unitsSelected.Clear();
         UpdateStatsPanelVisibility();
     }
 
-    private  void SelectByClicking(GameObject gameObject)
+    // select one unit by clicking
+    private void SelectByClicking(GameObject gameObject)
     {
-        DeselectAll(); //before click selecting a object, deselect the previous ones.
+        DeselectAll(); // clear previous selection
 
         unitsSelected.Add(gameObject);
-        TriggerSelectionIndicator(gameObject,true);
-        EnableUnitMovement(gameObject, true); //enable movement for selected units
+        TriggerSelectionIndicator(gameObject, true); // show selection circle
+        EnableUnitMovement(gameObject, true); // allow movement
 
-        UpdateStatsPanelVisibility();
+        var abilities = gameObject.GetComponent<Abilities>();
+        if (abilities != null)
+        {
+            abilities.SetAbilityUIActive(true); // show ability ui
+        }
+
+        UpdateStatsPanelVisibility(); // show stats panel
     }
 
     private void EnableUnitMovement(GameObject unit, bool moveable)

@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class QLearningSwordmasterController : AISwordmasterController
 {
+    private Abilities abilities; //added by darius for Ability UI
+
     [Header("QLearning Settings")]
     public float learningRate = 0.1f;
     public float discountFactor = 0.9f;
@@ -34,6 +36,9 @@ public class QLearningSwordmasterController : AISwordmasterController
     protected override void Start()
     {
         base.Start();
+
+        abilities = GetComponent<Abilities>(); //added by darius for ability UI
+
         InitializeQTable();
 
         if (!TryLoadQTable())
@@ -161,20 +166,23 @@ public class QLearningSwordmasterController : AISwordmasterController
         switch (action)
         {
             case 0: // Lunge
-                if (Time.time >= lastLungeTime + lungeCooldown)
+                if (!abilities.isCooldown1)
                 {
+                    abilities.TryStartAbility(1);
                     TryLunge();
                 }
                 break;
             case 1: // Fatal Flurry
-                if (Time.time >= lastFatalFlurryTime + fatalFlurryCooldown)
+                if (!abilities.isCooldown2)
                 {
+                    abilities.TryStartAbility(2);
                     TryFatalFlurry();
                 }
                 break;
             case 2: // Poison Sword
-                if (Time.time >= lastPoisonTime + poisonCooldown)
+                if (!abilities.isCooldown3)
                 {
+                    abilities.TryStartAbility(3);
                     TryPoisonSword();
                 }
                 break;

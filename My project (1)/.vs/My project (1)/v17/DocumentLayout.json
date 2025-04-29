@@ -1,175 +1,170 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\",
+  "WorkspaceRootPath": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\ui\\newgenerationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\ui\\newgenerationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\BossHpBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\tutorialinfo\\scripts\\qlearningswordmastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\qlearningswordmastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\BossAbilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\CharacterStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\tutorialinfo\\scripts\\qlearningtankcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\qlearningtankcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\tutorialinfo\\scripts\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\TutorialInfo\\Scripts\\CharacterStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\Abilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\UI\\Abilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\Ai\\Boss Stats Class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\UI\\HealthBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\tutorialinfo\\scripts\\aitankcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\aitankcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|c:\\users\\ezzuz\\documents\\github\\test\\my project (1)\\assets\\tutorialinfo\\scripts\\qlearningassassincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\qlearningassassincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Selection Navigation\\unitMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\UI\\HealthBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\ThreatMeter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\script\\ai\\boss ai script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\ai\\boss ai script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Selection Navigation\\UnitSelectionBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\tutorialinfo\\scripts\\aihealercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\aihealercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Utilities\\TacticalDecisionFusion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\tutorialinfo\\scripts\\aiswordmastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\tutorialinfo\\scripts\\aiswordmastercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\UI\\statsInputManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\Ai\\BossAbilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\ActionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\main_scene\\escapemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\main_scene\\escapemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\assets\\ui\\abilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:assets\\ui\\abilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\PlayerAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AITankController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\AITankController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\Movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\NewGenerationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\UI\\NewGenerationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\TutorialInfo\\Scripts\\Movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\BossHpBar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Selection Navigation\\UnitSelectionBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\ConditionNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\testUnit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\unit_instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Selection Navigation\\UnitSelectionManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\AIController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Selection Navigation\\unitMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Main_Scene\\EscapeManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Main_Scene\\EscapeManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\UI\\statsInputManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\AIHealerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\ReinforcementLearning\\QTableManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Ai\\Boss Ai Script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\Ai\\ThreatMeter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\CameraMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\testUnit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\BehaviorTree\\Node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\ReinforcementLearning\\QTableManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E1CE1FEE-67BE-6533-73AA-CC578BE80DCD}|Assembly-CSharp.csproj|solutionrelative:Assets\\Script\\PlayerAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -179,80 +174,79 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 22,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 14,
               "Title": "QLearningSwordmasterController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\QLearningSwordmasterController.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAAAkwCEBAAAFAAAAAAAAAA==",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAACcAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T08:57:34.394Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 15,
               "Title": "QLearningTankController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\QLearningTankController.cs",
-              "ViewState": "AgIAAMsBAAAAAAAAAAAUwNgBAAAEAAAAAAAAAA==",
+              "ViewState": "AQIAACIBAAAAAAAAAAAiwC4BAABxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T08:45:44.325Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 23,
               "Title": "NewGenerationManager.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\NewGenerationManager.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\NewGenerationManager.cs",
               "RelativeDocumentMoniker": "Assets\\UI\\NewGenerationManager.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\NewGenerationManager.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\NewGenerationManager.cs",
               "RelativeToolTip": "Assets\\UI\\NewGenerationManager.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAcwFUAAAAqAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T08:19:32.45Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 18,
               "Title": "AITankController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AITankController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AITankController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\AITankController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AITankController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AITankController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\AITankController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwEkAAABNAAAAAAAAAA==",
+              "ViewState": "AQIAABEAAAAAAAAAAAAqwGMAAABkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T06:05:52.077Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 29,
               "Title": "AIController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\AIController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\AIController.cs",
               "ViewState": "AgIAAEEAAAAAAAAAAAAwwFYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T06:04:49.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T06:04:49.539Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 30,
               "Title": "EscapeManager.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Main_Scene\\EscapeManager.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Main_Scene\\EscapeManager.cs",
               "RelativeDocumentMoniker": "Assets\\Main_Scene\\EscapeManager.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Main_Scene\\EscapeManager.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Main_Scene\\EscapeManager.cs",
               "RelativeToolTip": "Assets\\Main_Scene\\EscapeManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -260,61 +254,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "CharacterStats.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\CharacterStats.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAAHQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T22:11:26.354Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "HealthBar.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs",
               "RelativeDocumentMoniker": "Assets\\UI\\HealthBar.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\HealthBar.cs",
               "RelativeToolTip": "Assets\\UI\\HealthBar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T21:55:21.627Z"
+              "WhenOpened": "2025-04-27T21:55:21.627Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 17,
               "Title": "QLearningHealerController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\QLearningHealerController.cs",
-              "ViewState": "AgIAACgBAAAAAAAAAADwv0UBAAAFAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T02:40:23.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "AISwordmasterController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\AISwordmasterController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAQwIAAAABTAAAAAAAAAA==",
+              "ViewState": "AQIAAPsAAAAAAAAAAAAqwA4BAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T06:06:52.179Z"
+              "WhenOpened": "2025-04-28T06:06:52.179Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 31,
               "Title": "AIHealerController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\AIHealerController.cs",
               "ViewState": "AgIAAIMAAAAAAAAAAAAowHoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -322,37 +318,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "Boss Stats Class.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\Boss Stats Class.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Stats Class.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\Boss Stats Class.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T02:44:52.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 32,
               "Title": "QLearningAssassinController.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\QLearningAssassinController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T07:35:12.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-28T07:35:12.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 33,
               "Title": "Boss Ai Script.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\Boss Ai Script.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\Boss Ai Script.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\Boss Ai Script.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAUwGgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -360,47 +355,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 1,
               "Title": "BossAbilities.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\BossAbilities.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\BossAbilities.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\BossAbilities.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T21:59:48.334Z"
+              "WhenOpened": "2025-04-27T21:59:48.334Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 21,
               "Title": "Lit.shader",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@a394fe607f89\\Shaders\\Lit.shader",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-04-27T00:07:41.97Z"
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-27T00:07:41.97Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 10,
               "Title": "UnitSelectionBox.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\UnitSelectionBox.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionBox.cs",
               "RelativeToolTip": "Assets\\Selection Navigation\\UnitSelectionBox.cs",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAAAEIAAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T18:32:32.929Z"
+              "WhenOpened": "2025-04-27T18:32:32.929Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "CameraMovement.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\CameraMovement.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\CameraMovement.cs",
               "RelativeToolTip": "Assets\\Script\\CameraMovement.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -408,11 +406,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "testUnit.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs",
               "RelativeDocumentMoniker": "Assets\\testUnit.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\testUnit.cs",
               "RelativeToolTip": "Assets\\testUnit.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -420,172 +418,135 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 4,
               "Title": "UnitSelectionManager.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\UnitSelectionManager.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\UnitSelectionManager.cs",
               "RelativeToolTip": "Assets\\Selection Navigation\\UnitSelectionManager.cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAAALIAAABcAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAHYAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T21:46:50.892Z"
+              "WhenOpened": "2025-04-26T21:46:50.892Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "unit_instance.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs",
+              "RelativeDocumentMoniker": "Assets\\unit_instance.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unit_instance.cs",
+              "RelativeToolTip": "Assets\\unit_instance.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T21:37:12.464Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 5,
               "Title": "Abilities.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\Abilities.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\Abilities.cs",
               "RelativeDocumentMoniker": "Assets\\UI\\Abilities.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\Abilities.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\Abilities.cs",
               "RelativeToolTip": "Assets\\UI\\Abilities.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIMAAAB9AAAAAAAAAA==",
+              "ViewState": "AQIAALQAAAAAAAAAAAAAAMoAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T22:19:16.285Z"
+              "WhenOpened": "2025-04-27T22:19:16.285Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 0,
               "Title": "BossHpBar.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs",
               "RelativeDocumentMoniker": "Assets\\BossHpBar.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\BossHpBar.cs",
               "RelativeToolTip": "Assets\\BossHpBar.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAYAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T02:27:34.415Z"
+              "WhenOpened": "2025-04-28T02:27:34.415Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 19,
               "Title": "Movement.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs",
               "RelativeDocumentMoniker": "Assets\\TutorialInfo\\Scripts\\Movement.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\TutorialInfo\\Scripts\\Movement.cs",
               "RelativeToolTip": "Assets\\TutorialInfo\\Scripts\\Movement.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAAADMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T02:49:44.403Z"
+              "WhenOpened": "2025-04-28T02:49:44.403Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 20,
               "Title": "MainMenu.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs",
               "RelativeDocumentMoniker": "Assets\\MainMenu.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\MainMenu.cs",
               "RelativeToolTip": "Assets\\MainMenu.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T03:29:13.7Z"
+              "WhenOpened": "2025-04-28T03:29:13.7Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Unit.cs",
-              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs",
-              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Unit.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T21:36:43.856Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Unit.cs",
-              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs",
-              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\Unit.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T21:22:58.12Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "unitSelectionManager.cs",
-              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs",
-              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\unitSelectionManager.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T21:15:58.689Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 8,
               "Title": "unitMovement.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Selection Navigation\\unitMovement.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Selection Navigation\\unitMovement.cs",
               "RelativeToolTip": "Assets\\Selection Navigation\\unitMovement.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAA3AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T19:09:06.114Z"
+              "WhenOpened": "2025-04-26T19:09:06.114Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 12,
               "Title": "statsInputManager.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs",
               "RelativeDocumentMoniker": "Assets\\UI\\statsInputManager.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\UI\\statsInputManager.cs",
               "RelativeToolTip": "Assets\\UI\\statsInputManager.cs",
               "ViewState": "AQIAADwAAAAAAAAAAAAAAFMAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T21:55:07.177Z"
+              "WhenOpened": "2025-04-25T21:55:07.177Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "HealthBar.cs",
-              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs",
-              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\HealthBar.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T21:43:59.378Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "RLRewardEstimator.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
+              "RelativeToolTip": "Assets\\Script\\ReinforcementLearning\\RLRewardEstimator.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T19:25:24.25Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 11,
               "Title": "TacticalDecisionFusion.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
+              "RelativeToolTip": "Assets\\Script\\Utilities\\TacticalDecisionFusion.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-23T19:24:52.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 36,
               "Title": "QTableManager.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
               "RelativeToolTip": "Assets\\Script\\ReinforcementLearning\\QTableManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -593,11 +554,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 37,
               "Title": "AttackNode.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\AttackNode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -605,34 +566,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "ConditionNode.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\ConditionNode.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ConditionNode.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\ConditionNode.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T01:48:56.518Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 9,
               "Title": "ThreatMeter.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Ai\\ThreatMeter.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\Ai\\ThreatMeter.cs",
               "RelativeToolTip": "Assets\\Script\\Ai\\ThreatMeter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAGgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:38:33.005Z"
+              "WhenOpened": "2025-04-22T01:38:33.005Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 38,
               "Title": "MoveToTargetNode.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\MoveToTargetNode.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAAAC4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -640,23 +602,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 22,
               "Title": "Node.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Node.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Node.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Node.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:48:19.139Z"
+              "WhenOpened": "2025-04-22T01:48:19.139Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 39,
               "Title": "AoeAttackNode.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\AoeAttackNode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -664,11 +627,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 40,
               "Title": "RetreatNode.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Actions\\RetreatNode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -676,48 +639,49 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 13,
               "Title": "ActionNode.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\ActionNode.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\ActionNode.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\ActionNode.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T01:48:49.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "Sequence.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Sequence.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Sequence.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Sequence.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T01:48:43.931Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "Selector.cs",
               "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Selector.cs",
               "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\BehaviorTree\\Selector.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Selector.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T01:48:35.802Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 16,
               "Title": "PlayerAI.cs",
-              "DocumentMoniker": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs",
+              "DocumentMoniker": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerAI.cs",
-              "ToolTip": "C:\\Users\\ezzuz\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs",
+              "ToolTip": "C:\\Users\\xhd17\\OneDrive\\Documents\\GitHub\\test\\My project (1)\\Assets\\Script\\PlayerAI.cs",
               "RelativeToolTip": "Assets\\Script\\PlayerAI.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:04:22.086Z"
+              "WhenOpened": "2025-04-22T01:04:22.086Z",
+              "EditorCaption": ""
             }
           ]
         }

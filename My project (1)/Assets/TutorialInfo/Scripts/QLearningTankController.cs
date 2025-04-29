@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class QLearningTankController : AITankController
 {
+    private Abilities abilities; // written by darius(for ability UI access)
+
     [Header("QLearning Settings")]
     public float learningRate = 0.1f;
     public float discountFactor = 0.9f;
@@ -58,6 +60,8 @@ public class QLearningTankController : AITankController
 
     protected override void Start()
     {
+        abilities = GetComponent<Abilities>(); // written by darius(for ability UI access)
+
         base.Start();
         InitializeQTable();
 
@@ -292,23 +296,38 @@ public class QLearningTankController : AITankController
     {
         switch (action)
         {
-            case 0:
-                if (Time.time >= lastTauntTime + tauntCooldown)
+            case 0: 
+                if (!abilities.isCooldown1)  //changed by darius for ability UI
                 {
-                    TryTaunt();
+                    abilities.TryStartAbility(1); //start cooldown
+                    if (abilities.characterType == Abilities.CharacterType.Tank) //added by darius for ability UI
+                    {
+                        TryTaunt();
+                    }
                 }
                 break;
+
             case 1:
-                if (Time.time >= lastShieldBashTime + shieldBashCooldown)
+                if (!abilities.isCooldown2) //changed by darius for ability UI
                 {
-                    TryShieldBash();
+                    abilities.TryStartAbility(2);
+                    if (abilities.characterType == Abilities.CharacterType.Tank) //added by darius for ability UI
+                    {
+                        TryShieldBash();
+                    }
                 }
                 break;
-            case 2:
-                if (Time.time >= lastBlockTime + blockCooldown)
+
+            case 2: 
+                if (!abilities.isCooldown3) //changed by darius for ability UI
                 {
-                    StartBlocking();
-                }
+                    abilities.TryStartAbility(3);
+                    if (abilities.characterType == Abilities.CharacterType.Tank) //added by darius for ability UI
+                    {
+                        StartBlocking();
+                    }
+                } 
+
                 break;
             case 3:
                 if (Time.time >= lastAttackTime + attackCooldown)

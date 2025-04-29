@@ -1,112 +1,165 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class Abilities : MonoBehaviour
 {
+    public enum CharacterType { Tank, Healer, SwordMaster, Assassin } // class selection in unity inspector
+
+    [Header("Character Type")]
+    public CharacterType characterType;
 
     public GameObject abilityUI;
     public Slider healthBarSlider;
 
+
+    [Header("HP Display")]  // text that shows hp numbers
+    public TextMeshProUGUI hpText;
+    public bool showCurrentHP = true;
+    public bool showMaxHP = true;
+    public string format = "{0}/{1}"; //{0} = current HP, {1} = max HP
+
     [Header("Ability1")]
     public Image abilityImage1;
-    public float cooldown1 = 10;
-    bool isCooldown = false;
+    public float cooldown1;
+    [HideInInspector] public bool isCooldown1 = false; 
     public KeyCode ability1;
 
     [Header("Ability2")]
     public Image abilityImage2;
-    public float cooldown2 = 5;
-    bool isCooldown2 = false;
+    public float cooldown2;
+    [HideInInspector] public bool isCooldown2 = false;
     public KeyCode ability2;
 
     [Header("Ability3")]
     public Image abilityImage3;
-    public float cooldown3 = 5;
-    bool isCooldown3 = false;
+    public float cooldown3;
+    [HideInInspector] public bool isCooldown3 = false;
     public KeyCode ability3;
 
-    // start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Reset()
     {
-        abilityImage1.fillAmount = 1;
-        abilityImage2.fillAmount = 1;
-        abilityImage3.fillAmount = 1;
+        // Initialize all abilities as ready
+        abilityImage1.fillAmount = 0;
+        abilityImage2.fillAmount = 0;
+        abilityImage3.fillAmount = 0;
+
+        // set cooldowns based on class
+        if (characterType == CharacterType.Tank)
+        {
+            cooldown1 = 15f;
+            cooldown2 = 8f;
+            cooldown3 = 10f;
+        }
+        else if (characterType == CharacterType.Healer)
+        {
+            cooldown1 = 10000f;
+            cooldown2 = 20f;
+            cooldown3 = 10000f;
+        }
+        else if (characterType == CharacterType.SwordMaster)
+        {
+            cooldown1 = 25f;
+            cooldown2 = 40f;
+            cooldown3 = 30f;
+        }
+        else if (characterType == CharacterType.Assassin)
+        {
+            cooldown1 = 140f;
+            cooldown2 = 140f;
+            cooldown3 = 140f;
+        }
     }
 
-    // Update is called once per frame
+    // only show stuff and update if the unit is selected
     void Update()
-    {   
+    {
+        bool isSelected = IsThisCharacterSelected();
+        SetAbilityUIActive(isSelected);
 
-        UpdateAbilityUI(); 
-        //check if the UI is already activated
-        if (abilityUI.activeSelf)
+        if (isSelected)
         {
-            Ability1();
-            Ability2();
-            Ability3();
+            UpdateCooldowns();
+            CheckPlayerInput();
+            UpdateHealthBar();
         }
+
     }
 
-    void Ability1()
-    {
-        if(Input.GetKey(ability1)&& isCooldown == false)
+        void UpdateCooldowns()
         {
-            isCooldown = true;
-            abilityImage1.fillAmount = 1;
-        }
-
-        if (isCooldown)
-        {
-            abilityImage1.fillAmount -= 1 / cooldown1 * Time.deltaTime;
-
-            if(abilityImage1.fillAmount <= 0)
+        // ability 1 cooldown timer
+        if (isCooldown1)
             {
-                abilityImage1.fillAmount = 1;
-                isCooldown=false;
+                abilityImage1.fillAmount -= 1 / cooldown1 * Time.deltaTime;
+                if (abilityImage1.fillAmount <= 0)
+                {
+                    abilityImage1.fillAmount = 0;
+                    isCooldown1 = false;
+                }
             }
-        }
-    }
-    void Ability2()
-    {
-        if (Input.GetKey(ability2) && isCooldown2 == false)
-        {
-            isCooldown2 = true;
-            abilityImage2.fillAmount = 1;
-        }
 
+        // ability 2 cooldown timer
         if (isCooldown2)
-        {
-            abilityImage2.fillAmount -= 1 / cooldown2 * Time.deltaTime;
-
-            if (abilityImage2.fillAmount <= 0)
             {
-                abilityImage2.fillAmount = 1;
-                isCooldown2 = false;
+                abilityImage2.fillAmount -= 1 / cooldown2 * Time.deltaTime;
+                if (abilityImage2.fillAmount <= 0)
+                {
+                    abilityImage2.fillAmount = 0;
+                    isCooldown2 = false;
+                }
             }
-        }
-    }
-    void Ability3()
-    {
-        if (Input.GetKey(ability3) && isCooldown3 == false)
-        {
-            isCooldown3 = true;
-            abilityImage3.fillAmount = 1;
-        }
 
+        // ability 3 cooldown timer
         if (isCooldown3)
-        {
-            abilityImage3.fillAmount -= 1 / cooldown3 * Time.deltaTime;
-
-            if (abilityImage3.fillAmount <= 0)
             {
-                abilityImage3.fillAmount = 1;
-                isCooldown3 = false;
+                abilityImage3.fillAmount -= 1 / cooldown3 * Time.deltaTime;
+                if (abilityImage3.fillAmount <= 0)
+                {
+                    abilityImage3.fillAmount = 0;
+                    isCooldown3 = false;
+                }
             }
         }
-    }
 
-    // function to update the ability UI based on selected unit
+    // press the keys to use abilities
+    void CheckPlayerInput()
+        {
+            if (Input.GetKey(ability1)) TryStartAbility(1);
+            if (Input.GetKey(ability2)) TryStartAbility(2);
+            if (Input.GetKey(ability3)) TryStartAbility(3);
+        }
+
+    // starts an ability if it's not on cooldown
+    public void TryStartAbility(int abilityIndex)
+        {
+            switch (abilityIndex)
+            {
+                case 1:
+                    if (!isCooldown1)
+                    {
+                        isCooldown1 = true;
+                        abilityImage1.fillAmount = 1;
+                    }
+                    break;
+                case 2:
+                    if (!isCooldown2)
+                    {
+                        isCooldown2 = true;
+                        abilityImage2.fillAmount = 1;
+                    }
+                    break;
+                case 3:
+                    if (!isCooldown3)
+                    {
+                        isCooldown3 = true;
+                        abilityImage3.fillAmount = 1;
+                    }
+                    break;
+            }
+        }
+
+    /* handling Ability UI differently now
     public void UpdateAbilityUI()
     {
         if (UnitSelectionManager.Instance.unitsSelected.Count == 1)
@@ -119,18 +172,46 @@ public class Abilities : MonoBehaviour
             abilityUI.SetActive(false);
         }
     }
-    // function to update the health bar based on the selected unit
+    */
+
+    // updates hp bar and text for selected unit
     public void UpdateHealthBar()
-    {
-        if (UnitSelectionManager.Instance.unitsSelected.Count == 1)
         {
-            var selectedUnit = UnitSelectionManager.Instance.unitsSelected[0];  // get the first selected unit
-            var stats = selectedUnit.GetComponent<CharacterStats>(); // get character stats component of the unit
-            if (stats != null && healthBarSlider != null)
+            if (!IsThisCharacterSelected()) return;
+
+            var stats = GetComponent<CharacterStats>();
+            if (stats == null || hpText == null) return;
+            
+         
+            healthBarSlider.maxValue = stats.GetMaxHP();
+            healthBarSlider.value = stats.GetCurrentHP();
+
+        // format: current/max (like 120/200)
+        hpText.text = $"{stats.GetCurrentHP():0}/{stats.GetMaxHP():0}";
+            
+        }
+
+    // show or hide the ability ui
+    public void SetAbilityUIActive(bool isActive)
+        {
+            if (abilityUI != null)
             {
-                healthBarSlider.maxValue = stats.GetMaxHP(); // set the max value of the health bar
-                healthBarSlider.value = stats.GetCurrentHP(); // as well as current in case current HP went higher than MaxHP
+                abilityUI.SetActive(isActive);
             }
         }
+
+    // check if this unit is the only one selected
+    private bool IsThisCharacterSelected()
+    {
+        //check if this character is in the selected units list
+        if (UnitSelectionManager.Instance != null &&
+            UnitSelectionManager.Instance.unitsSelected.Count == 1)
+        {
+            return UnitSelectionManager.Instance.unitsSelected[0] == gameObject;
+        }
+        return false;
     }
+
+
 }
+
